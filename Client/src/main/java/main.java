@@ -6,6 +6,11 @@ public class main {
     public static void main(String[] args) {launch(args);}
 
     private static void launch(String[] args) {
+    
+    	System.out.println("ciao");
+    	
     }
 
 }
+
+//test
