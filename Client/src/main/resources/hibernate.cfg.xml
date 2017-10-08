@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--http://hsqldb.org/doc/2.0/guide/deployment-chapt.html#dec_app_dev_testing
+        Embedded Databases in Desktop Applications
+        In this usage, the amount of data change is often limited and there is often a requirement to persist the data
+        immediately. The default write delay of 0.5 second is fine for many applications. You can also use the property
+        hsqldb.write_delay_millis=100 to reduce it to 0.1 second, or the property hsqldb.write_delay=false to force
+        a disk fsync after each commit. Before the application is closed, you should perform the SHUTDOWN command to
+        ensure the database is opened instantly when it is next opened. Note you don't need to use SHUTDOWN COMPACT as
+        routine. -->
+        <property name="connection.url">jdbc:hsqldb:file:C:/Users/m.tarozzi/IdeaProjects/PIL/DB3;hsqldb.write_delay=false</property>
+        <!--
+                <property name="connection.url">jdbc:hsqldb:hsql://localhost/GialloDB</property>
+        -->
+        <!--Configurazione del DB - DRIVER, DIALETTO SQL, Server location user e pass-->
+        <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+        <property name="javax.persistence.schema-generation.scripts.create-target"/>
+        <property name="hibernate.connection.username">SA</property>
+        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="use_sql_comments">false</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <mapping class="Pojo.Socio"></mapping>
+    </session-factory>
+</hibernate-configuration>

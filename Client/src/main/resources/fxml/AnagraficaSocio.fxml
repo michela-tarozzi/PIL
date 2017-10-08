@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaSocio">
+   <children>
+      <Label layoutX="24.0" layoutY="14.0" text="Anagrafica dei soci" />
+      <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="31.0" prefHeight="644.0" prefWidth="1157.0">
+        <columns>
+          <TableColumn fx:id="ColonnaCF" prefWidth="89.0" text="CF" />
+          <TableColumn fx:id="ColonnaCOGNOME" prefWidth="89.0" text="COGNOME" />
+          <TableColumn fx:id="ColonnaNOME" prefWidth="89.0" text="NOME" />
+          <TableColumn fx:id="colonnaINDIRIZZO" prefWidth="89.0" text="INDIRIZZO" />
+          <TableColumn fx:id="colonnaCOMUNE" prefWidth="89.0" text="COMUNE" />
+          <TableColumn fx:id="colonnaCITTA" prefWidth="89.0" text="CITTA'" />
+          <TableColumn fx:id="colonnaIBAN" prefWidth="89.0" text="IBAN" />
+          <TableColumn fx:id="colonnaCategoria" prefWidth="89.0" text="CATEGORIA" />
+          <TableColumn fx:id="colonnaISCRIZIONE" prefWidth="89.0" text="DATA ISCRIZIONE" />
+          <TableColumn fx:id="colonnaPENSIONE" prefWidth="89.0" text="DATA PENSIONAMENTO" />
+          <TableColumn fx:id="colonnaSUSSIDIO" prefWidth="89.0" text="SUSSIDIO MENSILE" />
+          <TableColumn fx:id="colonnaRITENUTA" prefWidth="89.0" text="RITENUTA" />
+          <TableColumn fx:id="colonnaREDDITO" prefWidth="89.0" text="REDDITO" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
