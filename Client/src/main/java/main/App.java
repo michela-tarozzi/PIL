@@ -1,5 +1,9 @@
 package main;
 
+import Pojo.AddizionaleComunale;
+import Pojo.AddizionaleRegionale;
+import Pojo.DAO.AddizionaleComunaleDao;
+import Pojo.DAO.AddizionaleRegionaleDao;
 import Pojo.DAO.SocioDao;
 import Pojo.DAO.SpeseDao;
 import javafx.application.Application;
@@ -32,7 +36,11 @@ public class App extends Application {
     public void start(Stage primaryStage) {
 
         SpeseDao speseDao=new SpeseDao();
+        AddizionaleComunaleDao addizionaleComunaleDao=new AddizionaleComunaleDao();
+        addizionaleComunaleDao.CreaAddizionaleComunale("codice","comune", 2017, 10000,50000,Float.parseFloat("28.70"));
 
+        AddizionaleRegionaleDao addizionaleRegionaleDao=new AddizionaleRegionaleDao();
+        addizionaleRegionaleDao.CreaAddizionaleRegionale("EmiliaRomagna",2017,10000,50000,Float.parseFloat("40") );
 
         SocioDao sd=new SocioDao();
         Date dat= new Date();
