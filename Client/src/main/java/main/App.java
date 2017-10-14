@@ -1,40 +1,35 @@
+package main;
+
 import Pojo.DAO.SocioDao;
-import Pojo.Socio;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
- * Created by m.tarozzi on 04/10/2017.
+ * Created by m.tarozzi on 08/10/2017.
  */
-public class main extends Application {
-
+public class App extends Application {
     private Stage stage;
     private final FXMLLoader loader=new FXMLLoader();
-    private static main instance;
+    private static App instance;
+
+    public App(){instance=this;}
+
+    public static App getInstance(){return instance;}
 
     public static void main(String[] args) {launch(args);}
 
-    public main(){instance=this;}
-
-    public static main getInstance(){return instance;}
 
     @Override
     public void start(Stage primaryStage) {
 
-        System.out.println("ciao");
         SocioDao sd=new SocioDao();
         Date dat= new Date();
         sd.CreaSocio("TRZMHL90L71A944E","MICHELA","TAROZZI",
@@ -73,25 +68,11 @@ public class main extends Application {
 
 
 
-    public void gotoPippo() {
-        URL fxmlPage = this.getClass().getResource("/fxml/AnagraficaSocio.fxml");
-        URL fxmlCenterPath = this.getClass().getResource("/fxml/main.fxml");
-        AnchorPane page = null;
-        try {
-            page = loader.load(fxmlPage);
-            BorderPane root = loader.load(fxmlCenterPath);
-            Scene scene = new Scene(root);
-            root.setCenter(page);
-            root.setTop(null);
-            this.stage.setResizable(false);
-            this.stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void gotoInserisciSocio() {
+        try {replaceSceneContent("/fxml/InserisciSocio.fxml");}
+        catch (Exception e){
+            System.out.println(e);
         }
-        stage.show();
-        stage.toFront();
     }
 
 }
-
-//test

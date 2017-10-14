@@ -5,10 +5,12 @@ import Pojo.Socio;
 import Utility.ControllersDispatcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import main.App;
 
 /**
  * Created by m.tarozzi on 08/10/2017.
@@ -72,4 +74,7 @@ public class controllerAnagraficaSocio {
     }
 
 
+    public void InserisciNuovoSocio(ActionEvent event) {
+        App.getInstance().gotoInserisciSocio();
+    }
 }
