@@ -5,17 +5,18 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="it.unibo.tw.hibernate.Socio" table="Socio">
+  <class name="it.unibo.tw.hibernate.Pensioni" table="Pensioni">
     <id name="id" column="id">
-      <!-- <generator class="native"/> -->
+      <!-- //FKSOCIO
+    //FK PAGAMENTO -->
     </id>
-    <property name="CF" column="cf"/>
-    <property name="nome" column="nome"/>
-    <property name="cognome" column="cognome"/>
-    <property name="indirizzo" column="indirizzo"/>
-    <property name="citta" column="citta"/>
-    <property name="comune" column="comune"/>
-    <property name="categoria" column="catogoria"/>
+    <property name="sussidio" column="sussidio"/>
+    <property name="carovita" column="carovita"/>
+    <property name="lordo" column="lordo"/>
+    <property name="ritenuta" column="ritenuta"/>
+    <property name="addizionaleRegionale" column="addizionaleRegionale"/>
+    <property name="addizionaleComunale" column="addizionaleComunale"/>
+    <property name="netto" column="netto"/>
     <property name="IBAN" column="IBAN"/>
     <property name="dataIscrizione" column="dataIscrizione"/>
     <property name="dataPensionamento" column="dataPensionamento"/>

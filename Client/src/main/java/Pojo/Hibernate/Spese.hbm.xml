@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="it.unibo.tw.hibernate.Spese" table="Spese">
+    <id name="id" column="id">
+      <!--     fkSocio
+-->
+    </id>
+    <property name="importo" column="importo"/>
+    <property name="data" column="data"/>
+    <property name="numero" column="numero"/>
+  </class>
+</hibernate-mapping>

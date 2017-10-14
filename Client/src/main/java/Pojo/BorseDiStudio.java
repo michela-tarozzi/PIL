@@ -13,5 +13,5 @@ public class BorseDiStudio {
     //LORDO
     //NETTO
     //FK SOCIO
-    //FK PAGAMENTO
+    //FK PAGAMENTo
 }

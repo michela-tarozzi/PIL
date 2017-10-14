@@ -1,6 +1,7 @@
 package main;
 
 import Pojo.DAO.SocioDao;
+import Pojo.DAO.SpeseDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +31,9 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        SpeseDao speseDao=new SpeseDao();
+
+
         SocioDao sd=new SocioDao();
         Date dat= new Date();
         sd.CreaSocio("TRZMHL90L71A944E","MICHELA","TAROZZI",
@@ -38,6 +42,8 @@ public class App extends Application {
         sd.CreaSocioPensionato("TRZMHL90L71A944E","MICHELA","TAROZZI",
                 "VIA IRNERIO 34","BOLOGNA","BOLOGNA",
                 "IT7G1234512345123456789012", dat , "Pensionato",dat,Float.parseFloat("56843.76"),Float.parseFloat("34.65"),Float.parseFloat("75.23"));
+        speseDao.CreaSpesa("1",dat,Float.parseFloat("160"));
+
         try{
             stage=primaryStage;
             gotoAnagrafica();

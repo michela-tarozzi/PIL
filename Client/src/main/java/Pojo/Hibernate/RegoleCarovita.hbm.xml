@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="it.unibo.tw.hibernate.RegoleCarovita" table="regoleCarovita">
+    <id name="id" column="id">
+      <!-- <generator class="native"/> -->
+    </id>
+    <property name="anno" column="anno"/>
+    <property name="percentuale" column="percentuale"/>
+  </class>
+</hibernate-mapping>

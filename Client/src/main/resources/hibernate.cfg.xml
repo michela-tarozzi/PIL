@@ -28,5 +28,20 @@
         <property name="use_sql_comments">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="Pojo.Socio"></mapping>
+        <mapping class="Pojo.AddizionaleComunale"></mapping>
+        <mapping class="Pojo.AddizionaleRegionale"></mapping>
+        <mapping class="Pojo.AsiliNido"></mapping>
+        <mapping class="Pojo.BorseDiStudio"></mapping>
+        <mapping class="Pojo.Comune"></mapping>
+        <mapping class="Pojo.Conti"></mapping>
+        <mapping class="Pojo.Eredi"></mapping>
+        <mapping class="Pojo.Pagamenti"></mapping>
+        <mapping class="Pojo.Pensioni"></mapping>
+        <mapping class="Pojo.Regioni"></mapping>
+        <mapping class="Pojo.RegoleCarovita"></mapping>
+        <mapping class="Pojo.RegoleRimborsi"></mapping>
+        <mapping class="Pojo.Rimborsi"></mapping>
+        <mapping class="Pojo.RiservaMatematica"></mapping>
+        <mapping class="Pojo.Spese"></mapping>
     </session-factory>
 </hibernate-configuration>
