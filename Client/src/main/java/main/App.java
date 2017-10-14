@@ -2,10 +2,7 @@ package main;
 
 import Pojo.AddizionaleComunale;
 import Pojo.AddizionaleRegionale;
-import Pojo.DAO.AddizionaleComunaleDao;
-import Pojo.DAO.AddizionaleRegionaleDao;
-import Pojo.DAO.SocioDao;
-import Pojo.DAO.SpeseDao;
+import Pojo.DAO.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,12 +32,19 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        BorseDiStudioDao borseDiStudioDao=new BorseDiStudioDao();
+        borseDiStudioDao.CreaBorsaDiStudio("figlio",2017,35,"iban",100,80,20);
+
+
         SpeseDao speseDao=new SpeseDao();
         AddizionaleComunaleDao addizionaleComunaleDao=new AddizionaleComunaleDao();
         addizionaleComunaleDao.CreaAddizionaleComunale("codice","comune", 2017, 10000,50000,Float.parseFloat("28.70"));
 
         AddizionaleRegionaleDao addizionaleRegionaleDao=new AddizionaleRegionaleDao();
         addizionaleRegionaleDao.CreaAddizionaleRegionale("EmiliaRomagna",2017,10000,50000,Float.parseFloat("40") );
+
+        AsiliNidoDao asiliNidoDao=new AsiliNidoDao();
+        asiliNidoDao.CreaAsiloNido("figlio",2017,100,100,100,100);
 
         SocioDao sd=new SocioDao();
         Date dat= new Date();

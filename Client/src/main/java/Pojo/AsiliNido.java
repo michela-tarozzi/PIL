@@ -16,7 +16,7 @@ import java.util.Date;
  * Created by m.tarozzi on 14/10/2017.
  */
 @Entity
-@Table(name="addizionaleComunale")
+@Table(name="asiliNido")
 public class AsiliNido implements Externalizable {
 
     //FK PAGAMENTO
