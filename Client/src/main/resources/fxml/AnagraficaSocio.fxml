@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,7 +9,7 @@
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaSocio">
    <children>
       <Label layoutX="24.0" layoutY="14.0" text="Anagrafica dei soci" />
-      <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="31.0" prefHeight="644.0" prefWidth="1157.0">
+      <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
         <columns>
           <TableColumn fx:id="ColonnaCF" prefWidth="89.0" text="CF" />
           <TableColumn fx:id="ColonnaCOGNOME" prefWidth="89.0" text="COGNOME" />
@@ -25,5 +26,6 @@
           <TableColumn fx:id="colonnaREDDITO" prefWidth="89.0" text="REDDITO" />
         </columns>
       </TableView>
+      <Button fx:id="btnNuovoSocio" layoutX="344.0" layoutY="10.0" mnemonicParsing="false" onAction="#InserisciNuovoSocio" text="Inserisci nuovo socio" />
    </children>
 </AnchorPane>

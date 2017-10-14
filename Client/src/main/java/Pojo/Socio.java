@@ -21,18 +21,20 @@ import java.util.Date;
 @Entity
 @Table(name="Soci")
 public class Socio implements Externalizable {
-
+    //AGGIUNGERE CONTO CHE AVRà PENSIONE O QUOTE
     @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid", strategy = "uuid2")
     @Column(name="uuid",unique=true)
     @Expose
     private String id;
+
     @Column(nullable=false)
     private StringProperty CF;
     @Transient
     @Expose
     private String _cf;
+
     @Column(nullable=false)
     private StringProperty nome;
     @Transient
