@@ -3,6 +3,8 @@ package Pojo;
 import com.google.gson.annotations.Expose;
 import javafx.beans.property.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,7 +13,9 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -101,6 +105,131 @@ public class Socio implements Externalizable {
     @Transient
     @Expose
     private Date _dataPensionamento;
+
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Spese> spese=new ArrayList<>();
+
+    public void addSpesa(Spese spesa){
+        this.spese.add(spesa);
+    }
+    public void removeSpesa(Spese spesa)
+    {
+        this.spese.remove(spesa);
+    }
+    public void setSpese(List<Spese> spese) {
+        this.spese = spese;
+    }
+    public List<Spese> getSpese() {
+        return spese;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<RiservaMatematica> datiRiserva=new ArrayList<>();
+
+    public void addRiserva(RiservaMatematica riserva){
+        this.datiRiserva.add(riserva);
+    }
+    public void removeRiserva(RiservaMatematica riserva)
+    {
+        this.datiRiserva.remove(riserva);
+    }
+    public void setDatiRiserva(List<RiservaMatematica> Datiriserva) {
+        this.datiRiserva = Datiriserva;
+    }
+    public List<RiservaMatematica> getDatiRiserva() {
+        return datiRiserva;
+    }
+
+
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Pensioni> pensioni=new ArrayList<>();
+
+    public void addPensioni(Pensioni pensioni){
+        this.pensioni.add(pensioni);
+    }
+    public void removePensioni(Pensioni pensioni)
+    {
+        this.pensioni.remove(pensioni);
+    }
+    public void setPensioni(List<Pensioni> pensioni) {
+        this.pensioni = pensioni;
+    }
+    public List<Pensioni> getPensioni() {
+        return pensioni;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Eredi> eredi=new ArrayList<>();
+
+    public void addEredi(Eredi eredi){
+        this.eredi.add(eredi);
+    }
+    public void removEredi(Eredi eredi)
+    {
+        this.eredi.remove(eredi);
+    }
+    public void setEredi(List<Eredi> eredi) {
+        this.eredi = eredi;
+    }
+    public List<Eredi> getEredi() {
+        return eredi;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<BorseDiStudio> borseDiStudio=new ArrayList<>();
+
+    public void addBorseDiStudio(BorseDiStudio borseDiStudio){
+        this.borseDiStudio.add(borseDiStudio);
+    }
+    public void removBorseDiStudio(BorseDiStudio borseDiStudio)
+    {
+        this.borseDiStudio.remove(borseDiStudio);
+    }
+    public void setBorseDiStudio(List<BorseDiStudio> borseDiStudio) {
+        this.borseDiStudio = borseDiStudio;
+    }
+    public List<BorseDiStudio> getBorseDiStudio() {
+        return borseDiStudio;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<AsiliNido> asiliNido=new ArrayList<>();
+
+    public void addAsiliNido(AsiliNido asiliNido){
+        this.asiliNido.add(asiliNido);
+    }
+    public void removAsiliNido(AsiliNido asiliNido)
+    {
+        this.asiliNido.remove(asiliNido);
+    }
+    public void setAsiliNido(List<AsiliNido> asiliNido) {
+        this.asiliNido = asiliNido;
+    }
+    public List<AsiliNido> getAsiliNido() {
+        return asiliNido;
+    }
+
+
     @Access(AccessType.PROPERTY)
     public Date getdataPensionamento() {
 
@@ -445,6 +574,12 @@ public class Socio implements Externalizable {
         out.writeObject(this.getreddito());
         out.writeObject(this.getritenuta());
         out.writeObject(this.getsussidioMensile());
+        out.writeObject(this.getSpese());
+        out.writeObject(this.getDatiRiserva());
+        out.writeObject(this.getPensioni());
+        out.writeObject(this.getEredi());
+        out.writeObject(this.getBorseDiStudio());
+        out.writeObject(this.getAsiliNido());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -462,5 +597,11 @@ public class Socio implements Externalizable {
         this.setreddito((float)in.readObject());
         this.setritenuta((float)in.readObject());
         this.setsussidioMensile((float)in.readObject());
+        this.setSpese((List) in.readObject());
+        this.setDatiRiserva((List) in.readObject());
+        this.setPensioni((List) in.readObject());
+        this.setEredi((List) in.readObject());
+        this.setBorseDiStudio((List) in.readObject());
+        this.setAsiliNido((List) in.readObject());
     }
 }

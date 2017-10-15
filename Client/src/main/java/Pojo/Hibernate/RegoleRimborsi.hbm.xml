@@ -5,8 +5,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="it.unibo.tw.hibernate.Socio" table="Socio">
+  <class name="it.unibo.tw.hibernate.RegoleRimborsi" table="regoleRimborsi">
     <id name="id" column="id">
+      <set name="rimborsi" table="regole-rimborsi">
+        <key column="idRegola" />
+        <many-to-many column="idRimborso" class="it.unibo.tw.hibernate.Rimborsi"/>
+      </set>
       <!-- <generator class="native"/> -->
     </id>
     <property name="descrizione" column="descrizione"/>

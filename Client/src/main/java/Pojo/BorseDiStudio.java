@@ -79,6 +79,20 @@ public class BorseDiStudio implements Externalizable {
     @Expose
     private float _netto;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idSocio", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_SOCIO"))
+    private Socio socio;
+    //SOCIO
+    public void setSocio(Socio quiz){this.socio=quiz;}
+    public Socio getSocio(){return this.socio;}
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idPagamento", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_PAGAMENTO"))
+    private Pagamenti pagamento;
+    //pagamwnto
+    public void setPagamento(Pagamenti pagamento){this.pagamento=pagamento;}
+    public Pagamenti getPagamento(){return this.pagamento;}
+
     //setter, getter
 
     public String getId() {

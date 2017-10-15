@@ -12,18 +12,19 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by m.tarozzi on 14/10/2017.
  */
 @Entity
-@Table(name="rimborsi")
+@Table(name="Rimborsi")
 public class Rimborsi implements Externalizable {
+
     //FK SPESA
     //FK PAGAMENTO
     //FK REGOLA
 
-    //ID
     @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid", strategy = "uuid2")
@@ -53,7 +54,25 @@ public class Rimborsi implements Externalizable {
     @Expose
     private float _importoSpesa;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idSpesa", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_SPESA"))
+    private Spese spesa;
+    //Spesa
+    public void setSpesa(Spese spesa){this.spesa=spesa;}
+    public Spese getSpesa(){return this.spesa;}
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idPagamento", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_PAGAMENTO"))
+    private Pagamenti pagamento;
+    //pagamwnto
+    public void setPagamento(Pagamenti pagamento){this.pagamento=pagamento;}
+    public Pagamenti getPagamento(){return this.pagamento;}
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idRegola", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_REGOLA"))
+    private RegoleRimborsi regola;
+    //regola
+    public void setRegola(RegoleRimborsi regola){this.regola=regola;}
+    public RegoleRimborsi getRegola(){return this.regola;}
 
 
     public String getId() {
@@ -154,7 +173,6 @@ public class Rimborsi implements Externalizable {
         this.setData((Date) in.readObject());
         this.setImporto((float) in.readObject());
         this.setImportoSpesa((float) in.readObject());
-
 
     }
 

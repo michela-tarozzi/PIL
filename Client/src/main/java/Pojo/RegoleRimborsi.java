@@ -3,6 +3,8 @@ package Pojo;
 import com.google.gson.annotations.Expose;
 import javafx.beans.property.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,13 +13,15 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by m.tarozzi on 14/10/2017.
  */
 
 @Entity
-@Table(name="regoleRimborsi")
+@Table(name="RegoleRimborsi")
 public class RegoleRimborsi implements Externalizable {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -78,6 +82,27 @@ public class RegoleRimborsi implements Externalizable {
     @Transient
     @Expose
     private float _maxSingolaPrestazione;
+
+    @OneToMany(mappedBy = "regola",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Rimborsi> rimborsi=new ArrayList<>();
+
+    public void addDatiRiserva(Rimborsi rimborsi){
+        this.rimborsi.add(rimborsi);
+    }
+    public void removeDatiRiserva(Rimborsi rimborsi)
+    {
+        this.rimborsi.remove(rimborsi);
+    }
+    public void setRimborsi(List<Rimborsi> rimborsi) {
+        this.rimborsi = rimborsi;
+    }
+    public List<Rimborsi> getRimborsi() {
+        return rimborsi;
+    }
+
 
     //setter, getter
 
@@ -265,6 +290,7 @@ public class RegoleRimborsi implements Externalizable {
         out.writeObject(this.getMaxAnnuo());
         out.writeObject(this.getMaxSingolaPrestazione());
         out.writeObject(this.getPercentuale());
+        out.writeObject(this.getRimborsi());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -276,6 +302,7 @@ public class RegoleRimborsi implements Externalizable {
         this.setMaxAnnuo((float) in.readObject());
         this.setMaxSingolaPrestazione((float) in.readObject());
         this.setPercentuale((float) in.readObject());
+        this.setRimborsi((List) in.readObject());
     }
 
 

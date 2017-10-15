@@ -26,17 +26,6 @@ public class Eredi implements Externalizable {
     @Expose
     private String id;
 
-    //NOMEFIGLIO
-    //IBAN FIGLIO
-    //CFU
-    //ANNO
-    //RITENUTA
-    //LORDO
-    //NETTO
-    //FK SOCIO
-    //FK PAGAMENTo
-
-
     @Column(nullable = false)
     private StringProperty nome;
     @Transient
@@ -49,17 +38,6 @@ public class Eredi implements Externalizable {
     @Expose
     private String _IBAN;
 
-    @Column(nullable = false)
-    private IntegerProperty CFU;
-    @Transient
-    @Expose
-    private int _CFU;
-
-    @Column(nullable = false)
-    private IntegerProperty anno;
-    @Transient
-    @Expose
-    private int _anno;
 
     @Column(nullable = false)
     private FloatProperty ritenuta;
@@ -78,6 +56,30 @@ public class Eredi implements Externalizable {
     @Transient
     @Expose
     private float _netto;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idSocio", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_SOCIO"))
+    private Socio socio;
+    //SOCIO
+    public void setSocio(Socio quiz){this.socio=quiz;}
+    public Socio getSocio(){return this.socio;}
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idPagamento", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_PAGAMENTO"))
+    private Pagamenti pagamento;
+    //pagamwnto
+    public void setPagamento(Pagamenti pagamento){this.pagamento=pagamento;}
+    public Pagamenti getPagamento(){return this.pagamento;}
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idConto", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_CONTO"))
+    private Conti conto;
+    //SOCIO
+    public void setConto(Conti conto){this.conto=conto;}
+    public Conti getConto(){return this.conto;}
+    //setter, getter
+    //setter, getter
+
 
     //setter, getter
 
