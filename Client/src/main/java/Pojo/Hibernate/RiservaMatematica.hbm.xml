@@ -5,7 +5,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="it.unibo.tw.hibernate.Socio" table="Socio">
+  <class name="it.unibo.tw.hibernate.RiservaMatematica" table="riservaMatematica">
     <id name="id" column="id">
       <!--
     //FK SOCIO-->

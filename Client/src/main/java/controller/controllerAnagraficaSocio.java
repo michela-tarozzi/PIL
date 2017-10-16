@@ -29,7 +29,7 @@ public class controllerAnagraficaSocio {
     @FXML
     public TableColumn<Socio,String> colonnaCOMUNE;
     @FXML
-    public TableColumn<Socio,String> colonnaCITTA;
+    public TableColumn<Socio,String> colonnaREGIONE;
     @FXML
     public TableColumn<Socio,String> colonnaIBAN;
     @FXML
@@ -59,7 +59,7 @@ public class controllerAnagraficaSocio {
         ColonnaCOGNOME.setCellValueFactory(new PropertyValueFactory<Socio, String>("cognome"));
         ColonnaNOME.setCellValueFactory(new PropertyValueFactory<Socio, String>("nome"));
         colonnaINDIRIZZO.setCellValueFactory(new PropertyValueFactory<Socio, String>("indirizzo"));
-        colonnaCITTA.setCellValueFactory(new PropertyValueFactory<Socio, String>("citta"));
+        colonnaREGIONE.setCellValueFactory(new PropertyValueFactory<Socio, String>("regione"));
         colonnaCOMUNE.setCellValueFactory(new PropertyValueFactory<Socio, String>("comune"));
         colonnaIBAN.setCellValueFactory(new PropertyValueFactory<Socio, String>("IBAN"));
         colonnaCategoria.setCellValueFactory(new PropertyValueFactory<Socio, String>("categoria"));

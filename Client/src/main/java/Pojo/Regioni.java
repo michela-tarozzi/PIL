@@ -3,6 +3,8 @@ package Pojo;
 import com.google.gson.annotations.Expose;
 import javafx.beans.property.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,6 +13,8 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by m.tarozzi on 14/10/2017.
@@ -33,6 +37,25 @@ public class Regioni implements Externalizable {
     private String _nome;
 
 
+    @OneToMany(mappedBy = "regione",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Socio> soci=new ArrayList<>();
+
+    public void addSocio(Socio socio){
+        this.soci.add(socio);
+    }
+    public void removeSocio(Socio socio)
+    {
+        this.soci.remove(socio);
+    }
+    public void setSoci(List<Socio> soci) {
+        this.soci = soci;
+    }
+    public List<Socio> getSoci() {
+        return soci;
+    }
     //setter, getter
 
     public String getId() {
@@ -75,17 +98,22 @@ public class Regioni implements Externalizable {
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.id);
         out.writeObject(this.getNome());
+        out.writeObject(this.getSoci());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.id = (String) in.readObject();
         this.setNome((String) in.readObject());
+        this.setSoci((List<Socio>)in.readObject());
     }
 
 
 
 
-
+    @Override
+    public String toString() {
+        return _nome;
+    }
 
 
 }

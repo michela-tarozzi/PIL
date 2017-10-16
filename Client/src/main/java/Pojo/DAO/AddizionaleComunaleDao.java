@@ -6,7 +6,10 @@ import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 
 /**
@@ -20,6 +23,24 @@ public class AddizionaleComunaleDao extends GenericDao {
     public ObservableList<AddizionaleComunale> getAll() {
         return findAllObservableList(AddizionaleComunale
                 .class);
+    }
+    public AddizionaleComunale getAddizionaleSpecifico(String comune, float reddito, int anno)
+    {
+        AddizionaleComunale addizionaleComunale=new AddizionaleComunale();
+        ObservableList<AddizionaleComunale> tutte = getAll();
+        Iterator<AddizionaleComunale> it=tutte.iterator();
+        boolean trovato=false;
+        while (it.hasNext()&& !trovato)
+        {
+            addizionaleComunale=it.next();
+            if(addizionaleComunale.getAnno()== anno && addizionaleComunale.getSogliaMinima()<reddito &&
+                    addizionaleComunale.getSogliaMassima()>reddito && addizionaleComunale.getComune().equals(comune))
+            {
+                trovato=true;
+            }
+        }
+
+        return addizionaleComunale;
     }
 
     public AddizionaleComunale CreaAddizionaleComunale(String codice, String comune, int anno, float sogliaMinima, float sogliaMassima, float aliquota) {

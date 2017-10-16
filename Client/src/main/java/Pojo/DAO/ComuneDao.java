@@ -19,7 +19,7 @@ public class ComuneDao extends GenericDao {
         return findAllObservableList(Comune.class);
     }
 
-    public Comune CreaBorsaDiStudio(String codiceCatastale,  String nome) {
+    public Comune CreaComune(String codiceCatastale, String nome) {
         Comune bds = new Comune();
         bds.setCodiceCatastale(codiceCatastale);
         bds.setNome(nome);
@@ -66,5 +66,6 @@ public class ComuneDao extends GenericDao {
     public void chiudiSessione() {
         closeSession();
     }
+
 }
 

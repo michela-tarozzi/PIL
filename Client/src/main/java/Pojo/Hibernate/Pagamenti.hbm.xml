@@ -7,6 +7,26 @@
 <hibernate-mapping>
   <class name="it.unibo.tw.hibernate.Pagamenti" table="Pagamenti">
     <id name="id" column="id">
+      <set name="rimborsi" table="pagamenti-rimborsi">
+        <key column="idPagamento" />
+        <many-to-many column="idRimborso" class="it.unibo.tw.hibernate.Rimborso"/>
+      </set>
+      <set name="pensioni" table="pagamenti-pensioni">
+        <key column="idPagamento" />
+        <many-to-many column="idPensione" class="it.unibo.tw.hibernate.Pensioni"/>
+      </set>
+      <set name="eredi" table="pagamenti-eredi">
+        <key column="idPagamento" />
+        <many-to-many column="idErede" class="it.unibo.tw.hibernate.Eredi"/>
+      </set>
+      <set name="borseDiStudio" table="pagamenti-borseDiStudio">
+      <key column="idPagamento" />
+      <many-to-many column="idBorsa" class="it.unibo.tw.hibernate.BorseDiStudio"/>
+    </set>
+      <set name="asiliNido" table="pagamenti-asiliNido">
+        <key column="idPagamento" />
+        <many-to-many column="idAsilo" class="it.unibo.tw.hibernate.AsiliNido"/>
+      </set>
       <!-- <generator class="native"/> -->
     </id>
     <property name="data" column="data"/>

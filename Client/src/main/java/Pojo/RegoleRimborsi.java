@@ -3,6 +3,8 @@ package Pojo;
 import com.google.gson.annotations.Expose;
 import javafx.beans.property.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,13 +13,15 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by m.tarozzi on 14/10/2017.
  */
 
 @Entity
-@Table(name="regoleRimborsi")
+@Table(name="RegoleRimborsi")
 public class RegoleRimborsi implements Externalizable {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -26,15 +30,6 @@ public class RegoleRimborsi implements Externalizable {
     @Expose
     private String id;
 
-    //NOMEFIGLIO
-    //IBAN FIGLIO
-    //ricorrenza
-    //ANNO
-    //RITENUTA
-    //LORDO
-    //NETTO
-    //FK SOCIO
-    //FK PAGAMENTo
 
 
     @Column(nullable = false)
@@ -42,12 +37,6 @@ public class RegoleRimborsi implements Externalizable {
     @Transient
     @Expose
     private String _descrizione;
-
-    @Column(nullable = false)
-    private StringProperty IBAN;
-    @Transient
-    @Expose
-    private String _IBAN;
 
     @Column(nullable = false)
     private IntegerProperty ricorrenza;
@@ -78,6 +67,27 @@ public class RegoleRimborsi implements Externalizable {
     @Transient
     @Expose
     private float _maxSingolaPrestazione;
+
+    @OneToMany(mappedBy = "regola",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Rimborsi> rimborsi=new ArrayList<>();
+
+    public void addDatiRiserva(Rimborsi rimborsi){
+        this.rimborsi.add(rimborsi);
+    }
+    public void removeDatiRiserva(Rimborsi rimborsi)
+    {
+        this.rimborsi.remove(rimborsi);
+    }
+    public void setRimborsi(List<Rimborsi> rimborsi) {
+        this.rimborsi = rimborsi;
+    }
+    public List<Rimborsi> getRimborsi() {
+        return rimborsi;
+    }
+
 
     //setter, getter
 
@@ -114,30 +124,6 @@ public class RegoleRimborsi implements Externalizable {
         }
     }
 
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getIBAN() {
-        if (this.IBAN == null) {
-            return _IBAN;
-        } else {
-            return this.IBAN.get();
-        }
-    }
-    public StringProperty IBANProperty() {
-        if (this.IBAN == null) {
-            this.IBAN = new SimpleStringProperty(this, "IBAN", _IBAN);
-        }
-        return this.IBAN;
-    }
-
-    public void setIBAN(String IBAN) {
-        if (this.IBAN == null) {
-            _IBAN = IBAN;
-        } else {
-            this.IBAN.set(IBAN);
-        }
-    }
 
     @Access(AccessType.PROPERTY)
     public float getPercentuale() {
@@ -261,10 +247,10 @@ public class RegoleRimborsi implements Externalizable {
         out.writeObject(this.getDescrizione());
         out.writeObject(this.getAnno());
         out.writeObject(this.getRicorrenza());
-        out.writeObject(this.getIBAN());
         out.writeObject(this.getMaxAnnuo());
         out.writeObject(this.getMaxSingolaPrestazione());
         out.writeObject(this.getPercentuale());
+        out.writeObject(this.getRimborsi());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -272,10 +258,10 @@ public class RegoleRimborsi implements Externalizable {
         this.setDescrizione((String) in.readObject());
         this.setAnno((int) in.readObject());
         this.setRicorrenza((int) in.readObject());
-        this.setIBAN((String) in.readObject());
         this.setMaxAnnuo((float) in.readObject());
         this.setMaxSingolaPrestazione((float) in.readObject());
         this.setPercentuale((float) in.readObject());
+        this.setRimborsi((List) in.readObject());
     }
 
 

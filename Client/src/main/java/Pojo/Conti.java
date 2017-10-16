@@ -3,6 +3,8 @@ package Pojo;
 import com.google.gson.annotations.Expose;
 import javafx.beans.property.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,6 +13,8 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by m.tarozzi on 14/10/2017.
@@ -38,6 +42,65 @@ public class Conti implements Externalizable {
     @Expose
     private String _descrizione;
 
+    @OneToMany(mappedBy = "conto",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Pagamenti> pagamenti=new ArrayList<>();
+
+    public void addPagamenti(Pagamenti pagamenti){
+        this.pagamenti.add(pagamenti);
+    }
+    public void removePagamenti(Pagamenti pagamenti)
+    {
+        this.pagamenti.remove(pagamenti);
+    }
+    public void setPagamenti(List<Pagamenti> pagamenti) {
+        this.pagamenti = pagamenti;
+    }
+    public List<Pagamenti> getPagamenti() {
+        return pagamenti;
+    }
+
+    @OneToMany(mappedBy = "conto",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Eredi> eredi=new ArrayList<>();
+
+    public void addEredi(Eredi eredi){
+        this.eredi.add(eredi);
+    }
+    public void removeEredi(Eredi eredi)
+    {
+        this.eredi.remove(eredi);
+    }
+    public void setEredii(List<Eredi> eredi) {
+        this.eredi = eredi;
+    }
+    public List<Eredi> getEredi() {
+        return eredi;
+    }
+
+    @OneToMany(mappedBy = "conto",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Socio> soci=new ArrayList<>();
+
+    public void addSocio(Socio socio){
+        this.soci.add(socio);
+    }
+    public void removeSocio(Socio socio)
+    {
+        this.soci.remove(socio);
+    }
+    public void setSoci(List<Socio> soci) {
+        this.soci = soci;
+    }
+    public List<Socio> getSoci() {
+        return soci;
+    }
 
     //setter, getter
 
@@ -105,15 +168,24 @@ public class Conti implements Externalizable {
         out.writeObject(this.id);
         out.writeObject(this.getNumero());
         out.writeObject(this.getDescrizione());
+        out.writeObject(this.getPagamenti());
+        out.writeObject(this.getEredi());
+        out.writeObject(this.getSoci());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.id = (String) in.readObject();
         this.setNumero((String) in.readObject());
         this.setDescrizione((String) in.readObject());
+        this.setPagamenti((List) in.readObject());
+        this.setEredii((List) in.readObject());
+        this.setSoci((List<Socio>)in.readObject());
     }
 
-
+    @Override
+    public String toString() {
+        return _numero +" - " + _descrizione;
+    }
 
 
 

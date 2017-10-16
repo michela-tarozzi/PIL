@@ -7,9 +7,11 @@
 <hibernate-mapping>
   <class name="it.unibo.tw.hibernate.Spese" table="Spese">
     <id name="id" column="id">
-      <!--     fkSocio
--->
     </id>
+    <set name="rimborsi" table="Spese-rimborsi">
+      <key column="idSpesa" />
+      <many-to-many column="idRimborso" class="it.unibo.tw.hibernate.Rimborsi"/>
+    </set>
     <property name="importo" column="importo"/>
     <property name="data" column="data"/>
     <property name="numero" column="numero"/>

@@ -18,9 +18,6 @@ import java.io.ObjectOutput;
 @Table(name="riservaMatematica")
 public class RiservaMatematica implements Externalizable{
 
-
-    //FK SOCIO
-
     @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid", strategy = "uuid2")
@@ -57,6 +54,13 @@ public class RiservaMatematica implements Externalizable{
     @Transient
     @Expose
     private float _riservaTeorica;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idSocio", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_SOCIO"))
+    private Socio socio;
+    //SOCIO
+    public void setSocio(Socio quiz){this.socio=quiz;}
+    public Socio getSocio(){return this.socio;}
 
     public String getId() {
         return id;
@@ -113,6 +117,30 @@ public class RiservaMatematica implements Externalizable{
     }
 
     @Access(AccessType.PROPERTY)
+    public float getTasso() {
+        if (this.tasso == null) {
+            return _tasso;
+        } else {
+            return this.tasso.get();
+        }
+    }
+
+    public FloatProperty tassoProperty() {
+        if (this.tasso == null) {
+            this.tasso = new SimpleFloatProperty(this, "tasso", _tasso);
+        }
+        return this.riservaEffettiva;
+    }
+
+    public void setTasso(float tasso) {
+        if (this.tasso == null) {
+            _tasso = tasso;
+        } else {
+            this.tasso.set(tasso);
+        }
+    }
+
+    @Access(AccessType.PROPERTY)
     public float getRiservaEffettiva() {
         if (this.riservaEffettiva == null) {
             return _riservaEffettiva;
@@ -163,6 +191,7 @@ public class RiservaMatematica implements Externalizable{
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.id);
         out.writeObject(this.getAnno());
+        out.writeObject(this.getTasso());
         out.writeObject(this.getRateoAnnuo());
         out.writeObject(this.getRiservaEffettiva());
         out.writeObject(this.getRiservaTeorica());
@@ -172,6 +201,7 @@ public class RiservaMatematica implements Externalizable{
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.id = (String) in.readObject();
         this.setAnno((int) in.readObject());
+        this.setTasso((float)in.readObject());
         this.setRateoAnnuo((float) in.readObject());
         this.setRiservaEffettiva((float) in.readObject());
         this.setRiservaTeorica((float) in.readObject());

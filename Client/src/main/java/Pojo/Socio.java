@@ -1,8 +1,11 @@
 package Pojo;
 
 import com.google.gson.annotations.Expose;
+import com.sun.org.apache.xpath.internal.operations.Quo;
 import javafx.beans.property.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,7 +14,10 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -56,11 +62,6 @@ public class Socio implements Externalizable {
     @Expose
     private String _citta;
     @Column(nullable=false)
-    private StringProperty comune;
-    @Transient
-    @Expose
-    private String _comune;
-    @Column(nullable=false)
     private StringProperty categoria;
     @Transient
     @Expose
@@ -73,10 +74,10 @@ public class Socio implements Externalizable {
     private String _IBAN;
 
     @Column(nullable = false)
-    private ObjectProperty<Date> dataIscrizione;
+    private ObjectProperty<LocalDate> dataIscrizione;
     @Transient
     @Expose
-    private Date _dataIscrizione;
+    private LocalDate _dataIscrizione;
 
     @Column(nullable=false)
     private FloatProperty reddito;
@@ -97,12 +98,177 @@ public class Socio implements Externalizable {
     private float _sussidioMensile;
 
     @Column(nullable = false)
-    private ObjectProperty<Date> dataPensionamento;
+    private ObjectProperty<LocalDate> dataPensionamento;
     @Transient
     @Expose
-    private Date _dataPensionamento;
+    private LocalDate _dataPensionamento;
+
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Spese> spese=new ArrayList<>();
+
+    public void addSpesa(Spese spesa){
+        this.spese.add(spesa);
+    }
+    public void removeSpesa(Spese spesa)
+    {
+        this.spese.remove(spesa);
+    }
+    public void setSpese(List<Spese> spese) {
+        this.spese = spese;
+    }
+    public List<Spese> getSpese() {
+        return spese;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<RiservaMatematica> datiRiserva=new ArrayList<>();
+
+    public void addRiserva(RiservaMatematica riserva){
+        this.datiRiserva.add(riserva);
+    }
+    public void removeRiserva(RiservaMatematica riserva)
+    {
+        this.datiRiserva.remove(riserva);
+    }
+    public void setDatiRiserva(List<RiservaMatematica> Datiriserva) {
+        this.datiRiserva = Datiriserva;
+    }
+    public List<RiservaMatematica> getDatiRiserva() {
+        return datiRiserva;
+    }
+
+
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Pensioni> pensioni=new ArrayList<>();
+
+    public void addPensioni(Pensioni pensioni){
+        this.pensioni.add(pensioni);
+    }
+    public void removePensioni(Pensioni pensioni)
+    {
+        this.pensioni.remove(pensioni);
+    }
+    public void setPensioni(List<Pensioni> pensioni) {
+        this.pensioni = pensioni;
+    }
+    public List<Pensioni> getPensioni() {
+        return pensioni;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Eredi> eredi=new ArrayList<>();
+
+    public void addEredi(Eredi eredi){
+        this.eredi.add(eredi);
+    }
+    public void removEredi(Eredi eredi)
+    {
+        this.eredi.remove(eredi);
+    }
+    public void setEredi(List<Eredi> eredi) {
+        this.eredi = eredi;
+    }
+    public List<Eredi> getEredi() {
+        return eredi;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<BorseDiStudio> borseDiStudio=new ArrayList<>();
+
+    public void addBorseDiStudio(BorseDiStudio borseDiStudio){
+        this.borseDiStudio.add(borseDiStudio);
+    }
+    public void removBorseDiStudio(BorseDiStudio borseDiStudio)
+    {
+        this.borseDiStudio.remove(borseDiStudio);
+    }
+    public void setBorseDiStudio(List<BorseDiStudio> borseDiStudio) {
+        this.borseDiStudio = borseDiStudio;
+    }
+    public List<BorseDiStudio> getBorseDiStudio() {
+        return borseDiStudio;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Quote> quote=new ArrayList<>();
+
+    public void addQuote(Quote quote){
+        this.quote.add(quote);
+    }
+    public void removeQuote(Quote quote)
+    {
+        this.quote.remove(quote);
+    }
+    public void setQuote(List<Quote> quote) {
+        this.quote = quote;
+    }
+    public List<Quote> getQuote() {
+        return quote;
+    }
+
+    @OneToMany(mappedBy = "socio",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<AsiliNido> asiliNido=new ArrayList<>();
+
+    public void addAsiliNido(AsiliNido asiliNido){
+        this.asiliNido.add(asiliNido);
+    }
+    public void removAsiliNido(AsiliNido asiliNido)
+    {
+        this.asiliNido.remove(asiliNido);
+    }
+    public void setAsiliNido(List<AsiliNido> asiliNido) {
+        this.asiliNido = asiliNido;
+    }
+    public List<AsiliNido> getAsiliNido() {
+        return asiliNido;
+    }
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idComune", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_Comune"))
+    private Comune comune;
+    //SOCIO
+    public void setComune(Comune comune){this.comune=comune;}
+    public Comune getComune(){return this.comune;}
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idConto", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_Conto"))
+    private Conti conto;
+    //SOCIO
+    public void setConto(Conti conto){this.conto=conto;}
+    public Conti getConto(){return this.conto;}
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name="idRegione", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_REGIONE"))
+    private Regioni regione;
+    //SOCIO
+    public void setRegione(Regioni regione){this.regione=regione;}
+    public Regioni getRegione(){return this.regione;}
+
     @Access(AccessType.PROPERTY)
-    public Date getdataPensionamento() {
+    public LocalDate getdataPensionamento() {
 
         if (this.dataPensionamento == null) {
             return _dataPensionamento;
@@ -112,7 +278,7 @@ public class Socio implements Externalizable {
         }
     }
 
-    public void setdataPensionamento(Date dataPensionamento) {
+    public void setdataPensionamento(LocalDate dataPensionamento) {
         if (this.dataPensionamento == null) {
             _dataPensionamento = dataPensionamento;
         } else {
@@ -121,7 +287,7 @@ public class Socio implements Externalizable {
     }
 
 
-    public ObjectProperty<Date> dataPensionamentoProperty() {
+    public ObjectProperty<LocalDate> dataPensionamentoProperty() {
         if (this.dataPensionamento == null) {
             this.dataPensionamento = new SimpleObjectProperty<>(this, "dataPensionamento", _dataPensionamento);
 
@@ -201,7 +367,7 @@ public class Socio implements Externalizable {
     }
 
     @Access(AccessType.PROPERTY)
-    public Date getdataIscrizione() {
+    public LocalDate getdataIscrizione() {
         if (this.dataIscrizione == null) {
             return _dataIscrizione;
         } else {
@@ -209,7 +375,7 @@ public class Socio implements Externalizable {
         }
     }
 
-    public void setdataIscrizione(Date dataIscrizione) {
+    public void setdataIscrizione(LocalDate dataIscrizione) {
         if (this.dataIscrizione == null) {
             _dataIscrizione = dataIscrizione;
         } else {
@@ -217,7 +383,7 @@ public class Socio implements Externalizable {
         }
     }
 
-    public ObjectProperty<Date> dataIscrizioneProperty() {
+    public ObjectProperty<LocalDate> dataIscrizioneProperty() {
         if (this.dataIscrizione == null) {
             this.dataIscrizione = new SimpleObjectProperty<>(this, "dataIscrizione", _dataIscrizione);
 
@@ -307,30 +473,6 @@ public class Socio implements Externalizable {
         }
     }
 
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getComune() {
-        if (this.comune== null) {
-            return _comune;
-        } else {
-            return this.comune.get();
-        }
-    }
-    public StringProperty ComunProperty() {
-        if (this.comune == null) {
-            this.comune = new SimpleStringProperty(this, "comune", _comune);
-        }
-        return this.comune;
-    }
-
-    public void setComune(String comune) {
-        if (this.comune == null) {
-            _comune = comune;
-        } else {
-            this.comune.set(comune);
-        }
-    }
 
     @Access(AccessType.PROPERTY)
     @NotBlank
@@ -445,6 +587,13 @@ public class Socio implements Externalizable {
         out.writeObject(this.getreddito());
         out.writeObject(this.getritenuta());
         out.writeObject(this.getsussidioMensile());
+        out.writeObject(this.getSpese());
+        out.writeObject(this.getDatiRiserva());
+        out.writeObject(this.getPensioni());
+        out.writeObject(this.getEredi());
+        out.writeObject(this.getBorseDiStudio());
+        out.writeObject(this.getAsiliNido());
+        out.writeObject(this.getQuote());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -453,14 +602,26 @@ public class Socio implements Externalizable {
         this.setCognome((String) in.readObject());
         this.setNome((String) in.readObject());
         this.setCitta((String) in.readObject());
-        this.setComune((String) in.readObject());
+        this.setComune((Comune) in.readObject());
         this.setIndirizzo((String) in.readObject());
         this.setCategoria((String) in.readObject());
         this.setIBAN((String)in.readObject());
-        this.setdataIscrizione((Date)in.readObject());
-        this.setdataPensionamento((Date)in.readObject());
+        this.setdataIscrizione((LocalDate) in.readObject());
+        this.setdataPensionamento((LocalDate)in.readObject());
         this.setreddito((float)in.readObject());
         this.setritenuta((float)in.readObject());
         this.setsussidioMensile((float)in.readObject());
+        this.setSpese((List) in.readObject());
+        this.setDatiRiserva((List) in.readObject());
+        this.setPensioni((List) in.readObject());
+        this.setEredi((List) in.readObject());
+        this.setBorseDiStudio((List) in.readObject());
+        this.setAsiliNido((List) in.readObject());
+        this.setQuote((List) in.readObject());
     }
+    @Override
+    public String toString() {
+        return _cognome+ " "+ _nome +" - " + _cf;
+    }
+
 }
