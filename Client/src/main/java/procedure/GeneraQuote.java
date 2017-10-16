@@ -35,7 +35,7 @@ public class GeneraQuote {
                         //genera riga 5.16
                         quoteDao.CreaQuota(socio,data, Float.parseFloat("5.16"));
                         sussidi++;
-                    }else
+                    }else if(socio.getCategoria().equals("MUTUA&SUSSIDI"))
                         {
                             //genera riga 5.21
                             quoteDao.CreaQuota(socio,data, Float.parseFloat("5.21"));
@@ -61,7 +61,7 @@ public class GeneraQuote {
             if(socio.getCategoria().equals("SUSSIDI")){
                 //genera riga 5.16
                 stima=stima+Float.parseFloat("5.16");
-            }else
+            }else if(socio.getCategoria().equals("MUTUA&SUSSIDI"))
             {
                 stima=stima+Float.parseFloat("5.21");
             }
