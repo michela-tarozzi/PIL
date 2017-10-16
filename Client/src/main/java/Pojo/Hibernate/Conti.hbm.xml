@@ -17,6 +17,10 @@
       <key column="idConto" />
       <many-to-many column="idErede" class="it.unibo.tw.hibernate.Eredi"/>
     </set>
+    <set name="soci" table="Soci-comuni">
+    <key column="idSocio" />
+    <many-to-many column="idConto" class="it.unibo.tw.hibernate.Socio"/>
+    </set>
     <property name="numero" column="numero"/>
     <property name="descrizione" column="descrizione"/>
   </class>

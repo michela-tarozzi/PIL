@@ -30,15 +30,6 @@ public class RegoleRimborsi implements Externalizable {
     @Expose
     private String id;
 
-    //NOMEFIGLIO
-    //IBAN FIGLIO
-    //ricorrenza
-    //ANNO
-    //RITENUTA
-    //LORDO
-    //NETTO
-    //FK SOCIO
-    //FK PAGAMENTo
 
 
     @Column(nullable = false)
@@ -46,12 +37,6 @@ public class RegoleRimborsi implements Externalizable {
     @Transient
     @Expose
     private String _descrizione;
-
-    @Column(nullable = false)
-    private StringProperty IBAN;
-    @Transient
-    @Expose
-    private String _IBAN;
 
     @Column(nullable = false)
     private IntegerProperty ricorrenza;
@@ -139,30 +124,6 @@ public class RegoleRimborsi implements Externalizable {
         }
     }
 
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getIBAN() {
-        if (this.IBAN == null) {
-            return _IBAN;
-        } else {
-            return this.IBAN.get();
-        }
-    }
-    public StringProperty IBANProperty() {
-        if (this.IBAN == null) {
-            this.IBAN = new SimpleStringProperty(this, "IBAN", _IBAN);
-        }
-        return this.IBAN;
-    }
-
-    public void setIBAN(String IBAN) {
-        if (this.IBAN == null) {
-            _IBAN = IBAN;
-        } else {
-            this.IBAN.set(IBAN);
-        }
-    }
 
     @Access(AccessType.PROPERTY)
     public float getPercentuale() {
@@ -286,7 +247,6 @@ public class RegoleRimborsi implements Externalizable {
         out.writeObject(this.getDescrizione());
         out.writeObject(this.getAnno());
         out.writeObject(this.getRicorrenza());
-        out.writeObject(this.getIBAN());
         out.writeObject(this.getMaxAnnuo());
         out.writeObject(this.getMaxSingolaPrestazione());
         out.writeObject(this.getPercentuale());
@@ -298,7 +258,6 @@ public class RegoleRimborsi implements Externalizable {
         this.setDescrizione((String) in.readObject());
         this.setAnno((int) in.readObject());
         this.setRicorrenza((int) in.readObject());
-        this.setIBAN((String) in.readObject());
         this.setMaxAnnuo((float) in.readObject());
         this.setMaxSingolaPrestazione((float) in.readObject());
         this.setPercentuale((float) in.readObject());

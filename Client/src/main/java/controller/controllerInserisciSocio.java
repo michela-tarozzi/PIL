@@ -1,8 +1,15 @@
 package controller;
 
+import Pojo.Comune;
+import Pojo.Conti;
+import Pojo.DAO.ComuneDao;
+import Pojo.DAO.ContiDao;
+import Pojo.DAO.RegioneDao;
 import Pojo.DAO.SocioDao;
+import Pojo.Regioni;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.App;
@@ -15,7 +22,6 @@ import java.util.Date;
  * Created by m.tarozzi on 08/10/2017.
  */
 public class controllerInserisciSocio {
-
     @FXML
     public DatePicker DateIscrizione;
     @FXML
@@ -26,8 +32,6 @@ public class controllerInserisciSocio {
     public TextField txtNome;
     @FXML
     public TextField txtIndirizzo;
-    @FXML
-    public TextField txtComune;
     @FXML
     public TextField txtCitta;
     @FXML
@@ -42,36 +46,47 @@ public class controllerInserisciSocio {
     public TextField txtIBAN;
     @FXML
     public TextField txtCategoria;
+    @FXML
+    public ComboBox ComboComune;
+    @FXML
+    public ComboBox ComboRegione;
+    @FXML
+    public ComboBox ComboConto;
 
     public void Inserisci(ActionEvent event) {
         SocioDao socioDao=new SocioDao();
         if (txtSussidio.getText().length()==0)
         {
             LocalDate ld=DateIscrizione.getValue();
-            Date data=new Date( ld.getYear(),ld.getMonthValue(),ld.getDayOfMonth());
             socioDao.CreaSocio(txtCF.getText(),txtCognome.getText(),txtNome.getText(),txtIndirizzo.getText(),
-                    txtCitta.getText(),txtComune.getText(),txtIBAN.getText(),data,txtCategoria.getText());
+                    txtCitta.getText(),(Comune) ComboComune.getValue(),txtIBAN.getText(),ld,txtCategoria.getText(),(Regioni) ComboRegione.getValue(),(Conti)ComboConto.getValue() );
 
         }
         else
         {
             LocalDate ld=DateIscrizione.getValue();
-            Date data=new Date( ld.getYear(),ld.getMonthValue(),ld.getDayOfMonth());
             LocalDate ld2=DateIscrizione.getValue();
-            Date data2=new Date( ld2.getYear(),ld2.getMonthValue(),ld2.getDayOfMonth());
             socioDao.CreaSocioPensionato(txtCF.getText(),txtCognome.getText(),txtNome.getText(),txtIndirizzo.getText(),
-                    txtCitta.getText(),txtComune.getText(),txtIBAN.getText(),data,txtCategoria.getText(),data2,
-                    Float.parseFloat(txtReddito.getText()),Float.parseFloat(txtRitenuta.getText()),Float.parseFloat(txtSussidio.getText()));
+                    txtCitta.getText(),(Comune) ComboComune.getValue(),txtIBAN.getText(),ld,txtCategoria.getText(),ld2,
+                    Float.parseFloat(txtReddito.getText()),Float.parseFloat(txtRitenuta.getText()),Float.parseFloat(txtSussidio.getText()), (Regioni)ComboRegione.getValue(),(Conti)ComboConto.getValue());
 
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Inserimento");
         alert.setHeaderText("Socio inserito");
         alert.showAndWait();
-        App.getInstance().gotoAnagrafica();
+        App.getInstance().gotoAnagraficaSOCI();
     }
-
+    @FXML
+    public void initialize() {
+        ComuneDao comuneDao=new ComuneDao();
+        ComboComune.setItems(comuneDao.getAll());
+        RegioneDao regioneDao=new RegioneDao();
+        ComboRegione.setItems(regioneDao.getAll());
+        ContiDao contiDao=new ContiDao();
+        ComboConto.setItems(contiDao.getAll());
+    }
     public void Annulla(ActionEvent event) {
-    App.getInstance().gotoAnagrafica();
+    App.getInstance().gotoAnagraficaSOCI();
     }
 }

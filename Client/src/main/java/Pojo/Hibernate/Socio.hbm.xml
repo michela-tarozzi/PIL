@@ -32,6 +32,11 @@
       <key column="idSocio" />
       <many-to-many column="idAsilo" class="it.unibo.tw.hibernate.AsiliNido"/>
     </set>
+
+    <set name="quote" table="Soci-quote">
+      <key column="idSocio" />
+      <many-to-many column="idQuota" class="it.unibo.tw.hibernate.Quote"/>
+    </set>
     <property name="CF" column="cf"/>
     <property name="nome" column="nome"/>
     <property name="cognome" column="cognome"/>

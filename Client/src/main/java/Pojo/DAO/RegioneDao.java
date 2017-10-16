@@ -20,9 +20,8 @@ public class RegioneDao extends GenericDao {
         return findAllObservableList(Regioni.class);
     }
 
-    public Regioni CreaBorsaDiStudio(String nome) {
+    public Regioni CreaRegione(String nome) {
         Regioni bds = new Regioni();
-
         bds.setNome(nome);
         this.save(bds);
         return bds;

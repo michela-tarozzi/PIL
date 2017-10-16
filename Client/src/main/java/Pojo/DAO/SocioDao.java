@@ -1,11 +1,15 @@
 package Pojo.DAO;
 
+import Pojo.Comune;
+import Pojo.Conti;
+import Pojo.Regioni;
 import Pojo.Socio;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -21,7 +25,7 @@ public class SocioDao extends GenericDao {
         return findAllObservableList(Socio.class);
     }
 
-    public Socio CreaSocio(String cf, String nome, String cognome, String indirizzo, String citta, String comune, String iban, Date data, String categoria) {
+    public Socio CreaSocio(String cf, String nome, String cognome, String indirizzo, String citta, Comune comune, String iban, LocalDate data, String categoria,Regioni regione, Conti conto) {
         Socio socio = new Socio();
         socio.setCF(cf);
         socio.setNome(nome);
@@ -32,11 +36,13 @@ public class SocioDao extends GenericDao {
         socio.setdataIscrizione(data);
         socio.setIBAN(iban);
         socio.setCategoria(categoria);
+        socio.setRegione(regione);
+        socio.setConto(conto);
         this.save(socio);
         return socio;
     }
 
-    public Socio CreaSocioPensionato( String cf, String nome, String cognome, String indirizzo, String citta, String comune, String iban, Date data, String categoria,Date pensione, float reddito, float ritenuta,float sussidio){
+    public Socio CreaSocioPensionato(String cf, String nome, String cognome, String indirizzo, String citta, Comune comune, String iban, LocalDate data, String categoria, LocalDate pensione, float reddito, float ritenuta, float sussidio, Regioni regione, Conti conto){
         Socio socio = new Socio();
         socio.setCF(cf);
         socio.setNome(nome);
@@ -51,6 +57,8 @@ public class SocioDao extends GenericDao {
         socio.setdataPensionamento(pensione);
         socio.setsussidioMensile(sussidio);
         socio.setritenuta(ritenuta);
+        socio.setRegione(regione);
+        socio.setConto(conto);
         this.save(socio);
         return socio;
     }

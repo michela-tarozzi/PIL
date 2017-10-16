@@ -2,10 +2,13 @@ package Pojo.DAO;
 
 import Pojo.AddizionaleComunale;
 import Pojo.AddizionaleRegionale;
+import Pojo.Regioni;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
+
+import java.util.Iterator;
 
 
 /**
@@ -77,6 +80,23 @@ public class AddizionaleRegionaleDao extends GenericDao {
 
     public void chiudiSessione() {
         closeSession();
+    }
+
+    public AddizionaleRegionale getAddizionaleSpecifico(String regione, float reddito, int anno) {
+        AddizionaleRegionale addizionaleRegionale=new AddizionaleRegionale();
+        ObservableList<AddizionaleRegionale> tutte = getAll();
+        Iterator<AddizionaleRegionale> it=tutte.iterator();
+        boolean trovato=false;
+        while (it.hasNext()&& !trovato)
+        {
+            addizionaleRegionale=it.next();
+            if(addizionaleRegionale.getAnno()== anno && addizionaleRegionale.getSogliaMinima()<reddito &&
+                    addizionaleRegionale.getSogliaMassima()>reddito && addizionaleRegionale.getRegione().equals(regione))
+            {
+                trovato=true;
+            }
+        }
+        return addizionaleRegionale;
     }
 }
 

@@ -11,6 +11,8 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Created by m.tarozzi on 14/10/2017.
@@ -71,6 +73,17 @@ public class Pensioni implements Externalizable {
     @Expose
     private float _netto;
 
+    @Column(nullable = false)
+    private ObjectProperty<LocalDate> data;
+    @Transient
+    @Expose
+    private LocalDate _data;
+
+    @Column(nullable=false)
+    private StringProperty stato;
+    @Transient
+    @Expose
+    private String _stato;
 
     @ManyToOne(optional = true)
     @JoinColumn(name="idSocio", referencedColumnName="uuid", foreignKey = @ForeignKey(name="FK_ID_SOCIO"))
@@ -166,7 +179,32 @@ public class Pensioni implements Externalizable {
             this.carovita.set(carovita);
         }
     }
+    @Access(AccessType.PROPERTY)
+    public LocalDate getData() {
 
+        if (this.data == null) {
+            return _data;
+
+        } else {
+            return this.data.get();
+        }
+    }
+
+    public void setData(LocalDate data) {
+        if (this.data == null) {
+            _data = data;
+        } else {
+            this.data.set(data);
+        }
+    }
+
+    public ObjectProperty<LocalDate> dataProperty() {
+        if (this.data == null) {
+            this.data = new SimpleObjectProperty<>(this, "data", _data);
+
+        }
+        return this.data;
+    }
     @Access(AccessType.PROPERTY)
     public float getAddizionaleComunale() {
         if (this.addizionaleComunale == null) {
@@ -261,6 +299,31 @@ public class Pensioni implements Externalizable {
         }
     }
 
+    @Access(AccessType.PROPERTY)
+    @NotBlank
+    @NotEmpty
+    public String getStato() {
+        if (this.stato == null) {
+            return _stato;
+        } else {
+            return this.stato.get();
+        }
+    }
+    public StringProperty statoProperty() {
+        if (this.stato == null) {
+            this.stato = new SimpleStringProperty(this, "stato", _stato);
+        }
+        return this.stato;
+    }
+
+    public void setStato(String stato) {
+        if (this.stato == null) {
+            _stato = stato;
+        } else {
+            this.stato.set(stato);
+        }
+    }
+
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.getSussidio());
         out.writeObject(this.getCarovita());
@@ -269,6 +332,7 @@ public class Pensioni implements Externalizable {
         out.writeObject(this.getAddizionaleRegionale());
         out.writeObject(this.getAddizionaleComunale());
         out.writeObject(this.getNetto());
+        out.writeObject(this.getStato());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -279,6 +343,7 @@ public class Pensioni implements Externalizable {
         this.setAddizionaleRegionale((float) in.readObject());
         this.setAddizionaleComunale((float) in.readObject());
         this.setNetto((float) in.readObject());
+        this.setStato((String) in.readObject());
 
     }
 

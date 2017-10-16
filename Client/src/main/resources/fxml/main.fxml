@@ -8,15 +8,34 @@
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="fxMainBorderPane" cacheShape="false" centerShape="false" depthTest="ENABLE"  scaleShape="false"  xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane fx:id="fxMainBorderPane" cacheShape="false" centerShape="false" depthTest="ENABLE"  scaleShape="false"  xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMain" >
     <top>
         <MenuBar fx:id="fxMainMenubar" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="voceSOCI" mnemonicParsing="false" text="Soci" onAction="#VaiSoci"/>
+                        <MenuItem fx:id="voceCONTI" mnemonicParsing="false" text="Conti" onAction="#VaiConti"/>
+                        <MenuItem fx:id="voceCOMUNALI" mnemonicParsing="false" text="Addizionali Comunali" onAction="#VaiAddizionaliComunali"/>
+                        <MenuItem fx:id="voceREGIONALI" mnemonicParsing="false" text="Addizionali Regionali" onAction="#VaiAddizionaliRegionali"/>
+                        <MenuItem fx:id="voceREGOLECAROVITA" mnemonicParsing="false" text="Regolamento Carovita" onAction="#VaiRegoleCarovita"/>
+                        <MenuItem fx:id="voceREGOLERIMBORSI" mnemonicParsing="false" text="Regolamento Rimborsi" onAction="#VaiRegoleRimborsi"/>
+                        <MenuItem fx:id="voceCOMUNI" mnemonicParsing="false" text="Comuni" onAction="#VaiComuni"/>
+                        <MenuItem fx:id="voceREGIONI" mnemonicParsing="false" text="Regioni" onAction="#VaiRegioni"/>
+                        <MenuItem fx:id="voceASILINIDO" mnemonicParsing="false" text="AsiliNido" onAction="#VaiAsiliNido"/>
+                        <MenuItem fx:id="vocePensioni" mnemonicParsing="false" text="Pensioni" onAction="#VaiPensioni"/>
+                        <MenuItem fx:id="voceBorse" mnemonicParsing="false" text="Borse di Studio" onAction="#VaiBorse"/>
+                        <MenuItem fx:id="vocePagamenti" mnemonicParsing="false" text="Pagamenti" onAction="#VaiPagamenti"/>
+                        <MenuItem fx:id="voceRimborsi" mnemonicParsing="false" text="Rimborsi" onAction="#VaiRimborsi"/>
+                        <MenuItem fx:id="voceGeneraPensioni" mnemonicParsing="false" text="Genera Pensioni" onAction="#GeneraPensioni"/>
+                        <MenuItem fx:id="voceNonPagate" mnemonicParsing="false" text="Paga Pensioni" onAction="#PensioniNonPagate"/>
+                        <MenuItem fx:id="voceGeneraQuote" mnemonicParsing="false" text="Genera Quote" onAction="#GeneraQuote"/>
+                        <MenuItem fx:id="voceQuote" mnemonicParsing="false" text="Quote" onAction="#VaiQuote"/>
+                    </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem fx:id="testBTN" mnemonicParsing="false" text="About" />
+                        <MenuItem fx:id="testBTN" mnemonicParsing="false" text="About"/>
                     </items>
                 </Menu>
             </menus>

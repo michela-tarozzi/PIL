@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -36,7 +37,7 @@
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Cognome" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Nome" GridPane.rowIndex="2" />
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Indirizzo" GridPane.rowIndex="3" />
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Comune" GridPane.rowIndex="4" />
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Comune e regione" GridPane.rowIndex="4" />
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Citta'" GridPane.rowIndex="5" />
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Data Iscrizione" GridPane.rowIndex="6" />
             <DatePicker fx:id="DateIscrizione" GridPane.columnIndex="2" GridPane.rowIndex="6" />
@@ -44,7 +45,6 @@
             <TextField fx:id="txtCognome" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="txtNome" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="txtIndirizzo" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField fx:id="txtComune" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <TextField fx:id="txtCitta" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Data Pensionamento" GridPane.columnIndex="4" />
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Sussidio Mensile" GridPane.columnIndex="4" GridPane.rowIndex="1" />
@@ -58,6 +58,10 @@
             <TextField fx:id="txtReddito" GridPane.columnIndex="6" GridPane.rowIndex="3" />
             <TextField fx:id="txtIBAN" GridPane.columnIndex="6" GridPane.rowIndex="4" />
             <TextField fx:id="txtCategoria" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <ComboBox fx:id="ComboComune" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <ComboBox fx:id="ComboRegione" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Conto" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <ComboBox fx:id="ComboConto" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <Button fx:id="btnInserisci" layoutX="289.0" layoutY="594.0" mnemonicParsing="false" onAction="#Inserisci" prefHeight="59.0" prefWidth="126.0" text="INSERISCI" />

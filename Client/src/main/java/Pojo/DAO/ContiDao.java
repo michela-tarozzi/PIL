@@ -19,7 +19,7 @@ public class ContiDao extends GenericDao {
         return findAllObservableList(Conti.class);
     }
 
-    public Conti CreaBorsaDiStudio(String numero,  String descrizione) {
+    public Conti CreaConto(String numero, String descrizione) {
         Conti bds = new Conti();
         bds.setNumero(numero);
         bds.setDescrizione(descrizione);

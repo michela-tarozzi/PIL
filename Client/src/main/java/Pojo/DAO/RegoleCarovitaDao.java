@@ -6,6 +6,13 @@ import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
 
+import javax.xml.crypto.Data;
+import java.time.Year;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
+
 
 /**
  * Created by m.tarozzi on 08/10/2017.
@@ -19,7 +26,28 @@ public class RegoleCarovitaDao extends GenericDao {
         return findAllObservableList(RegoleCarovita.class);
     }
 
-    public RegoleCarovita CreaBorsaDiStudio(int anno,  float percentuale) {
+    public RegoleCarovita getCarovitaAttuale()
+    {
+        ObservableList<RegoleCarovita> tutte = getAll();
+        RegoleCarovita carovitaAttuale=new RegoleCarovita();
+        Date date=new Date(); // your date
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        Iterator<RegoleCarovita> it=tutte.iterator();
+        boolean trovato=false;
+        while (it.hasNext() && trovato)
+        {
+            carovitaAttuale=it.next();
+            if(carovitaAttuale.getAnno()== year )
+            {
+            trovato=true;
+            }
+        }
+        return carovitaAttuale;
+    }
+
+    public RegoleCarovita CreaRegola(int anno,  float percentuale) {
         RegoleCarovita bds = new RegoleCarovita();
         bds.setAnno(anno);
         bds.setPercentuale(percentuale);

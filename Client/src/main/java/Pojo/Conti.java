@@ -82,6 +82,26 @@ public class Conti implements Externalizable {
         return eredi;
     }
 
+    @OneToMany(mappedBy = "conto",
+            cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
+    public List<Socio> soci=new ArrayList<>();
+
+    public void addSocio(Socio socio){
+        this.soci.add(socio);
+    }
+    public void removeSocio(Socio socio)
+    {
+        this.soci.remove(socio);
+    }
+    public void setSoci(List<Socio> soci) {
+        this.soci = soci;
+    }
+    public List<Socio> getSoci() {
+        return soci;
+    }
+
     //setter, getter
 
     public String getId() {
@@ -150,6 +170,7 @@ public class Conti implements Externalizable {
         out.writeObject(this.getDescrizione());
         out.writeObject(this.getPagamenti());
         out.writeObject(this.getEredi());
+        out.writeObject(this.getSoci());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -158,9 +179,13 @@ public class Conti implements Externalizable {
         this.setDescrizione((String) in.readObject());
         this.setPagamenti((List) in.readObject());
         this.setEredii((List) in.readObject());
+        this.setSoci((List<Socio>)in.readObject());
     }
 
-
+    @Override
+    public String toString() {
+        return _numero +" - " + _descrizione;
+    }
 
 
 

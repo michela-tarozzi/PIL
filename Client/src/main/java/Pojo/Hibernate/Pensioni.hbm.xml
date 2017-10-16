@@ -17,11 +17,7 @@
     <property name="addizionaleRegionale" column="addizionaleRegionale"/>
     <property name="addizionaleComunale" column="addizionaleComunale"/>
     <property name="netto" column="netto"/>
-    <property name="IBAN" column="IBAN"/>
-    <property name="dataIscrizione" column="dataIscrizione"/>
-    <property name="dataPensionamento" column="dataPensionamento"/>
-    <property name="reddito" column="reddito"/>
-    <property name="ritenuta" column="ritenuta"/>
-    <property name="sussidioMensile" column="sussidioMensile"/>
+    <property name="stato" column="stato"/>
+
   </class>
 </hibernate-mapping>
