@@ -43,5 +43,6 @@
         <mapping class="Pojo.Rimborsi"></mapping>
         <mapping class="Pojo.RiservaMatematica"></mapping>
         <mapping class="Pojo.Spese"></mapping>
+        <mapping class="Pojo.Quote"></mapping>
     </session-factory>
 </hibernate-configuration>

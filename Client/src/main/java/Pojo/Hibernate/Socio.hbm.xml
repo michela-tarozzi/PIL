@@ -33,7 +33,7 @@
       <many-to-many column="idAsilo" class="it.unibo.tw.hibernate.AsiliNido"/>
     </set>
 
-    <set name="quote" table="Soci-quote">
+    <set name="Quote" table="Soci-Quote">
       <key column="idSocio" />
       <many-to-many column="idQuota" class="it.unibo.tw.hibernate.Quote"/>
     </set>
