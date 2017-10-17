@@ -71,4 +71,5 @@ public class controllerMain {
     public void GeneraQuote(ActionEvent event) {
         App.getInstance().gotoGeneraQuote();
     }
+
 }

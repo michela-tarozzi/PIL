@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerMain">
+   <children>
+      <TabPane layoutX="-3.0" layoutY="-4.0" prefHeight="409.0" prefWidth="607.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Anagrafiche">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <GridPane layoutY="7.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Regole carovita" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="7" onAction="#VaiRegoleCarovita"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Socio" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="13" onAction="#VaiSoci"/>
+                              <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="133.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Addizionale comunale" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#VaiAddizionaliComunali" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Pensioni" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" onAction="#VaiPensioni"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Borse di studio" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7" onAction="#VaiBorse"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Pensioni non pagate" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" onAction="#PensioniNonPagate"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Addizionale regionale" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#VaiAddizionaliRegionali"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Regioni" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="5" onAction="#VaiRegioni"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Pagamenti" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="13" onAction="#VaiPagamenti"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Rimborsi" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="11" onAction="#VaiRimborsi"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Asili nido" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" onAction="#VaiAsiliNido"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Comuni" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="9" onAction="#VaiComuni"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Conti" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11" onAction="#VaiConti"/>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Regole rimborsi" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="9" onAction="#VaiRegoleRimborsi"/>
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Inserimenti" >
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Regolaa carovita" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Socio" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                              <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="133.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Addizionale comunale" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Pensione" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Borsa di studio" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Addizionale regionale" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Regione" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Pagamento" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Rimborso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Asilo nido" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Conto" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Comune" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Regola rimborso" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
