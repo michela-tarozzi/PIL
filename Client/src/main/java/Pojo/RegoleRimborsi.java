@@ -264,9 +264,9 @@ public class RegoleRimborsi implements Externalizable {
         this.setRimborsi((List) in.readObject());
     }
 
-
-
-
+    public String toString() {
+        return _descrizione;
+    }
 
 
 

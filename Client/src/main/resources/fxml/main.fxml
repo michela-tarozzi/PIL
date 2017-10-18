@@ -31,6 +31,8 @@
                         <MenuItem fx:id="voceNonPagate" mnemonicParsing="false" text="Paga Pensioni" onAction="#PensioniNonPagate"/>
                         <MenuItem fx:id="voceGeneraQuote" mnemonicParsing="false" text="Genera Quote" onAction="#GeneraQuote"/>
                         <MenuItem fx:id="voceQuote" mnemonicParsing="false" text="Quote" onAction="#VaiQuote"/>
+                        <MenuItem fx:id="voceSpesa" mnemonicParsing="false" text="Spese e Rimborsi" onAction="#VaiSpeseRimborsi"/>
+                        <MenuItem fx:id="voceRimborsiDaPagare" mnemonicParsing="false" text="Paga Rimborsi" onAction="#VaiRimborsiDaPagare"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

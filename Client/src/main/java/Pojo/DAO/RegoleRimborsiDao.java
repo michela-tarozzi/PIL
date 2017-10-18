@@ -2,7 +2,12 @@ package Pojo.DAO;
 
 import Pojo.RegoleCarovita;
 import Pojo.RegoleRimborsi;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Iterator;
 
 
 /**
@@ -51,6 +56,22 @@ public class RegoleRimborsiDao extends GenericDao {
 
     public void chiudiSessione() {
         closeSession();
+    }
+
+    public ObservableList getAnnoCorrente() {
+        ObservableList<RegoleRimborsi> regoleRimborsi=this.getAll();
+        ObservableList<RegoleRimborsi> annoCorrente= FXCollections.observableArrayList();
+        Iterator<RegoleRimborsi> it=regoleRimborsi.iterator();
+        int anno = LocalDate.now().getYear();
+        while(it.hasNext())
+        {
+            RegoleRimborsi regola=it.next();
+            if (regola.getAnno()==anno)
+            {
+                annoCorrente.add(regola);
+            }
+        }
+        return annoCorrente;
     }
 }
 

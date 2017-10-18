@@ -13,6 +13,7 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,10 +32,10 @@ public class Spese implements Externalizable {
     private String id;
 
     @Column(nullable = false)
-    private ObjectProperty<Date> data;
+    private ObjectProperty<LocalDate> data;
     @Transient
     @Expose
-    private Date _data;
+    private LocalDate _data;
 
     @Column(nullable=false)
     private FloatProperty importo;
@@ -62,10 +63,10 @@ public class Spese implements Externalizable {
     @Expose
     public List<Rimborsi> rimborsi=new ArrayList<>();
 
-    public void addDatiRiserva(Rimborsi rimborsi){
+    public void addRimborso(Rimborsi rimborsi){
         this.rimborsi.add(rimborsi);
     }
-    public void removeDatiRiserva(Rimborsi rimborsi)
+    public void removeRimborso(Rimborsi rimborsi)
     {
         this.rimborsi.remove(rimborsi);
     }
@@ -83,7 +84,7 @@ public class Spese implements Externalizable {
         this.id=id;
     }
     @Access(AccessType.PROPERTY)
-    public Date getData() {
+    public LocalDate getData() {
 
         if (this.data == null) {
             return _data;
@@ -93,7 +94,7 @@ public class Spese implements Externalizable {
         }
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         if (this.data == null) {
             _data = data;
         } else {
@@ -102,7 +103,7 @@ public class Spese implements Externalizable {
     }
 
 
-    public ObjectProperty<Date> dataProperty() {
+    public ObjectProperty<LocalDate> dataProperty() {
         if (this.data == null) {
             this.data = new SimpleObjectProperty<>(this, "data", _data);
 
@@ -169,8 +170,13 @@ public class Spese implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.id = (String) in.readObject();
         this.setNumero((String) in.readObject());
-        this.setData((Date) in.readObject());
+        this.setData((LocalDate) in.readObject());
         this.setImporto((float) in.readObject());
         this.setRimborsi((List) in.readObject());
+    }
+
+    @Override
+    public String toString() {
+        return socio+ " "+ _numero +" - " + _data;
     }
 }
