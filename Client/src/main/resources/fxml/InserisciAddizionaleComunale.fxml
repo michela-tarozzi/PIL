@@ -12,7 +12,7 @@
 
 <TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerInserisciAddizionaleComunale">
    <tabs>
-      <Tab text="Inserisci addizionale comunale">
+      <Tab text="Inserisci addizionale comunale" onClosed="#tornaHome">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1300.0">
                <children>

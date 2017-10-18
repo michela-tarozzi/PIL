@@ -74,8 +74,8 @@ public class App extends Application {
         }
     }
 
-    private void gotoHOME() {
-        try {replaceSceneContent("/fxml/Home.fxml");}
+    public void gotoHOME() {
+        try {replaceSceneContent("/fxml/bottoniAnagrafiche.fxml");}
         catch (Exception e){
             System.out.println(e);
         }
@@ -83,7 +83,7 @@ public class App extends Application {
     }
 
     private Parent replaceSceneContent(String fxml) throws Exception{
-        URL fxmlCenterPath = this.getClass().getResource("/fxml/main.fxml");
+        URL fxmlCenterPath = this.getClass().getResource("/fxml/Home.fxml");
         BorderPane root = loader.load(fxmlCenterPath);
         Parent page=(Parent)FXMLLoader.load(this.getClass().getResource(fxml));
         Scene scene=new Scene(root);
