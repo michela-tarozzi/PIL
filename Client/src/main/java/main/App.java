@@ -55,13 +55,15 @@ public class App extends Application {
         SocioDao sd=new SocioDao();
         LocalDate ld=LocalDate.now();
         Date dat= new Date();
-        sd.CreaSocio("TRZMHL90L71A944E","MICHELA","TAROZZI",
+        Socio socio=sd.CreaSocio("TRZMHL90L71A944E","MICHELA","TAROZZI",
                 "VIA IRNERIO 34","BOLOGNA",comune,
                 "IT7G1234512345123456789012", ld , "MUTUA" ,regione,conto);
         sd.CreaSocioPensionato("TRZMHL90L71A944E","MICHELA","TAROZZI",
                 "VIA IRNERIO 34","BOLOGNA",comune,
                 "IT7G1234512345123456789012", ld , "Pensionato", ld,Float.parseFloat("56843.76"),Float.parseFloat("34.65"),Float.parseFloat("75.23"),regione, conto);
-        speseDao.CreaSpesa("1",dat,Float.parseFloat("160"));
+        Spese spesa=speseDao.CreaSpesa(socio,"1",ld,Float.parseFloat("160"));
+        socio.addSpesa(spesa);
+        sd.save(socio);
 
         try{
             stage=primaryStage;
@@ -291,5 +293,19 @@ public class App extends Application {
         catch (Exception e){
             System.out.println(e);
     }
+    }
+
+    public void gotoSpeseERimborsi() {
+        try {replaceSceneContent("/fxml/InserisciSpesa.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void gotoRimborsiDaPagare() {
+        try {replaceSceneContent("/fxml/AnagraficaRimborsiDaPagare.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

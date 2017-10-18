@@ -1,12 +1,16 @@
 package Pojo.DAO;
 
+import Pojo.Socio;
 import Pojo.Spese;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Iterator;
 
 
 /**
@@ -20,8 +24,9 @@ public class SpeseDao extends GenericDao {
     public ObservableList<Spese> getAll() {
         return findAllObservableList(Spese.class);
     }
-    public Spese CreaSpesa(String numero, Date data, float importo) {
+    public Spese CreaSpesa(Socio socio, String numero, LocalDate data, float importo) {
         Spese spesa = new Spese();
+        spesa.setSocio(socio);
         spesa.setNumero(numero);
         spesa.setData(data);
         spesa.setImporto(importo);
@@ -73,6 +78,20 @@ public class SpeseDao extends GenericDao {
 
     public void chiudiSessione() {
         closeSession();
+    }
+
+    public ObservableList<Spese> getSpeseNonRimborsate() {
+        ObservableList<Spese> tutte=this.getAll();
+        ObservableList<Spese> nonRimborsate= FXCollections.observableArrayList();
+        Iterator<Spese> it=tutte.iterator();
+        while(it.hasNext())
+        {
+            Spese spesa=it.next();
+            if (!(spesa.getRimborsi()==null)){
+                nonRimborsate.add(spesa);
+            }
+        }
+        return nonRimborsate;
     }
 }
 

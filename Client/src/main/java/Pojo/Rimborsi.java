@@ -11,6 +11,7 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -34,10 +35,10 @@ public class Rimborsi implements Externalizable {
 
     //DATA
     @Column(nullable = false)
-    private ObjectProperty<Date> data;
+    private ObjectProperty<LocalDate> data;
     @Transient
     @Expose
-    private Date _data;
+    private LocalDate _data;
 
     //IMPORTO
     @Column(nullable=false)
@@ -132,7 +133,7 @@ public class Rimborsi implements Externalizable {
     }
 
     @Access(AccessType.PROPERTY)
-    public Date getData() {
+    public LocalDate getData() {
 
         if (this.data == null) {
             return _data;
@@ -142,7 +143,7 @@ public class Rimborsi implements Externalizable {
         }
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         if (this.data == null) {
             _data = data;
         } else {
@@ -151,7 +152,7 @@ public class Rimborsi implements Externalizable {
     }
 
 
-    public ObjectProperty<Date> dataProperty() {
+    public ObjectProperty<LocalDate> dataProperty() {
         if (this.data == null) {
             this.data = new SimpleObjectProperty<>(this, "data", _data);
 
@@ -170,7 +171,7 @@ public class Rimborsi implements Externalizable {
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.id = (String) in.readObject();
-        this.setData((Date) in.readObject());
+        this.setData((LocalDate) in.readObject());
         this.setImporto((float) in.readObject());
         this.setImportoSpesa((float) in.readObject());
 
