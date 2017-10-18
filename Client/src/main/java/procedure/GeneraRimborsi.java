@@ -34,7 +34,7 @@ public class GeneraRimborsi {
         {
             rimborso=categoria.getMaxAnnuo()-annuo;
         }
-
+//TEST
 
         return rimborso;
     }
