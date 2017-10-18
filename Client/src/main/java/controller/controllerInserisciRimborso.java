@@ -27,8 +27,7 @@ public class controllerInserisciRimborso {
         try{
         RimborsoDao rimborsoDao=new RimborsoDao();
         LocalDate ld=Date.getValue();
-        Date data=new Date( ld.getYear(),ld.getMonthValue(),ld.getDayOfMonth());
-        rimborsoDao.CreaRimborso (data,
+        rimborsoDao.CreaRimborso (ld,
                 Float.parseFloat(txtImporto.getText()),
                 Float.parseFloat(txtImportoSpesa.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
