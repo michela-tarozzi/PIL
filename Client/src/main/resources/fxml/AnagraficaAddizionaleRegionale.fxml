@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaAddizionaleRegionale">
-   <children>
-      <Label layoutX="24.0" layoutY="14.0" text="Anagrafica degli addizionali regionali" />
-      <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
-        <columns>
-          <TableColumn fx:id="colonnaREGIONE" prefWidth="89.0" text="REGIONE" />
-          <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />
-          <TableColumn fx:id="colonnaSOGLIAMINIMA" prefWidth="89.0" text="SOGLIA MINIMA" />
-          <TableColumn fx:id="colonnaSOGLIAMASSIMA" prefWidth="89.0" text="SOGLIA MASSIMA" />
-          <TableColumn fx:id="colonnaALIQUOTA" prefWidth="89.0" text="ALIQUOTA'" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnNuovoADDIZIONALE" layoutX="344.0" layoutY="10.0" mnemonicParsing="false" onAction="#InserisciNuovoAddizionaleRegionale" text="Inserisci nuovo addizionale" />
-   </children>
-</AnchorPane>
+<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaAddizionaleRegionale">
+   <tabs>
+      <Tab text="Anagrafica degli addizionali regionali">
+         <content>
+            <AnchorPane prefHeight="700.0" prefWidth="1200.0">
+               <children>
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                    <columns>
+                      <TableColumn fx:id="colonnaREGIONE" prefWidth="89.0" text="REGIONE" />
+                      <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />
+                      <TableColumn fx:id="colonnaSOGLIAMINIMA" prefWidth="89.0" text="SOGLIA MINIMA" />
+                      <TableColumn fx:id="colonnaSOGLIAMASSIMA" prefWidth="89.0" text="SOGLIA MASSIMA" />
+                      <TableColumn fx:id="colonnaALIQUOTA" prefWidth="89.0" text="ALIQUOTA'" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btnNuovoADDIZIONALE" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoAddizionaleRegionale" text="Inserisci nuovo addizionale" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

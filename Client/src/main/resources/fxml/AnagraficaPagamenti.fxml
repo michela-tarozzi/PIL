@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaPagamenti">
-   <children>
-      <Label layoutX="24.0" layoutY="14.0" text="Anagrafica dei soci" />
-      <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
-        <columns>
-          <TableColumn fx:id="ColonnaDATA" prefWidth="89.0" text="DATA" />
-          <TableColumn fx:id="ColonnaLORDO" prefWidth="89.0" text="LORDO" />
-          <TableColumn fx:id="ColonnaNETTO" prefWidth="89.0" text="NETTO" />
-          <TableColumn fx:id="colonnaTRATTENUTA" prefWidth="89.0" text="TRATTENUTA" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnNuovoSocio" layoutX="344.0" layoutY="10.0" mnemonicParsing="false" onAction="#InserisciNuovoPagamento" text="Inserisci nuovo pagamento" />
-   </children>
-</AnchorPane>
+
+<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaPagamenti">
+   <tabs>
+      <Tab text="Anagrafica dei soci">
+         <content>
+            <AnchorPane prefHeight="700.0" prefWidth="1200.0">
+               <children>
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                    <columns>
+                      <TableColumn fx:id="ColonnaDATA" prefWidth="89.0" text="DATA" />
+                      <TableColumn fx:id="ColonnaLORDO" prefWidth="89.0" text="LORDO" />
+                      <TableColumn fx:id="ColonnaNETTO" prefWidth="89.0" text="NETTO" />
+                      <TableColumn fx:id="colonnaTRATTENUTA" prefWidth="89.0" text="TRATTENUTA" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoPagamento" text="Inserisci nuovo pagamento" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
