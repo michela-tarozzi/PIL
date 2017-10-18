@@ -67,11 +67,19 @@ public class App extends Application {
 
         try{
             stage=primaryStage;
-            gotoAnagraficaSOCI();
+            gotoHOME();
             primaryStage.show();
         }
         catch(Exception e){System.out.print(e);
         }
+    }
+
+    private void gotoHOME() {
+        try {replaceSceneContent("/fxml/Home.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     private Parent replaceSceneContent(String fxml) throws Exception{
