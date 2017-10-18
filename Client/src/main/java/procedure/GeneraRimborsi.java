@@ -18,6 +18,7 @@ public class GeneraRimborsi {
         RimborsoDao rimborsoDao=new RimborsoDao();
         float rimborso=importo;
         //bb
+        //
         if (categoria.getRicorrenza()==rimborsoDao.GetRicorrenzaRimborso(categoria,spesa.getSocio()))
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
