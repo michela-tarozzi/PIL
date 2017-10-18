@@ -78,4 +78,29 @@ public class controllerMain {
     public void VaiRimborsiDaPagare(ActionEvent event) {
         App.getInstance().gotoRimborsiDaPagare();
     }
+    public void InserisciNuovaRegolaCarovita(ActionEvent actionEvent) { App.getInstance().gotoInserisciRegolaCarovita();    }
+
+    public void InserisciNuovoAddizionale(ActionEvent actionEvent) { App.getInstance().gotoInserisciAddizionaleComunale();    }
+
+    public void InserisciNuovoRimborsoAsilo(ActionEvent actionEvent) { App.getInstance().gotoInserisciAsilo();    }
+
+    public void InserisciNuovaBorsaDiStudio(ActionEvent actionEvent) { App.getInstance().gotoInserisciBorsa();    }
+
+    public void InserisciNuovoComune(ActionEvent actionEvent) { App.getInstance().gotoInserisciComune();    }
+
+    public void InserisciNuovoConto(ActionEvent actionEvent) { App.getInstance().gotoInserisciConto();    }
+
+    public void InserisciNuovoPagamento(ActionEvent actionEvent) { App.getInstance().gotoInserisciPagamento();    }
+
+    public void InserisciNuovaPensione(ActionEvent actionEvent) { App.getInstance().gotoInserisciPensione();    }
+
+    public void InserisciNuovaRegione(ActionEvent actionEvent) { App.getInstance().gotoInserisciRegione();    }
+
+    public void InserisciNuovoSocio(ActionEvent actionEvent) { App.getInstance().gotoInserisciSocio();    }
+
+    public void InserisciNuovoAddizionaleRegionale(ActionEvent actionEvent) { App.getInstance().gotoInserisciAddizionaleRegionale();    }
+
+    public void InserisciNuovoRimborso(ActionEvent actionEvent) { App.getInstance().gotoInserisciRimborso();    }
+
+    public void InserisciNuovaRegola(ActionEvent actionEvent) { App.getInstance().gotoInserisciRegolaRimborso();    }
 }
