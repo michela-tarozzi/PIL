@@ -40,6 +40,8 @@ public class GeneraPagamenti {
             pagamenti.add(pagamento);
         }
         generaXML(pagamenti, data);
+        GeneraRegistrazioniOracle generaRegistrazioniOracle=new GeneraRegistrazioniOracle();
+        generaRegistrazioniOracle.generaRegistrazioni(pensioni,data);
         return true;
     }
 
