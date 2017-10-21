@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -57,6 +58,9 @@ public class controllerAnagraficaAddizionaleComunale {
 
         this.addizionaliComunali=addizionaleComunaleDao.getAll();
         tableANAGRAFICA.setItems(addizionaliComunali);
+        try {
+            TableFilter<AddizionaleComunale> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
     public void InserisciNuovoAddizionale(ActionEvent event) {
