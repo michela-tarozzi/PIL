@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 
 /**
  * Created by m.tarozzi on 08/10/2017.
@@ -71,6 +72,9 @@ public class controllerAnagraficaSocio {
 
         this.soci=socio.getAll();
         tableANAGRAFICA.setItems(soci);
+        try {
+            TableFilter<Socio> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
 

@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 
 import java.util.Date;
 
@@ -57,6 +58,9 @@ public class controllerAnagraficaPensioni {
         colonnaNETTO.setCellValueFactory(new PropertyValueFactory<Pensioni, Float>("netto"));
         this.pensioni=pensioniDao.getAll();
         tableANAGRAFICA.setItems(pensioni);
+        try {
+            TableFilter<Pensioni> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
     public void InserisciNuovaPensione(ActionEvent event) {

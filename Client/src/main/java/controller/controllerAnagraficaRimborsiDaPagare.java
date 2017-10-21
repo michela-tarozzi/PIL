@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 import procedure.GeneraPagamenti;
 
 /**
@@ -49,6 +50,9 @@ public class controllerAnagraficaRimborsiDaPagare {
 
         this.rimborsi=rimborsiDao.getRimborsiDaPagare();
         tableANAGRAFICA.setItems(rimborsi);
+        try {
+            TableFilter<Rimborsi> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
 
@@ -57,7 +61,8 @@ public class controllerAnagraficaRimborsiDaPagare {
         //paga Rimborsi
         RimborsoDao rimborsoDao=new RimborsoDao();
         GeneraPagamenti generaPagamenti=new GeneraPagamenti();
-        generaPagamenti.GeneraPagamentoRimborsi(rimborsoDao.getRimborsiDaPagare(),Data.getValue());
+        ObservableList<Rimborsi> rimb=tableANAGRAFICA.getItems();
+        generaPagamenti.GeneraPagamentoRimborsi(rimb,Data.getValue());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Pagamenti Generati");

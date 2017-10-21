@@ -51,6 +51,11 @@ public class controllerInserisciSpesa {
             SpeseDao speseDao = new SpeseDao();
             spesaLocal=speseDao.CreaSpesa((Socio) ComboSocio.getValue(), txtNumero.getText(),ld,
                     Float.parseFloat(txtImportoSpeso.getText()));
+            SocioDao socioDao =new SocioDao();
+            Socio socio= (Socio)ComboSocio.getValue();
+            socio.addSpesa(spesaLocal);
+            socioDao.update(socio);
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Spesa inserita");
@@ -69,9 +74,11 @@ public class controllerInserisciSpesa {
         {
             GeneraRimborsi generaRimborsi= new GeneraRimborsi();
             float importoRimborso=generaRimborsi.generaRimborsi(spesaLocal, Float.parseFloat(txtImportoSingolo.getText()),(RegoleRimborsi) ComboCategoria.getValue());
+           if (importoRimborso!=0){
             RimborsoDao rimborsoDao=new RimborsoDao();
             Rimborsi rimborso=rimborsoDao.CreaRimborso(Data.getValue(),importoRimborso,Float.parseFloat(txtImportoSingolo.getText()));
             rimborso.setSpesa(spesaLocal);
+            rimborso.setRegola((RegoleRimborsi)ComboCategoria.getValue());
             rimborsoDao.saveOrUpdate(rimborso);
             spesaLocal.addRimborso(rimborso);
             SpeseDao speseDao=new SpeseDao();
@@ -79,7 +86,7 @@ public class controllerInserisciSpesa {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Totale rimborso: euro "+importoRimborso );
-            alert.showAndWait();
+            alert.showAndWait();}
 
         }else{ Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");

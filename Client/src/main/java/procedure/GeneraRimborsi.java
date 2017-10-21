@@ -25,6 +25,7 @@ public class GeneraRimborsi {
             alert.setTitle("Inserimento");
             alert.setHeaderText("Raggiunto il numero massimo di  ricorrenze ");
             alert.showAndWait();
+            return 0;
         }
         if(categoria.getPercentuale()<100){ rimborso=importo*categoria.getPercentuale()/100;}
         if (categoria.getMaxSingolaPrestazione()<=rimborso)

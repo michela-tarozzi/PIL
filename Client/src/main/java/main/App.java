@@ -31,7 +31,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
+/*
         BorseDiStudioDao borseDiStudioDao=new BorseDiStudioDao();
         borseDiStudioDao.CreaBorsaDiStudio("figlio",2017,35,"iban",100,80,20);
 
@@ -64,7 +64,7 @@ public class App extends Application {
         Spese spesa=speseDao.CreaSpesa(socio,"1",ld,Float.parseFloat("160"));
         socio.addSpesa(spesa);
         sd.save(socio);
-
+*/
         try{
             stage=primaryStage;
             gotoHOME();
