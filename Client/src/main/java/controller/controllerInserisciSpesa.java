@@ -9,6 +9,7 @@ import Pojo.Rimborsi;
 import Pojo.Socio;
 import Pojo.Spese;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -55,7 +56,6 @@ public class controllerInserisciSpesa {
             Socio socio= (Socio)ComboSocio.getValue();
             socio.addSpesa(spesaLocal);
             socioDao.update(socio);
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Spesa inserita");
@@ -86,8 +86,8 @@ public class controllerInserisciSpesa {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Totale rimborso: euro "+importoRimborso );
-            alert.showAndWait();}
-
+            alert.showAndWait();
+           }
         }else{ Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Correggere gli errori " );
@@ -97,5 +97,8 @@ public class controllerInserisciSpesa {
 
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaRimborsi();
+    }
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
     }
 }

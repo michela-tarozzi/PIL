@@ -35,7 +35,7 @@ public class controllerAnagraficaQuote {
     private String nomeClasse;
     private ObservableList<Quote> quote= FXCollections.observableArrayList();
     private QuoteDao quoteDao=new QuoteDao();
-
+//
     @FXML
     public void initialize() {
         nomeClasse = this.getClass().getName();

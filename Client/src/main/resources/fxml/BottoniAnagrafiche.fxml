@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.controllerMain"
+            prefHeight="400.0" prefWidth="600.0" >
+    <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" onAction="#VaiRegoleCarovita" prefHeight="25.0" prefWidth="200.0" text="Regole carovita" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" onAction="#VaiSoci" prefHeight="25.0" prefWidth="200.0" text="Soci" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="10.0" layoutY="133.0" mnemonicParsing="false" onAction="#VaiAddizionaliComunali" prefHeight="25.0" prefWidth="200.0" text="Addizionali comunali" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#VaiPensioni" prefHeight="25.0" prefWidth="200.0" text="Pensioni" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#VaiBorse" prefHeight="25.0" prefWidth="200.0" text="Borse di studio" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="73.0" mnemonicParsing="false" onAction="#PensioniNonPagate" prefHeight="25.0" prefWidth="200.0" text="Pensioni non pagate" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="43.0" mnemonicParsing="false" onAction="#VaiAddizionaliRegionali" prefHeight="25.0" prefWidth="200.0" text="Addizionali regionali" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiRegioni" prefHeight="25.0" prefWidth="200.0" text="Regioni" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiPagamenti" prefHeight="25.0" prefWidth="200.0" text="Pagamenti" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiRimborsi" prefHeight="25.0" prefWidth="200.0" text="Rimborsi" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiAsiliNido" prefHeight="25.0" prefWidth="200.0" text="Asili nido" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiComuni" prefHeight="25.0" prefWidth="200.0" text="Comuni" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiConti" prefHeight="25.0" prefWidth="200.0" text="Conti" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiRegoleRimborsi" prefHeight="25.0" prefWidth="200.0" text="Regole rimborsi" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#VaiQuote" prefHeight="25.0" prefWidth="200.0" text="Quote" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        </children>
+    </GridPane>
+
+
+</AnchorPane>
