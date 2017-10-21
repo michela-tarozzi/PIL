@@ -3,6 +3,7 @@ package Pojo.DAO;
 import Pojo.RegoleRimborsi;
 import Pojo.Rimborsi;
 import Pojo.Socio;
+import Pojo.Spese;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
@@ -92,8 +93,11 @@ public class RimborsoDao extends GenericDao {
         Iterator<Rimborsi> it=rimborsi.iterator();
         while (it.hasNext()){
             Rimborsi rimborso=it.next();
-
-            if (rimborso.getRegola()==regola && rimborso.getData().getYear()== LocalDate.now().getYear() && rimborso.getSpesa().getSocio()==socio)
+            Rimborsi rimborso2= (Rimborsi) get(Rimborsi.class, rimborso.getId());
+            SpeseDao speseDao=new SpeseDao();
+            //Spese spesa=speseDao.
+            if (rimborso.getRegola().getId().equals(regola.getId()) && rimborso.getData().getYear()== LocalDate.now().getYear()// && rimborso.getSpesa().getSocio()==socio
+                    )
             {conta++;}
         }
         return conta;

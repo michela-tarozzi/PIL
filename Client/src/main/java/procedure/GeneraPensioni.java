@@ -25,7 +25,7 @@ public class GeneraPensioni {
             float carovitaAttuale = new RegoleCarovitaDao().getCarovitaAttuale().getPercentuale();
             while (socioIt.hasNext()) {
                 Socio socio = socioIt.next();
-                if (socio.getCategoria().equals("Pensionato")) {
+                if (socio.getCategoria().equals("PENSIONATO")) {
                     float sussidio = socio.getsussidioMensile() * 3;
                     float carovita = (sussidio * carovitaAttuale) / 100;
                     float regionale = 0;

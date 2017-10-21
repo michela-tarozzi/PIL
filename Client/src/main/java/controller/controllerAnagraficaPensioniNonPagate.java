@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.PensioniDao;
 import Pojo.Pensioni;
+import Pojo.Quote;
 import Utility.ControllersDispatcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 import procedure.GeneraPagamenti;
 
 /**
@@ -60,12 +62,15 @@ public class controllerAnagraficaPensioniNonPagate {
         colonnaNETTO.setCellValueFactory(new PropertyValueFactory<Pensioni, Float>("netto"));
         this.pensioni=pensioniDao.getNonPagate();
         tableANAGRAFICA.setItems(pensioni);
+        try {
+            TableFilter<Pensioni> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
 
     public void GeneraPagamentoPensione(ActionEvent event) {
         GeneraPagamenti generaPagamenti=new GeneraPagamenti();
-        generaPagamenti.GeneraPagamentoPensioni(pensioniDao.getNonPagate(),DataPagamento.getValue());
+        generaPagamenti.GeneraPagamentoPensioni(tableANAGRAFICA.getItems(),DataPagamento.getValue());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Inserimento");
         alert.setHeaderText("Pensioni pagate");

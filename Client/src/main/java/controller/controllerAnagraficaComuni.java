@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -38,6 +39,9 @@ public class controllerAnagraficaComuni {
         ColonnaCOMUNE.setCellValueFactory(new PropertyValueFactory<Comune, String>("nome"));
         this.comuni=conto.getAll();
         tableANAGRAFICA.setItems(comuni);
+        try {
+            TableFilter<Comune> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
     public void InserisciNuovoComune(ActionEvent event) {

@@ -7,6 +7,7 @@ import Pojo.DAO.ContiDao;
 import Pojo.DAO.RegioneDao;
 import Pojo.DAO.SocioDao;
 import Pojo.Regioni;
+import Pojo.Socio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -14,6 +15,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.App;
 import javafx.scene.control.Alert;
+import procedure.GeneraRegistrazioniOracle;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -58,9 +60,8 @@ public class controllerInserisciSocio {
         if (txtSussidio.getText().length()==0)
         {
             LocalDate ld=DateIscrizione.getValue();
-            socioDao.CreaSocio(txtCF.getText(),txtCognome.getText(),txtNome.getText(),txtIndirizzo.getText(),
+            Socio socio=socioDao.CreaSocio(txtCF.getText(),txtCognome.getText(),txtNome.getText(),txtIndirizzo.getText(),
                     txtCitta.getText(),(Comune) ComboComune.getValue(),txtIBAN.getText(),ld,txtCategoria.getText(),(Regioni) ComboRegione.getValue(),(Conti)ComboConto.getValue() );
-
         }
         else
         {
