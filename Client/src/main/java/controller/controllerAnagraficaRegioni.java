@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -36,6 +37,9 @@ public class controllerAnagraficaRegioni {
         ColonnaREGIONE.setCellValueFactory(new PropertyValueFactory<Regioni, String>("nome"));
         this.regioni=regioneDao.getAll();
         tableANAGRAFICA.setItems(regioni);
+        try {
+            TableFilter<Regioni> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
     public void InserisciNuovaRegione(ActionEvent event) {

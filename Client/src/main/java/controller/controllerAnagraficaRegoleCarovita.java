@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -39,6 +40,9 @@ public class controllerAnagraficaRegoleCarovita {
         ColonnaPERCENTUALE.setCellValueFactory(new PropertyValueFactory<RegoleCarovita, Float>("percentuale"));
         this.regole=regoleCarovitaDao.getAll();
         tableANAGRAFICA.setItems(regole);
+        try {
+            TableFilter<RegoleCarovita> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
     public void InserisciNuovoConto(ActionEvent event) {

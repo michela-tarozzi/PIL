@@ -48,7 +48,6 @@ public class controllerAnagraficaQuote {
         tableANAGRAFICA.setItems(quote);
         try {
             TableFilter<Quote> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
-         //TableFilter<Quote> t = new TableFilter<>(tableANAGRAFICA);
         }catch(Exception e ){e.printStackTrace();}
     }
 
@@ -57,7 +56,4 @@ public class controllerAnagraficaQuote {
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
     }
-
-
-
 }

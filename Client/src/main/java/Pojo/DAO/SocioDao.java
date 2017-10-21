@@ -8,6 +8,7 @@ import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
+import procedure.GeneraRegistrazioniOracle;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -39,6 +40,8 @@ public class SocioDao extends GenericDao {
         socio.setRegione(regione);
         socio.setConto(conto);
         this.save(socio);
+        GeneraRegistrazioniOracle generaRegistrazioniOracle=new GeneraRegistrazioniOracle();
+        generaRegistrazioniOracle.generaIscrizioneSocio(socio);
         return socio;
     }
 

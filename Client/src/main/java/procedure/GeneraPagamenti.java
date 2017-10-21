@@ -1,5 +1,6 @@
 package procedure;
 
+import Pojo.*;
 import Pojo.DAO.PagamentoDao;
 import Pojo.DAO.PensioniDao;
 import Pojo.DAO.RimborsoDao;
@@ -40,6 +41,8 @@ public class GeneraPagamenti {
             pagamenti.add(pagamento);
         }
         generaXML(pagamenti, data);
+        GeneraRegistrazioniOracle generaRegistrazioniOracle=new GeneraRegistrazioniOracle();
+        generaRegistrazioniOracle.generaRegistrazioni(pensioni,data);
         return true;
     }
 
@@ -53,8 +56,9 @@ public class GeneraPagamenti {
             Rimborsi rimborso=it.next();
             Pagamenti pagamento=pagamentoDao.CreaPagamento(data,rimborso.getImporto(), rimborso.getImporto(),0);
             rimborso.setPagamento(pagamento);
-            rimborsoDao.update(rimborsi);
-            pagamenti.add(pagamento);
+            rimborsoDao.update(rimborso);
+            pagamento.addRimborso(rimborso);
+            pagamentoDao.update(pagamento);
         }
         generaXML(pagamenti, data);
         return true;
@@ -139,7 +143,12 @@ public class GeneraPagamenti {
                 String descrizione="";
                 if(pagamento.getPensioni().size()!=0){socio=pagamento.getPensioni().get(0).getSocio();descrizione="Isaia Levi "+mese+"/"+data.getYear();}
                 else if(pagamento.getAsiliNido().size()!=0){socio=pagamento.getAsiliNido().get(0).getSocio();descrizione="Isaia Levi - Asili nido";}
-                    else if (pagamento.getRimborsi().size()!=0){socio=pagamento.getRimborsi().get(0).getSpesa().getSocio(); descrizione="Isaia Levi - Rimborso assistenziale";}
+                    else if (pagamento.getRimborsi().size()!=0){
+                    Rimborsi rimborso=pagamento.getRimborsi().get(0);
+                    Spese spesa=rimborso.getSpesa();
+                    socio=spesa.getSocio();
+                    descrizione="Isaia Levi - Rimborso assistenziale";
+                }
                         else if (pagamento.getEredi().size()!=0){socio=pagamento.getEredi().get(0).getSocio(); descrizione="Isaia Levi - sussidio "+pagamento.getEredi().get(0).getSocio().getCognome()+" "+pagamento.getEredi().get(0).getSocio().getNome();}
                             else {socio=pagamento.getBorseDiStudio().get(0).getSocio(); descrizione="Isaia Levi - Borsa di Studio";}
                 String numero=GetNumberToBonifico.getInstance().dammiIlProssimo();

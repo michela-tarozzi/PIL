@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
+import org.controlsfx.control.table.TableFilter;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -45,6 +46,9 @@ public class controllerAnagraficaRimborsi {
 
         this.rimborsi=rimborsiDao.getAll();
         tableANAGRAFICA.setItems(rimborsi);
+        try {
+            TableFilter<Rimborsi> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
+        }catch(Exception e ){e.printStackTrace();}
     }
 
 
