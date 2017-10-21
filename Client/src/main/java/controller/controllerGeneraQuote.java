@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
@@ -39,4 +40,9 @@ public class controllerGeneraQuote {
         alert.setHeaderText("Stima: "+importo);
         alert.showAndWait();
     }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
+    }
+
 }

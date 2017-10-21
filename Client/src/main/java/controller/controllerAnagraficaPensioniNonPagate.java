@@ -7,6 +7,7 @@ import Utility.ControllersDispatcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -77,4 +78,9 @@ public class controllerAnagraficaPensioniNonPagate {
         alert.showAndWait();
         tableANAGRAFICA.setItems(pensioniDao.getNonPagate());
     }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
+    }
+
 }

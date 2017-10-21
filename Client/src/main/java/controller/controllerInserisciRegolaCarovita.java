@@ -3,6 +3,7 @@ package controller;
 import Pojo.DAO.RegoleCarovitaDao;
 import Pojo.RegoleCarovita;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -34,6 +35,10 @@ public class controllerInserisciRegolaCarovita {
 
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaREGOLECAROVITA();
+    }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
     }
 
 }

@@ -8,6 +8,7 @@ import Utility.ControllersDispatcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -61,4 +62,9 @@ public class controllerAnagraficaRegoleRimborsi {
     public void InserisciNuovaRegola(ActionEvent event) {
         App.getInstance().gotoInserisciRegolaRimborso();
     }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
+    }
+
 }

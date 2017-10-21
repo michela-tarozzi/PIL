@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.AddizionaleRegionaleDao;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -47,4 +48,6 @@ public class controllerInserisciAddizionaleRegionale {
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaREGIONALI();
     }
+
+    public void tornaHome(Event event) { App.getInstance().gotoHOME(); }
 }

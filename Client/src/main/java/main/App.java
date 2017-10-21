@@ -6,11 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
@@ -64,7 +62,6 @@ public class App extends Application {
         Spese spesa=speseDao.CreaSpesa(socio,"1",ld,Float.parseFloat("160"));
         socio.addSpesa(spesa);
         sd.save(socio);
-*/
         try{
             stage=primaryStage;
             gotoHOME();
@@ -75,7 +72,7 @@ public class App extends Application {
     }
 
     public void gotoHOME() {
-        try {replaceSceneContent("/fxml/bottoniAnagrafiche.fxml");}
+        try {replaceSceneContent("/fxml/BottoniAnagrafiche.fxml");}
         catch (Exception e){
             System.out.println(e);
         }
@@ -282,7 +279,7 @@ public class App extends Application {
     }
 
     public void gotoAnagraficaQuote() {
-        try {replaceSceneContent("/fxml/Quote.fxml");}
+        try {replaceSceneContent("/fxml/AnagraficaQuote.fxml");}
         catch (Exception e){
             System.out.println(e);
     }
@@ -303,7 +300,7 @@ public class App extends Application {
     }
 
     public void gotoRimborsiDaPagare() {
-        try {replaceSceneContent("/fxml/AnagraficaRimborsiDaPagare.fxml");}
+        try {replaceSceneContent("/fxml/PagaRimborsi.fxml");}
         catch (Exception e){
             System.out.println(e);
         }

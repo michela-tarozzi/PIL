@@ -3,6 +3,7 @@ package controller;
 import Pojo.DAO.PagamentoDao;
 import Pojo.Pagamenti;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -47,4 +48,9 @@ public class controllerInserisciPagamento {
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaPagamenti();
     }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
+    }
+
 }

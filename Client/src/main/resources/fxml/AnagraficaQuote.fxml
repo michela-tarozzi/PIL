@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaQuote">
+   <tabs>
+      <Tab onClosed="#tornaHome" text="Anagrafica quote">
+         <content>
+            <AnchorPane prefHeight="700.0" prefWidth="1200.0">
+               <children>
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                    <columns>
+                        <TableColumn fx:id="ColonnaSOCIO" prefWidth="457.99998474121094" text="SOCIO" />
+                        <TableColumn fx:id="colonnaDATA" prefWidth="266.0" text="DATA" />
+                        <TableColumn fx:id="ColonnaIMPORTO" prefWidth="299.0" text="IMPORTO" />
+                    </columns>
+                  </TableView>
+                   <Button fx:id="btnNuovaQuota" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovaQuota" text="Inserisci nuova quota" />
+                  <Button fx:id="btnGeneraQuote" layoutX="222.0" layoutY="14.0" mnemonicParsing="false" onAction="#GeneraQuota" text="Genera quote" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

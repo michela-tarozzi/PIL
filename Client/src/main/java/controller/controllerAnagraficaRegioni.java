@@ -6,6 +6,7 @@ import Utility.ControllersDispatcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,4 +45,7 @@ public class controllerAnagraficaRegioni {
     public void InserisciNuovaRegione(ActionEvent event) {
         App.getInstance().gotoInserisciRegione();
     }
+
+    public void tornaHome(Event event) { App.getInstance().gotoHOME(); }
+
 }

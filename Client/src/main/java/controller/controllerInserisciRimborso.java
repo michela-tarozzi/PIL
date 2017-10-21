@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.RimborsoDao;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -46,6 +47,11 @@ public class controllerInserisciRimborso {
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaRimborsi();
     }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
+    }
+
 }
 
 
