@@ -13,6 +13,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
+
                         <MenuItem fx:id="voceSOCI" mnemonicParsing="false" onAction="#VaiSoci" text="Soci" />
                         <MenuItem fx:id="voceCONTI" mnemonicParsing="false" onAction="#VaiConti" text="Conti" />
                         <MenuItem fx:id="voceCOMUNALI" mnemonicParsing="false" onAction="#VaiAddizionaliComunali" text="Addizionali Comunali" />
@@ -30,6 +31,8 @@
                         <MenuItem fx:id="voceNonPagate" mnemonicParsing="false" onAction="#PensioniNonPagate" text="Paga Pensioni" />
                         <MenuItem fx:id="voceGeneraQuote" mnemonicParsing="false" onAction="#GeneraQuote" text="Genera Quote" />
                         <MenuItem fx:id="voceQuote" mnemonicParsing="false" onAction="#VaiQuote" text="Quote" />
+                      <MenuItem fx:id="voceSpesa" mnemonicParsing="false" text="Spese e Rimborsi" onAction="#VaiSpeseRimborsi"/>
+                        <MenuItem fx:id="voceRimborsiDaPagare" mnemonicParsing="false" text="Paga Rimborsi" onAction="#VaiRimborsiDaPagare"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

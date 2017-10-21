@@ -13,7 +13,7 @@
 
 <TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerInserisciRegoleRimborsi">
    <tabs>
-      <Tab text="Inserisci regola rimborsi">
+      <Tab text="Inserisci regola rimborsi" onClosed="#tornaHome">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1300.0">
                <children>

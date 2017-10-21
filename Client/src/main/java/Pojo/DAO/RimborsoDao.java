@@ -1,13 +1,18 @@
 package Pojo.DAO;
 
+import Pojo.RegoleRimborsi;
 import Pojo.Rimborsi;
 import Pojo.Socio;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 
 /**
@@ -22,7 +27,24 @@ public class RimborsoDao extends GenericDao {
         return findAllObservableList(Rimborsi.class);
     }
 
-    public Rimborsi CreaRimborso(Date data, Float importo, Float importoSpesa) {
+    public ObservableList<Rimborsi> getRimborsiDaPagare() {
+
+        ObservableList<Rimborsi> tutti=getAll();
+        ObservableList<Rimborsi> daPagare= FXCollections.observableArrayList();
+        Iterator<Rimborsi> it=tutti.iterator();
+        int i=0;
+        while(it.hasNext())
+        {
+            Rimborsi rimborso=it.next();
+            if (rimborso.getPagamento()==null){
+                daPagare.add(rimborso);
+            }
+            i++;
+        }
+        return daPagare;
+    }
+
+    public Rimborsi CreaRimborso(LocalDate data, Float importo, Float importoSpesa) {
         Rimborsi rimborso = new Rimborsi();
         rimborso.setData(data);
         rimborso.setImporto(importo);
@@ -63,8 +85,34 @@ public class RimborsoDao extends GenericDao {
         return valido;
     }
 
+    public int GetRicorrenzaRimborso(RegoleRimborsi regola, Socio socio)
+    {
+        ObservableList<Rimborsi> rimborsi= this.getAll();
+        int conta=0;
+        Iterator<Rimborsi> it=rimborsi.iterator();
+        while (it.hasNext()){
+            Rimborsi rimborso=it.next();
+
+            if (rimborso.getRegola()==regola && rimborso.getData().getYear()== LocalDate.now().getYear() && rimborso.getSpesa().getSocio()==socio)
+            {conta++;}
+        }
+        return conta;
+    }
+
     public void chiudiSessione() {
         closeSession();
+    }
+
+    public float getTotSocioAnno(RegoleRimborsi regola, Socio socio) {
+        ObservableList<Rimborsi> rimborsi= this.getAll();
+        float somma=0;
+        Iterator<Rimborsi> it=rimborsi.iterator();
+        while (it.hasNext()){
+            Rimborsi rimborso=it.next();
+            if (rimborso.getRegola()==regola && rimborso.getData().getYear()== LocalDate.now().getYear() && rimborso.getSpesa().getSocio()==socio)
+            {somma=somma+rimborso.getImporto();}
+        }
+        return somma;
     }
 }
 

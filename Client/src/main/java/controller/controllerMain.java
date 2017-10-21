@@ -71,7 +71,12 @@ public class controllerMain {
     public void GeneraQuote(ActionEvent event) {
         App.getInstance().gotoGeneraQuote();
     }
+    public void VaiSpeseRimborsi(ActionEvent event) { App.getInstance().gotoSpeseERimborsi();
+    }
 
+    public void VaiRimborsiDaPagare(ActionEvent event) {
+        App.getInstance().gotoRimborsiDaPagare();
+    }
     public void InserisciNuovaRegolaCarovita(ActionEvent actionEvent) { App.getInstance().gotoInserisciRegolaCarovita();    }
 
     public void InserisciNuovoAddizionale(ActionEvent actionEvent) { App.getInstance().gotoInserisciAddizionaleComunale();    }

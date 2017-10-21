@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.RimborsoDao;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -27,8 +28,7 @@ public class controllerInserisciRimborso {
         try{
         RimborsoDao rimborsoDao=new RimborsoDao();
         LocalDate ld=Date.getValue();
-        Date data=new Date( ld.getYear(),ld.getMonthValue(),ld.getDayOfMonth());
-        rimborsoDao.CreaRimborso (data,
+        rimborsoDao.CreaRimborso (ld,
                 Float.parseFloat(txtImporto.getText()),
                 Float.parseFloat(txtImportoSpesa.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -47,6 +47,11 @@ public class controllerInserisciRimborso {
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaRimborsi();
     }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
+    }
+
 }
 
 

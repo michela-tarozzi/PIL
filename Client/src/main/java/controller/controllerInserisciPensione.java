@@ -4,6 +4,7 @@ import Pojo.DAO.PensioniDao;
 import Pojo.DAO.SocioDao;
 import Pojo.Socio;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -71,5 +72,9 @@ public class controllerInserisciPensione {
 
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaPensioni();
+    }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
     }
 }

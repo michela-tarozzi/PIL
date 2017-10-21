@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.AddizionaleComunaleDao;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -46,5 +47,9 @@ public class controllerInserisciAddizionaleComunale {
 
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaCOMUNALI();
+    }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
     }
 }

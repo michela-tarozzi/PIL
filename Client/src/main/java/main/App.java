@@ -6,11 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
@@ -55,13 +53,15 @@ public class App extends Application {
         SocioDao sd=new SocioDao();
         LocalDate ld=LocalDate.now();
         Date dat= new Date();
-        sd.CreaSocio("TRZMHL90L71A944E","MICHELA","TAROZZI",
+        Socio socio=sd.CreaSocio("TRZMHL90L71A944E","MICHELA","TAROZZI",
                 "VIA IRNERIO 34","BOLOGNA",comune,
                 "IT7G1234512345123456789012", ld , "MUTUA" ,regione,conto);
         sd.CreaSocioPensionato("TRZMHL90L71A944E","MICHELA","TAROZZI",
                 "VIA IRNERIO 34","BOLOGNA",comune,
                 "IT7G1234512345123456789012", ld , "Pensionato", ld,Float.parseFloat("56843.76"),Float.parseFloat("34.65"),Float.parseFloat("75.23"),regione, conto);
-        speseDao.CreaSpesa("1",dat,Float.parseFloat("160"));
+        Spese spesa=speseDao.CreaSpesa(socio,"1",ld,Float.parseFloat("160"));
+        socio.addSpesa(spesa);
+        sd.save(socio);
 
         try{
             stage=primaryStage;
@@ -72,8 +72,8 @@ public class App extends Application {
         }
     }
 
-    private void gotoHOME() {
-        try {replaceSceneContent("/fxml/Home.fxml");}
+    public void gotoHOME() {
+        try {replaceSceneContent("/fxml/BottoniAnagrafiche.fxml");}
         catch (Exception e){
             System.out.println(e);
         }
@@ -81,7 +81,7 @@ public class App extends Application {
     }
 
     private Parent replaceSceneContent(String fxml) throws Exception{
-        URL fxmlCenterPath = this.getClass().getResource("/fxml/main.fxml");
+        URL fxmlCenterPath = this.getClass().getResource("/fxml/Home.fxml");
         BorderPane root = loader.load(fxmlCenterPath);
         Parent page=(Parent)FXMLLoader.load(this.getClass().getResource(fxml));
         Scene scene=new Scene(root);
@@ -280,7 +280,7 @@ public class App extends Application {
     }
 
     public void gotoAnagraficaQuote() {
-        try {replaceSceneContent("/fxml/Quote.fxml");}
+        try {replaceSceneContent("/fxml/AnagraficaQuote.fxml");}
         catch (Exception e){
             System.out.println(e);
     }
@@ -291,5 +291,20 @@ public class App extends Application {
         catch (Exception e){
             System.out.println(e);
     }
+    }
+
+    public void gotoSpeseERimborsi() {
+        try {replaceSceneContent("/fxml/InserisciSpesa.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void gotoRimborsiDaPagare() {
+        try {replaceSceneContent("/fxml/PagaRimborsi.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 }

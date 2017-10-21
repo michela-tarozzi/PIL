@@ -12,7 +12,7 @@
         a disk fsync after each commit. Before the application is closed, you should perform the SHUTDOWN command to
         ensure the database is opened instantly when it is next opened. Note you don't need to use SHUTDOWN COMPACT as
         routine. -->
-        <property name="connection.url">jdbc:hsqldb:file:database/DB3;hsqldb.write_delay=false</property>
+        <property name="connection.url">jdbc:hsqldb:file:database/DB4;hsqldb.write_delay=false</property>
         <!--
                 <property name="connection.url">jdbc:hsqldb:hsql://localhost/GialloDB</property>
         -->

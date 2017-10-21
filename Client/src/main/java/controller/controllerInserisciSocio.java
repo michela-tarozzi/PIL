@@ -8,6 +8,7 @@ import Pojo.DAO.RegioneDao;
 import Pojo.DAO.SocioDao;
 import Pojo.Regioni;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -89,4 +90,9 @@ public class controllerInserisciSocio {
     public void Annulla(ActionEvent event) {
     App.getInstance().gotoAnagraficaSOCI();
     }
+
+    public void tornaHome(Event event) {
+        App.getInstance().gotoHOME();
+    }
+
 }
