@@ -61,7 +61,7 @@ public class App extends Application {
                 "IT7G1234512345123456789012", ld , "Pensionato", ld,Float.parseFloat("56843.76"),Float.parseFloat("34.65"),Float.parseFloat("75.23"),regione, conto);
         Spese spesa=speseDao.CreaSpesa(socio,"1",ld,Float.parseFloat("160"));
         socio.addSpesa(spesa);
-        sd.save(socio);
+        sd.save(socio);*/
         try{
             stage=primaryStage;
             gotoHOME();

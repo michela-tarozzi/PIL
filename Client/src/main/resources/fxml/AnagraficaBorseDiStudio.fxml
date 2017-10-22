@@ -10,7 +10,7 @@
 
 <TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaBorseDiStudio">
    <tabs>
-      <Tab text="Anagrafica dei soci" onClosed="#tornaHome">
+      <Tab text="Anagrafica borse di studio" onClosed="#tornaHome">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>

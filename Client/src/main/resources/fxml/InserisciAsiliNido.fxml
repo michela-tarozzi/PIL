@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -10,10 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerInserisciAsiloNido">
    <tabs>
-      <Tab text="Inserisci asilo" onClosed="#tornaHome">
+      <Tab onClosed="#tornaHome" text="Inserisci asilo">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1300.0">
                <children>
@@ -50,6 +50,8 @@
                         <TextField fx:id="txtRimborso" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                         <TextField fx:id="txtIntegrazione" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <TextField fx:id="txtPercentuale" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Socio" GridPane.columnIndex="4" />
+                        <ComboBox fx:id="comboSocio" prefWidth="150.0" GridPane.columnIndex="6" />
                      </children>
                   </GridPane>
                   <Button fx:id="btnInserisci" layoutX="289.0" layoutY="594.0" mnemonicParsing="false" onAction="#Inserisci" prefHeight="59.0" prefWidth="126.0" text="INSERISCI" />

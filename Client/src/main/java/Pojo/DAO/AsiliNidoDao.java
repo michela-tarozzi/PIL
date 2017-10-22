@@ -1,6 +1,7 @@
 package Pojo.DAO;
 
 import Pojo.AsiliNido;
+import Pojo.Socio;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
@@ -21,14 +22,18 @@ public class AsiliNidoDao extends GenericDao {
         return findAllObservableList(AsiliNido.class);
     }
 
-    public AsiliNido CreaAsiloNido(String figlio, int anno, float integrazione,float percentuale, float spesa, float rimborso){       AsiliNido asili = new AsiliNido();
+    public AsiliNido CreaAsiloNido(Socio socio, String figlio, int anno, float integrazione, float percentuale, float spesa, float rimborso){       AsiliNido asili = new AsiliNido();
         asili.setFiglio(figlio);
         asili.setAnno(anno);
         asili.setIntegrazione(integrazione);
         asili.setPercentuale(percentuale);
         asili.setRimborso(rimborso);
         asili.setSpesa(spesa);
+        asili.setSocio(socio);
         this.save(asili);
+        SocioDao socioDao=new SocioDao();
+        socio.addAsiliNido(asili);
+        socioDao.update(socio);
         return asili;
     }
 

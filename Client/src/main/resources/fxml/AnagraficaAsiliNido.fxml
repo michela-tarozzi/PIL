@@ -10,7 +10,7 @@
 
 <TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaAsiliNido">
    <tabs>
-      <Tab text="Anagrafica Asili Nido" onClosed="#tornaHome">
+      <Tab text="Anagrafica asili nido" onClosed="#tornaHome">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
@@ -18,10 +18,11 @@
                     <columns>
                       <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />
                       <TableColumn fx:id="ColonnaFIGLIO" prefWidth="89.0" text="FIGLIO" />
+                        <TableColumn fx:id="ColonnaSOCIO" prefWidth="89.0" text="SOCIO" />
                       <TableColumn fx:id="ColonnaSPESA" prefWidth="89.0" text="SPESA" />
                       <TableColumn fx:id="colonnaRIMBORSO" prefWidth="89.0" text="RIMBORSO" />
                       <TableColumn fx:id="colonnaINTEGRAZIONE" prefWidth="89.0" text="INTEGRAZIONE" />
-                      <TableColumn fx:id="colonnaPERCENTUALE" prefWidth="89.0" text="PERCENTUALE'" />
+                      <TableColumn fx:id="colonnaPERCENTUALE" prefWidth="89.0" text="PERCENTUALE" />
                     </columns>
                   </TableView>
                   <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoRimborsoAsilo" text="Inserisci nuovo Rimborso Asilo" />

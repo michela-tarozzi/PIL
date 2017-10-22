@@ -25,6 +25,8 @@ public class controllerAnagraficaAsiliNido {
     @FXML
     public TableColumn<AsiliNido,String> ColonnaFIGLIO;
     @FXML
+    public TableColumn<AsiliNido,String> ColonnaSOCIO;
+    @FXML
     public TableColumn<AsiliNido,Float> ColonnaSPESA;
     @FXML
     public TableColumn<AsiliNido,Float> colonnaRIMBORSO;
@@ -44,6 +46,7 @@ public class controllerAnagraficaAsiliNido {
         tableANAGRAFICA.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ColonnaANNO.setCellValueFactory(new PropertyValueFactory<AsiliNido, Integer>("anno"));
         ColonnaFIGLIO.setCellValueFactory(new PropertyValueFactory<AsiliNido, String>("figlio"));
+        ColonnaSOCIO.setCellValueFactory(new PropertyValueFactory<AsiliNido, String>("socio"));
         ColonnaSPESA.setCellValueFactory(new PropertyValueFactory<AsiliNido, Float>("spesa"));
         colonnaRIMBORSO.setCellValueFactory(new PropertyValueFactory<AsiliNido, Float>("rimborso"));
         colonnaINTEGRAZIONE.setCellValueFactory(new PropertyValueFactory<AsiliNido, Float>("integrazione"));
