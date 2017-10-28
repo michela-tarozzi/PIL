@@ -31,10 +31,8 @@ public class GeneraPagamenti {
         while(it.hasNext())
         {
             Pensioni pensione=it.next();
-            Pagamenti pagamento=pagamentoDao.CreaPagamento(data,pensione.getLordo(), pensione.getNetto(),pensione.getRitenuta()+
+            Pagamenti pagamento=pagamentoDao.CreaPagamento(pensione,data,pensione.getLordo(), pensione.getNetto(),pensione.getRitenuta()+
                     pensione.getAddizionaleComunale()+pensione.getAddizionaleRegionale());
-            pagamento.addPensione(pensione);
-            pagamentoDao.update(pensione);
             pensione.setPagamento(pagamento);
             pensione.setStato("PAGATA");
             pensioniDao.update(pensione);
@@ -54,11 +52,9 @@ public class GeneraPagamenti {
         while(it.hasNext())
         {
             Rimborsi rimborso=it.next();
-            Pagamenti pagamento=pagamentoDao.CreaPagamento(data,rimborso.getImporto(), rimborso.getImporto(),0);
+            Pagamenti pagamento=pagamentoDao.CreaPagamento(rimborso,data,rimborso.getImporto(), rimborso.getImporto(),0);
             rimborso.setPagamento(pagamento);
             rimborsoDao.update(rimborso);
-            pagamento.addRimborso(rimborso);
-            pagamentoDao.update(pagamento);
         }
         generaXML(pagamenti, data);
         return true;

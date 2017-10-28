@@ -7,10 +7,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaSocio">
+<TabPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaSocio">
    <tabs>
-      <Tab text="Anagrafica dei soci" onClosed="#tornaHome">
+      <Tab onClosed="#tornaHome" text="Anagrafica dei soci">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
@@ -32,6 +31,7 @@
                     </columns>
                   </TableView>
                   <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoSocio" text="Inserisci nuovo socio" />
+                  <Button fx:id="btnModificaSocio" layoutX="170.0" layoutY="14.0" mnemonicParsing="false" onAction="#ModificaSocio" prefHeight="25.0" prefWidth="141.0" text="Modifica Socio" />
                </children>
             </AnchorPane>
          </content>

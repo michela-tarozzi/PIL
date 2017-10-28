@@ -1,11 +1,12 @@
 package controller;
 
 import Pojo.DAO.AsiliNidoDao;
+import Pojo.DAO.SocioDao;
+import Pojo.Socio;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import main.App;
 
 /**
@@ -24,11 +25,21 @@ public class controllerInserisciAsiloNido {
     public TextField txtIntegrazione;
     @FXML
     public TextField txtPercentuale;
+    @FXML
+    public ComboBox comboSocio;
+
+
+    @FXML
+    public void initialize() {
+        SocioDao socioDao=new SocioDao();
+        comboSocio.setItems(socioDao.getAll());
+    }
+
 
     public void Inserisci(ActionEvent event) {
         try{
         AsiliNidoDao asiliNidoDao=new AsiliNidoDao();
-        asiliNidoDao.CreaAsiloNido(txtFiglio.getText(),
+        asiliNidoDao.CreaAsiloNido((Socio)comboSocio.getValue(),txtFiglio.getText(),
                 Integer.parseInt(txtAnno.getText()),
                 Float.parseFloat(txtSpesa.getText()),
                 Float.parseFloat(txtRimborso.getText()),

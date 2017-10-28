@@ -15,7 +15,7 @@
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
                   <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
-                    <columns>
+                    <columns><TableColumn fx:id="ColonnaSOCIO" prefWidth="89.0" text="SOCIO" />
                       <TableColumn fx:id="ColonnaDATA" prefWidth="89.0" text="DATA" />
                       <TableColumn fx:id="ColonnaLORDO" prefWidth="89.0" text="LORDO" />
                       <TableColumn fx:id="ColonnaNETTO" prefWidth="89.0" text="NETTO" />

@@ -33,5 +33,6 @@
     <property name="importoNetto" column="importoNetto"/>
     <property name="importoLordo" column="importoLordo"/>
     <property name="trattenuta" column="trattenuta"/>
+    <property name="descrizione" column="descrizione"/>
   </class>
 </hibernate-mapping>

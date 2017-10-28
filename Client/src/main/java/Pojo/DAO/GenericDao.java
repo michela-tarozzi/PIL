@@ -1,5 +1,6 @@
 package Pojo.DAO;
 
+import Pojo.Socio;
 import Utility.HibernateUtil;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
@@ -250,6 +251,7 @@ public class GenericDao<T> implements GenericDaoInterface<T> {
         return result;
     }
 
+
     public List<T> execQuery(String queryName, Map<String, Object> params) {
 
         List<T> list = null;
@@ -305,6 +307,23 @@ public class GenericDao<T> implements GenericDaoInterface<T> {
         }
 
 
+    }
+
+    public List ImportoAnnuoQuoteSocio(Socio socio, String anno)
+    {
+        List<T> quote = null;
+        try {
+            Session session = this.session.getCurrentSession();
+            session.beginTransaction();
+            Query query = session.createQuery("select Quote from Quote Q where Q.socio= :socio_id and YEAR(q.data)=:anno");
+            query.setParameter("socio_id",socio.getId());
+            query.setParameter("anno", Integer.valueOf(anno));
+            quote= query.list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return quote;
     }
 }
 

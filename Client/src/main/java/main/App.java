@@ -19,16 +19,27 @@ public class App extends Application {
     private Stage stage;
     private final FXMLLoader loader=new FXMLLoader();
     private static App instance;
-
+    private static Socio socioGlobale;
+    private static RegoleRimborsi regolaRimborsoGlobale;
+    private static Pensioni pensioneGlobale;
     public App(){instance=this;}
 
     public static App getInstance(){return instance;}
 
     public static void main(String[] args) {launch(args);}
 
+    public static RegoleRimborsi getRegolaRimborsoGlobale() {
+        return regolaRimborsoGlobale;
+    }
+
+    public static void setRegolaRimborsoGlobale(RegoleRimborsi regolaRimborsoGlobale) {
+        App.regolaRimborsoGlobale = regolaRimborsoGlobale;
+    }
+
 
     @Override
     public void start(Stage primaryStage) {
+        socioGlobale=null;
 /*
         BorseDiStudioDao borseDiStudioDao=new BorseDiStudioDao();
         borseDiStudioDao.CreaBorsaDiStudio("figlio",2017,35,"iban",100,80,20);
@@ -61,7 +72,7 @@ public class App extends Application {
                 "IT7G1234512345123456789012", ld , "Pensionato", ld,Float.parseFloat("56843.76"),Float.parseFloat("34.65"),Float.parseFloat("75.23"),regione, conto);
         Spese spesa=speseDao.CreaSpesa(socio,"1",ld,Float.parseFloat("160"));
         socio.addSpesa(spesa);
-        sd.save(socio);
+        sd.save(socio);*/
         try{
             stage=primaryStage;
             gotoHOME();
@@ -305,4 +316,19 @@ public class App extends Application {
             System.out.println(e);
         }
     }
+
+    public void setSocioGlobale(Socio socioGlobale) {
+        this.socioGlobale = socioGlobale;
+    }
+    public Socio getSocioGlobale(){
+        return socioGlobale;
+    }
+
+    public void setPensioneGlobale(Pensioni pensioneGlobale) {
+        this.pensioneGlobale = pensioneGlobale;
+    }
+    public Pensioni getPensioneGlobale(){
+        return pensioneGlobale;
+    }
+
 }

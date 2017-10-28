@@ -1,5 +1,6 @@
 package controller;
 
+import Pojo.DAO.QuoteDao;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,6 +18,8 @@ public class controllerGeneraQuote {
 
     @FXML
     public DatePicker Data;
+    @FXML
+    public TextField txtAnno;
 
     public void Genera(ActionEvent event) {
         GeneraQuote generaQuote= new GeneraQuote();
@@ -45,4 +48,12 @@ public class controllerGeneraQuote {
         App.getInstance().gotoHOME();
     }
 
+    public void Stampa(ActionEvent event) {
+            GeneraQuote generaQuote=new GeneraQuote();
+            float importo=generaQuote.StampaQuote(Integer.parseInt(txtAnno.getText()));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Calcoli");
+        alert.setHeaderText("importo: "+importo);
+        alert.showAndWait();
+    }
 }

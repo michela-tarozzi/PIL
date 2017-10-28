@@ -41,6 +41,8 @@ public class controllerAnagraficaBorseDiStudio {
     public TableColumn<BorseDiStudio,Float> colonnaRITENUTA;
     @FXML
     public TableColumn<BorseDiStudio,Float> colonnaNETTO;
+    @FXML
+    public TableColumn<BorseDiStudio,String> colonnaSOCIO;
 
     private String nomeClasse;
     private ObservableList<BorseDiStudio> borse= FXCollections.observableArrayList();
@@ -58,6 +60,7 @@ public class controllerAnagraficaBorseDiStudio {
         colonnaLORDO.setCellValueFactory(new PropertyValueFactory<BorseDiStudio, Float>("lordo"));
         colonnaRITENUTA.setCellValueFactory(new PropertyValueFactory<BorseDiStudio, Float>("ritenuta"));
         colonnaNETTO.setCellValueFactory(new PropertyValueFactory<BorseDiStudio, Float>("netto"));
+        colonnaSOCIO.setCellValueFactory(new PropertyValueFactory<BorseDiStudio, String>("socio"));
         this.borse=borseDiStudioDao.getAll();
         tableANAGRAFICA.setItems(borse);
         try {

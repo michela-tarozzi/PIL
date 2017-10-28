@@ -28,6 +28,8 @@ public class controllerAnagraficaPensioniNonPagate {
     @FXML
     public TableColumn<Pensioni,String> colonnaDATA;
     @FXML
+    public TableColumn<Pensioni,String> colonnaSOCIO;
+    @FXML
     public TableColumn<Pensioni,Float> ColonnaCSUSSIDIO;
     @FXML
     public TableColumn<Pensioni,Float> ColonnaCAROVITA;
@@ -53,6 +55,7 @@ public class controllerAnagraficaPensioniNonPagate {
         nomeClasse = this.getClass().getName();
         ControllersDispatcher.setController(nomeClasse, this);
         tableANAGRAFICA.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        colonnaSOCIO.setCellValueFactory(new PropertyValueFactory<Pensioni, String>("socio"));
         colonnaDATA.setCellValueFactory(new PropertyValueFactory<Pensioni, String>("data"));
         ColonnaCSUSSIDIO.setCellValueFactory(new PropertyValueFactory<Pensioni, Float>("sussidio"));
         ColonnaCAROVITA.setCellValueFactory(new PropertyValueFactory<Pensioni, Float>("carovita"));

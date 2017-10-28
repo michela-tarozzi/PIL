@@ -1,6 +1,7 @@
 package Pojo.DAO;
 
 import Pojo.BorseDiStudio;
+import Pojo.Socio;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
@@ -21,7 +22,7 @@ public class BorseDiStudioDao extends GenericDao {
         return findAllObservableList(BorseDiStudio.class);
     }
 
-    public BorseDiStudio CreaBorsaDiStudio(String figlio, int anno, int cfu, String iban, float lordo, float netto, float ritenuta) {
+    public BorseDiStudio CreaBorsaDiStudio(Socio socio, String figlio, int anno, int cfu, String iban, float lordo, float netto, float ritenuta) {
         BorseDiStudio bds = new BorseDiStudio();
         bds.setFiglio(figlio);
         bds.setAnno(anno);
@@ -30,7 +31,11 @@ public class BorseDiStudioDao extends GenericDao {
         bds.setLordo(lordo);
         bds.setNetto(netto);
         bds.setRitenuta(ritenuta);
+        bds.setSocio(socio);
         this.save(bds);
+        SocioDao socioDao=new SocioDao();
+        socio.addBorseDiStudio(bds);
+        socioDao.update(socio);
         return bds;
     }
 

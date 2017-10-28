@@ -21,6 +21,8 @@ public class controllerGeneraPensioni {
     public DatePicker Data;
     @FXML
     public TextField txtAnno;
+    @FXML
+    public CheckBox CKTredicesima;
 
     public void Genera(ActionEvent event) {
         GeneraPensioni generaPensioni= new GeneraPensioni();
@@ -28,7 +30,7 @@ public class controllerGeneraPensioni {
         if (CKaddizionali.isSelected()){
             anno=Integer.parseInt(txtAnno.getText());
          }
-        generaPensioni.Generapensioni(CKaddizionali.isSelected(),Data.getValue(),anno);
+        generaPensioni.Generapensioni(CKaddizionali.isSelected(),Data.getValue(),anno,CKTredicesima.isSelected());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Inserimento");
         alert.setHeaderText("Pensioni Generate");

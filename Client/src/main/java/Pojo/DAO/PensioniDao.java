@@ -118,5 +118,24 @@ public class PensioniDao extends GenericDao {
         }
         return pensioni;
     }
+
+    public float getTrattenuteAnnueSocio(Socio socio, int year) {
+        Float totale=(Float.parseFloat("0"));
+        ObservableList<Pensioni> pensioni=this.getAll();
+        Iterator<Pensioni> it=pensioni.iterator();
+
+        while(it.hasNext())
+        {
+            Pensioni pensione=it.next();
+            String cf=pensione.getSocio().getCF();
+            String cf2=socio.getCF();
+
+            if (cf.equals(cf2) && pensione.getData().getYear()==year)
+            {
+                totale=totale+pensione.getRitenuta();
+            }
+        }
+        return totale;
+    }
 }
 

@@ -68,4 +68,23 @@ public class GeneraQuote {
         }
         return stima;
     }
+
+    public float StampaQuote(int anno)
+    {
+         float importo=0;
+        QuoteDao quoteDao=new QuoteDao();
+        SocioDao socioDao=new SocioDao();
+        Iterator<Socio> soci=socioDao.getAll().iterator();
+        while (soci.hasNext()){
+            Socio socio=soci.next();
+            if ((socio.getCategoria().equals("MUTUA&SUSSIDI")|| socio.getCategoria().equals("SUSSIDI"))&& socio.getdataIscrizione().getYear()==anno)
+            {
+                importo=quoteDao.ImportoAnnuoQuote(socio, anno);
+            }
+            else
+                importo=Float.parseFloat("61.92");
+            // TODO: 25/10/2017 stampa xml per jfxml 
+        }
+        return  importo;
+    }
 }
