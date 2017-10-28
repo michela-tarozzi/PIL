@@ -53,7 +53,7 @@ public class AsiliNido implements Externalizable {
     @Expose
     private float _rimborso;
 
-    @Column(nullable = false)
+    @Column
     private FloatProperty integrazione;
     @Transient
     @Expose

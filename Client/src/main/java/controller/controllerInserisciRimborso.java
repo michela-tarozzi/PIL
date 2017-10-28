@@ -44,6 +44,8 @@ public class controllerInserisciRimborso {
         }
     }
 
+
+
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaRimborsi();
     }

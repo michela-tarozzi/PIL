@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
+import procedure.GeneraEstrazioniDati;
 
 import java.util.Date;
 
@@ -39,6 +40,8 @@ public class controllerAnagraficaPensioni {
     public TableColumn<Pensioni,Float> colonnaREGIONALE;
     @FXML
     public TableColumn<Pensioni,Float> colonnaNETTO;
+    @FXML
+    public TableColumn<Pensioni,String> colonnaSOCIO;
 
     private String nomeClasse;
     private ObservableList<Pensioni> pensioni= FXCollections.observableArrayList();
@@ -49,6 +52,7 @@ public class controllerAnagraficaPensioni {
         nomeClasse = this.getClass().getName();
         ControllersDispatcher.setController(nomeClasse, this);
         tableANAGRAFICA.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        colonnaSOCIO.setCellValueFactory(new PropertyValueFactory<Pensioni, String>("socio"));
         colonnaDATA.setCellValueFactory(new PropertyValueFactory<Pensioni, String>("data"));
         ColonnaCSUSSIDIO.setCellValueFactory(new PropertyValueFactory<Pensioni, Float>("sussidio"));
         ColonnaCAROVITA.setCellValueFactory(new PropertyValueFactory<Pensioni, Float>("carovita"));
@@ -72,4 +76,13 @@ public class controllerAnagraficaPensioni {
         App.getInstance().gotoHOME();
     }
 
+    public void Modifica(ActionEvent event) {
+        int numeroRiga=tableANAGRAFICA.getSelectionModel().getFocusedIndex();
+        App.getInstance().setPensioneGlobale(tableANAGRAFICA.getItems().get(numeroRiga));
+        App.getInstance().gotoInserisciPensione();
+    }
+
+    public void Estrai(ActionEvent event) {
+        GeneraEstrazioniDati.GeneraEstrazioneDati(tableANAGRAFICA.getItems());
+    }
 }

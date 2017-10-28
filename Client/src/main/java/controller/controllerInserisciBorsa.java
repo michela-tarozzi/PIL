@@ -1,10 +1,13 @@
 package controller;
 
 import Pojo.DAO.BorseDiStudioDao;
+import Pojo.DAO.SocioDao;
+import Pojo.Socio;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.App;
@@ -34,11 +37,13 @@ public class controllerInserisciBorsa {
     public TextField txtRitenuta;
     @FXML
     public TextField txtNetto;
+    @FXML
+    public ComboBox comboSocio;
 
     public void Inserisci(ActionEvent event) {
         try{
         BorseDiStudioDao borseDiStudioDao=new BorseDiStudioDao();
-            borseDiStudioDao.CreaBorsaDiStudio(
+            borseDiStudioDao.CreaBorsaDiStudio((Socio)comboSocio.getValue(),
                 txtFiglio.getText(),
                 Integer.parseInt(txtAnno.getText()),
                 Integer.parseInt(txtCFU.getText()),
@@ -65,6 +70,11 @@ public class controllerInserisciBorsa {
 
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
+    }
+    @FXML
+    public void initialize() {
+        SocioDao socioDao=new SocioDao();
+        comboSocio.setItems(socioDao.getAll());
     }
 
 }

@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.PensioniDao;
 import Pojo.DAO.SocioDao;
+import Pojo.Pensioni;
 import Pojo.Socio;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -39,7 +40,27 @@ public class controllerInserisciPensione {
     @FXML
     public ComboBox ComboSocio;
 
+    private Pensioni pensione;
+
     public void Inserisci(ActionEvent event) {
+        if (pensione!=null)
+        {
+            pensione.setSocio((Socio) ComboSocio.getValue());
+            pensione.setRitenuta(Float.parseFloat(txtRitenuta.getText()));
+            pensione.setNetto( Float.parseFloat(txtNetto.getText()));
+            pensione.setLordo( Float.parseFloat(txtLordo.getText()));
+            pensione.setAddizionaleComunale(Float.parseFloat(txtComunale.getText()));
+            pensione.setAddizionaleRegionale( Float.parseFloat(txtRegionale.getText()));
+            pensione.setData(Date.getValue());
+            pensione.setCarovita( Float.parseFloat(txtCarovita.getText()));
+            pensione.setSussidio(Float.parseFloat(txtSussidio.getText()));
+            App.getInstance().setPensioneGlobale(null);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Modifica");
+            alert.setHeaderText("Pensione aggiornata");
+            alert.showAndWait();
+            App.getInstance().gotoAnagraficaPensioni();
+        }else
         try {
             LocalDate ld=Date.getValue();
             PensioniDao pensioniDao = new PensioniDao();
@@ -66,8 +87,22 @@ public class controllerInserisciPensione {
     }
     @FXML
     public void initialize() {
+        pensione=null;
         SocioDao socioDao=new SocioDao();
         ComboSocio.setItems(socioDao.getAll());
+        if (App.getInstance().getPensioneGlobale()!=null)
+        {
+            pensione=App.getInstance().getPensioneGlobale();
+            Date.setValue(pensione.getData());
+            ComboSocio.setValue(pensione.getSocio());
+            txtSussidio.setText(String.valueOf(pensione.getSussidio()));
+            txtRitenuta.setText(String.valueOf(pensione.getRitenuta()));
+            txtCarovita.setText(String.valueOf(pensione.getCarovita()));
+            txtNetto.setText(String.valueOf(pensione.getNetto()));
+            txtLordo.setText(String.valueOf(pensione.getLordo()));
+            txtRegionale.setText(String.valueOf(pensione.getAddizionaleRegionale()));
+            txtComunale.setText(String.valueOf(pensione.getAddizionaleComunale()));
+        }
     }
 
     public void Annulla(ActionEvent event) {

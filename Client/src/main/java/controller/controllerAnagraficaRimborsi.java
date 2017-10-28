@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.RimborsoDao;
 import Pojo.DAO.SocioDao;
+import Pojo.Pagamenti;
 import Pojo.Rimborsi;
 import Pojo.Socio;
 import Utility.ControllersDispatcher;
@@ -30,6 +31,12 @@ public class controllerAnagraficaRimborsi {
     public TableColumn<Rimborsi,Float> ColonnaIMPORTO;
     @FXML
     public TableColumn<Rimborsi,Float> ColonnaIMPORTOSPESA;
+    @FXML
+    public TableColumn<Rimborsi,String> ColonnaSPESA;
+    @FXML
+    public TableColumn <Rimborsi,String>  ColonnaREGOLA;
+    @FXML
+    public TableColumn <Rimborsi, String> ColonnaPAGAMENTO;
 
     private String nomeClasse;
     private ObservableList<Rimborsi> rimborsi= FXCollections.observableArrayList();
@@ -41,9 +48,11 @@ public class controllerAnagraficaRimborsi {
         ControllersDispatcher.setController(nomeClasse, this);
         tableANAGRAFICA.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ColonnaDATA.setCellValueFactory(new PropertyValueFactory<Rimborsi, String>("data"));
+        ColonnaREGOLA.setCellValueFactory(new PropertyValueFactory<Rimborsi, String>("regola"));
         ColonnaIMPORTO.setCellValueFactory(new PropertyValueFactory<Rimborsi, Float>("importo"));
         ColonnaIMPORTOSPESA.setCellValueFactory(new PropertyValueFactory<Rimborsi, Float>("importoSpesa"));
-
+        ColonnaSPESA.setCellValueFactory(new PropertyValueFactory<Rimborsi, String>("spesa"));
+        ColonnaPAGAMENTO.setCellValueFactory(new PropertyValueFactory<Rimborsi, String>("pagamento"));
         this.rimborsi=rimborsiDao.getAll();
         tableANAGRAFICA.setItems(rimborsi);
         try {

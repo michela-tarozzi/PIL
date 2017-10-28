@@ -4,14 +4,20 @@ import Pojo.Pagamenti;
 import Pojo.Pensioni;
 import Pojo.Quote;
 import Pojo.Socio;
+import Utility.HibernateUtil;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -64,6 +70,20 @@ public class QuoteDao extends GenericDao {
             throw new SystemExceptionRefactor(ErrorLabel.CAMPI_OBBLIGATORI_LAVORATORE, ExceptionCode.getValidazioneCode());
         }
         return valido;
+    }
+
+    public float ImportoAnnuoQuote(Socio socio, int anno)
+    {
+        float totale=0;
+        ObservableList<Quote> quote= this.getAll();
+        Iterator<Quote> quoteIt= quote.iterator();
+        while(quoteIt.hasNext())
+        {
+            Quote quota=quoteIt.next();
+            if (quota.getData().getYear()==anno && quota.getSocio()==socio)
+            totale=totale+quoteIt.next().getImporto();
+        }
+        return totale;
     }
 
     public void chiudiSessione() {

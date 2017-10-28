@@ -19,6 +19,7 @@
                         <TableColumn fx:id="colonnaANNO" prefWidth="89.0" text="ANNO" />
                       <TableColumn fx:id="ColonnaNOMEFIGLIO" prefWidth="160.0" text="NOME FIGLIO" />
                       <TableColumn fx:id="ColonnaIBANFIGLIO" prefWidth="237.0" text="IBAN FIGLIO" />
+                        <TableColumn fx:id="colonnaSOCIO" prefWidth="89.0" text="SOCIO" />
                       <TableColumn fx:id="ColonnaCFU" prefWidth="108.0" text="CFU" />
                       <TableColumn fx:id="colonnaLORDO" prefWidth="171.0" text="LORDO'" />
                         <TableColumn fx:id="colonnaRITENUTA" prefWidth="147.0" text="RITENUTA" />

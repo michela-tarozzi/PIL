@@ -76,6 +76,12 @@ public class Pagamenti implements Externalizable {
         return rimborsi;
     }
 
+    @Column
+    private StringProperty descrizione;
+    @Transient
+    @Expose
+    private String _descrizione;
+    
     @OneToMany(mappedBy = "pagamento",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -274,6 +280,29 @@ public class Pagamenti implements Externalizable {
         return this.data;
     }
 
+    @Access(AccessType.PROPERTY)
+    public String getDescrizione() {
+        if (this.descrizione == null) {
+            return _descrizione;
+        } else {
+            return this.descrizione.get();
+        }
+    }
+    public StringProperty descrizioneProperty() {
+        if (this.descrizione == null) {
+            this.descrizione = new SimpleStringProperty(this, "descrizione", _descrizione);
+        }
+        return this.descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        if (this.descrizione == null) {
+            _descrizione = descrizione;
+        } else {
+            this.descrizione.set(descrizione);
+        }
+    }
+
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.getData());
         out.writeObject(this.getNetto());
@@ -284,6 +313,8 @@ public class Pagamenti implements Externalizable {
         out.writeObject(this.getEredi());
         out.writeObject(this.getBorseDiStudio());
         out.writeObject(this.getAsiliNido());
+        out.writeObject(this.getDescrizione());
+
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -296,8 +327,12 @@ public class Pagamenti implements Externalizable {
         this.setEredi((List) in.readObject());
         this.setBorseDiStudio((List) in.readObject());
         this.setAsiliNido((List) in.readObject());
+        this.setDescrizione((String) in.readObject());
     }
-
+    @Override
+    public String toString() {
+        return _data+ " - "+ _netto;
+    }
 
 
 

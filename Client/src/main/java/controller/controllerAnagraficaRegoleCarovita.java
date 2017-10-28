@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -57,4 +58,14 @@ public class controllerAnagraficaRegoleCarovita {
         App.getInstance().gotoHOME();
     }
 
+    public void Elimina(ActionEvent event) {
+        int numeroRiga=tableANAGRAFICA.getSelectionModel().getFocusedIndex();
+        RegoleCarovitaDao regoleCarovitaDao=new RegoleCarovitaDao();
+        regoleCarovitaDao.delete(tableANAGRAFICA.getItems().get(numeroRiga));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Eliminazione");
+        alert.setHeaderText("Regola ELIMINATA");
+        alert.showAndWait();
+        App.getInstance().gotoAnagraficaREGOLECAROVITA();
+    }
 }

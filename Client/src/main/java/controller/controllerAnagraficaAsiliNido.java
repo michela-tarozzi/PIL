@@ -32,6 +32,8 @@ public class controllerAnagraficaAsiliNido {
     public TableColumn<AsiliNido,Float> colonnaINTEGRAZIONE;
     @FXML
     public TableColumn<AsiliNido,Float> colonnaPERCENTUALE;
+    @FXML
+    public TableColumn ColonnaSOCIO;
 
     private String nomeClasse;
     private ObservableList<AsiliNido> asili= FXCollections.observableArrayList();
@@ -48,7 +50,7 @@ public class controllerAnagraficaAsiliNido {
         colonnaRIMBORSO.setCellValueFactory(new PropertyValueFactory<AsiliNido, Float>("rimborso"));
         colonnaINTEGRAZIONE.setCellValueFactory(new PropertyValueFactory<AsiliNido, Float>("integrazione"));
         colonnaPERCENTUALE.setCellValueFactory(new PropertyValueFactory<AsiliNido, Float>("percentuale"));
-
+        ColonnaSOCIO.setCellValueFactory(new PropertyValueFactory<AsiliNido, String>("socio"));
         this.asili=asiliNidoDao.getAll();
         tableANAGRAFICA.setItems(asili);
         try {

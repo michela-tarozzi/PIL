@@ -81,12 +81,36 @@ public class controllerInserisciSocio {
     }
     @FXML
     public void initialize() {
+
         ComuneDao comuneDao=new ComuneDao();
         ComboComune.setItems(comuneDao.getAll());
         RegioneDao regioneDao=new RegioneDao();
         ComboRegione.setItems(regioneDao.getAll());
         ContiDao contiDao=new ContiDao();
         ComboConto.setItems(contiDao.getAll());
+
+        if (App.getInstance().getSocioGlobale()!=null)
+        {
+            Socio socio=App.getInstance().getSocioGlobale();
+            DateIscrizione.setValue(socio.getdataIscrizione());
+            txtCF.setText(socio.getCF());
+            txtCognome.setText(socio.getCognome());
+            txtNome.setText(socio.getNome());
+            txtIndirizzo.setText(socio.getIndirizzo());
+            txtCitta.setText(socio.getCitta());
+            DatePensionamento.setValue(socio.getdataPensionamento());
+            txtSussidio.setText(String.valueOf(socio.getsussidioMensile()));
+            txtRitenuta.setText(String.valueOf(socio.getritenuta()));
+            txtReddito.setText(String.valueOf(socio.getreddito()));
+            txtIBAN.setText(socio.getIBAN());
+            txtCategoria.setText(socio.getCategoria());
+            ComboComune.setValue(socio.getComune());
+            ComboRegione.setValue(socio.getRegione());
+            ComboConto.setValue(socio.getConto());
+            App.getInstance().setSocioGlobale(null);
+        }
+
+
     }
     public void Annulla(ActionEvent event) {
     App.getInstance().gotoAnagraficaSOCI();

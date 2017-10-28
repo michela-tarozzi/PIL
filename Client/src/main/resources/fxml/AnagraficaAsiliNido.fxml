@@ -17,6 +17,7 @@
                   <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
                     <columns>
                       <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />
+                        <TableColumn fx:id="ColonnaSOCIO" prefWidth="89.0" text="SOCIO" />
                       <TableColumn fx:id="ColonnaFIGLIO" prefWidth="89.0" text="FIGLIO" />
                       <TableColumn fx:id="ColonnaSPESA" prefWidth="89.0" text="SPESA" />
                       <TableColumn fx:id="colonnaRIMBORSO" prefWidth="89.0" text="RIMBORSO" />

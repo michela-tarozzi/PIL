@@ -2,6 +2,7 @@ package controller;
 
 import Pojo.DAO.PagamentoDao;
 import Pojo.Pagamenti;
+import Pojo.Rimborsi;
 import Utility.ControllersDispatcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +33,8 @@ public class controllerAnagraficaPagamenti {
     public TableColumn<Pagamenti,Float> ColonnaNETTO;
     @FXML
     public TableColumn<Pagamenti,Float> colonnaTRATTENUTA;
+    @FXML
+    public TableColumn<Pagamenti,String> ColonnaSOCIO;
 
     private String nomeClasse;
     private ObservableList<Pagamenti> pagamenti= FXCollections.observableArrayList();
@@ -46,6 +49,7 @@ public class controllerAnagraficaPagamenti {
         ColonnaLORDO.setCellValueFactory(new PropertyValueFactory<Pagamenti, Float>("lordo"));
         ColonnaNETTO.setCellValueFactory(new PropertyValueFactory<Pagamenti, Float>("netto"));
         colonnaTRATTENUTA.setCellValueFactory(new PropertyValueFactory<Pagamenti, Float>("trattenuta"));
+        ColonnaSOCIO.setCellValueFactory(new PropertyValueFactory<Pagamenti, String>("descrizione"));
 
         this.pagamenti=pagamentiDao.getAll();
         tableANAGRAFICA.setItems(pagamenti);

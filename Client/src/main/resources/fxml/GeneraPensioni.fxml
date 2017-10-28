@@ -38,6 +38,7 @@
              <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="231.0" text="Indica Anno Addizionali" GridPane.rowIndex="2" />
              <CheckBox fx:id="CKaddizionali" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
              <DatePicker fx:id="Data" GridPane.columnIndex="2" />
+            <CheckBox fx:id="CKTredicesima" mnemonicParsing="false" text="Tredicesima" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="txtAnno" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>

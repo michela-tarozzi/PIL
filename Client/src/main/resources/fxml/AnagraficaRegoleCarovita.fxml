@@ -7,10 +7,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaRegoleCarovita">
+<TabPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaRegoleCarovita">
    <tabs>
-      <Tab text="Regole carovita" onClosed="#tornaHome">
+      <Tab onClosed="#tornaHome" text="Regole carovita">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
@@ -21,6 +20,8 @@
                     </columns>
                   </TableView>
                   <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovaRegolaCarovita" text="Inserisci nuova regola" />
+                   <Button fx:id="btnElimina" layoutX="216.0" layoutY="14.0" mnemonicParsing="false" onAction="#Elimina" text="Elimina" />
+
                </children>
             </AnchorPane>
          </content>

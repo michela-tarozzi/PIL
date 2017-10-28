@@ -333,6 +333,7 @@ public class Pensioni implements Externalizable {
         out.writeObject(this.getAddizionaleComunale());
         out.writeObject(this.getNetto());
         out.writeObject(this.getStato());
+        out.writeObject(this.getSocio());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -344,6 +345,7 @@ public class Pensioni implements Externalizable {
         this.setAddizionaleComunale((float) in.readObject());
         this.setNetto((float) in.readObject());
         this.setStato((String) in.readObject());
+        this.setSocio((Socio)in.readObject());
 
     }
 

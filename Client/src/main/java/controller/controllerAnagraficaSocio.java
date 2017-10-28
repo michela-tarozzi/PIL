@@ -83,6 +83,12 @@ public class controllerAnagraficaSocio {
         App.getInstance().gotoInserisciSocio();
     }
 
+    public void ModificaSocio(ActionEvent event){
+        int numeroRiga=tableANAGRAFICA.getSelectionModel().getFocusedIndex();
+        App.getInstance().setSocioGlobale(tableANAGRAFICA.getItems().get(numeroRiga));
+        App.getInstance().gotoInserisciSocio();
+    }
+
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
     }

@@ -67,4 +67,9 @@ public class controllerAnagraficaRegoleRimborsi {
         App.getInstance().gotoHOME();
     }
 
+    public void Modifica(ActionEvent event) {
+            int numeroRiga=tableANAGRAFICA.getSelectionModel().getFocusedIndex();
+            App.getInstance().setRegolaRimborsoGlobale(tableANAGRAFICA.getItems().get(numeroRiga));
+            App.getInstance().gotoInserisciRegolaRimborso();
+    }
 }

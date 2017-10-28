@@ -3,6 +3,7 @@ package procedure;
 import Pojo.DAO.*;
 import Pojo.Pensioni;
 import Pojo.Socio;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,7 +16,7 @@ import java.util.Iterator;
  */
 public class GeneraPensioni {
 
-    public boolean Generapensioni(Boolean addizionali, LocalDate data, int anno) {
+    public boolean Generapensioni(Boolean addizionali, LocalDate data, int anno, Boolean tredicesima) {
         try {
             SocioDao socioDao = new SocioDao();
             ObservableList<Socio> soci = socioDao.getAll();
@@ -23,26 +24,53 @@ public class GeneraPensioni {
             Iterator<Socio> socioIt = soci.iterator();
             PensioniDao pensioniDao = new PensioniDao();
             float carovitaAttuale = new RegoleCarovitaDao().getCarovitaAttuale().getPercentuale();
+            float sussidio=0;
+            float carovita=0;
+
             while (socioIt.hasNext()) {
                 Socio socio = socioIt.next();
                 if (socio.getCategoria().equals("PENSIONATO")) {
-                    float sussidio = socio.getsussidioMensile() * 3;
-                    float carovita = (sussidio * carovitaAttuale) / 100;
+                    if(socio.getdataPensionamento().getYear()==data.getYear()&&
+                           data.getMonthValue()-socio.getdataPensionamento().getMonthValue()<2)
+                    {
+                        int giorni=socio.getdataPensionamento().lengthOfMonth()-socio.getdataPensionamento().getDayOfMonth();
+                        sussidio=socio.getsussidioMensile()*(data.getMonthValue()-socio.getdataPensionamento().getMonthValue())+(socio.getsussidioMensile()*giorni/socio.getdataPensionamento().lengthOfMonth());
+                        if (tredicesima)
+                        {
+                            if (socio.getdataPensionamento().getDayOfMonth()>16)
+                            sussidio=sussidio+(socio.getsussidioMensile()*((12-socio.getdataPensionamento().getMonthValue()))/12);
+                            else
+                                sussidio=sussidio+(socio.getsussidioMensile()*((13-socio.getdataPensionamento().getMonthValue()))/12);
+                        }
+                    }
+                    else{
+                    if (tredicesima)
+                    {
+                        sussidio=socio.getsussidioMensile()*4;
+                    }
+                    else
+                    {
+                        sussidio = socio.getsussidioMensile() * 3;
+                    }
+                    carovita = (sussidio * carovitaAttuale) / 100;}
                     float regionale = 0;
                     float comunale = 0;
                     if (addizionali) {
-
                         float lordoAnnuo=pensioniDao.getLordoAnnuoSocio(socio,anno);
                         float aliquotaComunale= new AddizionaleComunaleDao().getAddizionaleSpecifico(socio.getComune().getNome(),socio.getreddito(),anno).getAliquota();
                         comunale=lordoAnnuo*aliquotaComunale/100;
                         float aliquotaRegionale=new AddizionaleRegionaleDao().getAddizionaleSpecifico(socio.getRegione().getNome(),socio.getreddito(),anno).getAliquota();
                         regionale=lordoAnnuo*aliquotaRegionale/100;
                     }
+                    float lordoAnnuo=pensioniDao.getLordoAnnuoSocio(socio,data.getYear());
+                    float trattenuteAnnue=pensioniDao.getTrattenuteAnnueSocio(socio,data.getYear());
+                    float arrotondam=trattenuteAnnue-(lordoAnnuo*socio.getritenuta()/100);
                     float lordo = sussidio + carovita;
-                    float ritenuta = lordo * socio.getritenuta() / 100;
+                    float ritenuta = (lordo * socio.getritenuta() / 100)+arrotondam;
                     float netto = lordo - ritenuta - regionale - comunale;
                     Pensioni pensione = pensioniDao.CreaPensione(socio,data, sussidio, carovita, regionale, comunale, lordo, netto, ritenuta);
                     socio.addPensioni(pensione);
+                    socioDao.update(socio);
                 }
 
             }
