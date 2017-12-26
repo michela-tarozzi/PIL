@@ -18,16 +18,10 @@ import org.controlsfx.control.table.TableFilter;
 import procedure.GeneraPagamenti;
 
 /**
- * Created by m.tarozzi on 15/10/2017.
- * TableColumn fx:id="colonnaANNO" prefWidth="89.0" text="ANNO" />
- <TableColumn fx:id="ColonnaNOMEFIGLIO" prefWidth="160.0" text="NOME FIGLIO" />
- <TableColumn fx:id="ColonnaIBANFIGLIO" prefWidth="237.0" text="IBAN FIGLIO" />
- <TableColumn fx:id="ColonnaCFU" prefWidth="108.0" text="CFU" />
- <TableColumn fx:id="colonnaLORDO" prefWidth="171.0" text="LORDO'" />
- <TableColumn fx:id="colonnaRITENUTA" prefWidth="147.0" text="RITENUTA" />
- <TableColumn fx:id="colonnaNETTO" prefWidth="188.0" text="NETTO" />
+ * Created by m.tarozzi on 14/11/2017.
  */
-public class controllerAnagraficaBorseDiStudio {
+public class controllerPagaBorseDiStudio {
+
     @FXML
     public TableView<BorseDiStudio> tableANAGRAFICA;
     @FXML
@@ -66,15 +60,11 @@ public class controllerAnagraficaBorseDiStudio {
         colonnaRITENUTA.setCellValueFactory(new PropertyValueFactory<BorseDiStudio, Float>("ritenuta"));
         colonnaNETTO.setCellValueFactory(new PropertyValueFactory<BorseDiStudio, Float>("netto"));
         colonnaSOCIO.setCellValueFactory(new PropertyValueFactory<BorseDiStudio, String>("socio"));
-        this.borse=borseDiStudioDao.getAll();
+        this.borse=borseDiStudioDao.getBorseDaPagare();
         tableANAGRAFICA.setItems(borse);
         try {
             TableFilter<BorseDiStudio> t = TableFilter.forTableView(tableANAGRAFICA).lazy(false).apply();
         }catch(Exception e ){e.printStackTrace();}
-    }
-
-    public void InserisciNuovaBorsaDiStudio(ActionEvent event) {
-        App.getInstance().gotoInserisciBorsa();
     }
 
     public void tornaHome(Event event) { App.getInstance().gotoHOME(); }

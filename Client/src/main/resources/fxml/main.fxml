@@ -25,6 +25,7 @@
                         <MenuItem fx:id="voceASILINIDO" mnemonicParsing="false" onAction="#VaiAsiliNido" text="AsiliNido" />
                         <MenuItem fx:id="vocePensioni" mnemonicParsing="false" onAction="#VaiPensioni" text="Pensioni" />
                         <MenuItem fx:id="voceBorse" mnemonicParsing="false" onAction="#VaiBorse" text="Borse di Studio" />
+                        <MenuItem fx:id="vocePagaBorse" mnemonicParsing="false" onAction="#VaiPagaBorse" text="Paga Borse di Studio" />
                         <MenuItem fx:id="vocePagamenti" mnemonicParsing="false" onAction="#VaiPagamenti" text="Pagamenti" />
                         <MenuItem fx:id="voceRimborsi" mnemonicParsing="false" onAction="#VaiRimborsi" text="Rimborsi" />
                         <MenuItem fx:id="voceGeneraPensioni" mnemonicParsing="false" onAction="#GeneraPensioni" text="Genera Pensioni" />

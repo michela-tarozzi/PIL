@@ -58,7 +58,7 @@ public class Pagamenti implements Externalizable {
 
     @OneToMany(mappedBy = "pagamento",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Rimborsi> rimborsi=new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class Pagamenti implements Externalizable {
     
     @OneToMany(mappedBy = "pagamento",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Pensioni> pensioni=new ArrayList<>();
 
@@ -104,7 +104,7 @@ public class Pagamenti implements Externalizable {
 
     @OneToMany(mappedBy = "pagamento",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Eredi> eredi=new ArrayList<>();
 
@@ -124,7 +124,7 @@ public class Pagamenti implements Externalizable {
 
     @OneToMany(mappedBy = "pagamento",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<BorseDiStudio> borseDiStudio=new ArrayList<>();
 
@@ -144,7 +144,7 @@ public class Pagamenti implements Externalizable {
 
     @OneToMany(mappedBy = "pagamento",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<AsiliNido> asiliNido=new ArrayList<>();
 

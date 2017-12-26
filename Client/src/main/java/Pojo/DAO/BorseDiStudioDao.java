@@ -1,13 +1,17 @@
 package Pojo.DAO;
 
 import Pojo.BorseDiStudio;
+import Pojo.Pagamenti;
 import Pojo.Socio;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -21,7 +25,20 @@ public class BorseDiStudioDao extends GenericDao {
     public ObservableList<BorseDiStudio> getAll() {
         return findAllObservableList(BorseDiStudio.class);
     }
-
+    public ObservableList<BorseDiStudio> getBorseDaPagare() {
+        ObservableList<BorseDiStudio> borse=findAllObservableList(BorseDiStudio.class);
+        Iterator<BorseDiStudio> it=borse.iterator();
+        ObservableList<BorseDiStudio> borseRet=FXCollections.observableArrayList();
+        while (it.hasNext())
+        {
+            BorseDiStudio borsa=it.next();
+            if (borsa.getPagamento().getId()==null )
+            {
+                borseRet.add(borsa);
+            }
+        }
+        return borseRet;
+    }
     public BorseDiStudio CreaBorsaDiStudio(Socio socio, String figlio, int anno, int cfu, String iban, float lordo, float netto, float ritenuta) {
         BorseDiStudio bds = new BorseDiStudio();
         bds.setFiglio(figlio);

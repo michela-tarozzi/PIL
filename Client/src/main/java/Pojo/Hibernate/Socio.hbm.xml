@@ -7,10 +7,14 @@
 <hibernate-mapping>
   <class name="it.unibo.tw.hibernate.Socio" table="Socio">
     <id name="id" column="id"></id>
-      <set name="spese" table="Soci-Spese">
+     <set name="spese" table="Soci-Spese">
         <key column="idSocio" />
         <many-to-many column="idSpesa" class="it.unibo.tw.hibernate.Spese"/>
       </set>
+    <set name="aliquote" table="Soci-Addizionali">
+      <key column="idSocio" />
+      <many-to-many column="idaddizionali" class="it.unibo.tw.hibernate.AliquoteAddizionali"/>
+    </set>
       <set name="datiRiserva" table="Soci-Riserve">
         <key column="idSocio" />
         <many-to-many column="idRiserva" class="it.unibo.tw.hibernate.RiservaMatematica"/>

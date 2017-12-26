@@ -39,7 +39,7 @@ public class Regioni implements Externalizable {
 
     @OneToMany(mappedBy = "regione",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Socio> soci=new ArrayList<>();
 

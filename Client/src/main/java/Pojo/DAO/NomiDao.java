@@ -1,54 +1,41 @@
 package Pojo.DAO;
 
-import Pojo.AsiliNido;
+import Pojo.NomiSoci;
 import Pojo.Socio;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
 
-import java.util.Date;
-
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 /**
- * Created by m.tarozzi on 08/10/2017.
+ * Created by m.tarozzi on 21/12/2017.
  */
-public class AsiliNidoDao extends GenericDao {
-    public AsiliNidoDao() {
-        super();
+public class NomiDao extends GenericDao  {
+
+
+
+    public ObservableList<NomiDao> getAll() {
+        return findAllObservableList(Socio.class);
     }
 
-    public ObservableList<AsiliNido> getAll() {
-        return findAllObservableList(AsiliNido.class);
-    }
+    public ObservableList<NomiSoci> getSociMutuatest(){return getSociMutua();}
 
-    public AsiliNido CreaAsiloNido(Socio socio, String figlio, int anno, float spesa, float rimborso, float integrazione){
-        AsiliNido asili = new AsiliNido();
-        asili.setFiglio(figlio);
-        asili.setSocio(socio);
-        asili.setAnno(anno);
-        asili.setIntegrazione(integrazione);
-        asili.setPercentuale((rimborso+integrazione)*100/spesa);
-        asili.setRimborso(rimborso);
-        asili.setSpesa(spesa);
-        this.save(asili);
-        SocioDao socioDao=new SocioDao();
-        socio.addAsiliNido(asili);
-        socioDao.update(asili);
-        return asili;
-    }
-
-    public void save(AsiliNido l) {
-        if (validaAsiloNido(l)) {
+    public void save(Socio l) {
+        if (validaSocio(l)) {
             super.saveOrUpdate(l);
         }
     }
 
-    public void delete(AsiliNido l) {
+    public void delete(Socio l) {
         super.delete(l);
     }
 
-    public boolean isPersistente(AsiliNido l) {
+    public boolean isPersistente(Socio l) {
         boolean sonoSuDB = false;
         if (l.getId() != null) {
             sonoSuDB = true;
@@ -56,21 +43,33 @@ public class AsiliNidoDao extends GenericDao {
         return sonoSuDB;
     }
 
-    public boolean validaAsiloNido(AsiliNido l) {
+    public boolean validaSocio(Socio l) {
         boolean valido = true;
         String ultimoErrore = "";
         int numero_campi_invalidi = 0;
-        if (l.getFiglio() == null || l.getFiglio().equals("")) {
+        if (l.getNome() == null || l.getNome().equals("")) {
             numero_campi_invalidi++;
             ultimoErrore = ErrorLabel.DETTAGLIO_NOME_NULLO;
         }
-        if (l.getAnno() <2000) {
+        if (l.getCognome() == null || l.getCognome().equals("")) {
             numero_campi_invalidi++;
             ultimoErrore = ErrorLabel.DETTAGLIO_COGNOME_NULLO;
         }
-        if (l.getSpesa() <=0) {
+        if (l.getCF() == null || l.getCF().equals("")) {
             numero_campi_invalidi++;
             ultimoErrore = ErrorLabel.DETTAGLIO_CODICEFISCALE_NULLO;
+        }
+        if (l.getComune() == null || l.getComune().equals("")) {
+            numero_campi_invalidi++;
+            ultimoErrore = ErrorLabel.DETTAGLIO_COMUNE_NULLO;
+        }
+        if (l.getCitta() == null || l.getCitta().equals("")) {
+            numero_campi_invalidi++;
+            ultimoErrore = ErrorLabel.DETTAGLIO_CITTA_NULLO;
+        }
+        if (l.getIndirizzo() == null || l.getIndirizzo().equals("")) {
+            numero_campi_invalidi++;
+            ultimoErrore = ErrorLabel.DETTAGLIO_INDIRIZZO_NULLO;
         }
         if (numero_campi_invalidi == 1) {
             throw new SystemExceptionRefactor(ultimoErrore, ExceptionCode.getValidazioneCode());
@@ -84,4 +83,3 @@ public class AsiliNidoDao extends GenericDao {
         closeSession();
     }
 }
-

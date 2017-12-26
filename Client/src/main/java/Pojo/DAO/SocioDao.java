@@ -1,30 +1,33 @@
 package Pojo.DAO;
 
-import Pojo.Comune;
-import Pojo.Conti;
-import Pojo.Regioni;
-import Pojo.Socio;
+import Pojo.*;
+import Utility.HibernateUtil;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import procedure.GeneraRegistrazioniOracle;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 
 /**
  * Created by m.tarozzi on 08/10/2017.
  */
 public class SocioDao extends GenericDao {
-    public SocioDao() {
-        super();
-    }
+
+
 
     public ObservableList<Socio> getAll() {
         return findAllObservableList(Socio.class);
     }
+
+    public ObservableList<NomiDao> getSociMutuaHH(){return getSociMutua();}
 
     public Socio CreaSocio(String cf, String nome, String cognome, String indirizzo, String citta, Comune comune, String iban, LocalDate data, String categoria,Regioni regione, Conti conto) {
         Socio socio = new Socio();
@@ -43,6 +46,19 @@ public class SocioDao extends GenericDao {
         GeneraRegistrazioniOracle generaRegistrazioniOracle=new GeneraRegistrazioniOracle();
         generaRegistrazioniOracle.generaIscrizioneSocio(socio);
         return socio;
+    }
+
+
+    public boolean uccidiSocio(Socio socio, LocalDate dataDecesso)
+    {
+                socio.setdataDecesso(dataDecesso);
+                saveOrUpdate(socio);
+        // TODO: 16/11/2017
+                //genera registrazione senza importi per registrazione in caso di decesso di un socio
+                //cambiare l'anagrafica dei conti per mantenere memoria dei saldi e delle registrazioni (solo per conti pensioni)
+                //a quel punto si potranno generare gli importi
+        return true;
+
     }
 
     public Socio CreaSocioPensionato(String cf, String nome, String cognome, String indirizzo, String citta, Comune comune, String iban, LocalDate data, String categoria, LocalDate pensione, float reddito, float ritenuta, float sussidio, Regioni regione, Conti conto){

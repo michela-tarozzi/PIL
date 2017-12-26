@@ -57,8 +57,9 @@ public class GeneraPensioni {
                     float comunale = 0;
                     if (addizionali) {
                         float lordoAnnuo=pensioniDao.getLordoAnnuoSocio(socio,anno);
-                        float aliquotaComunale= new AddizionaleComunaleDao().getAddizionaleSpecifico(socio.getComune().getNome(),socio.getreddito(),anno).getAliquota();
-                        comunale=lordoAnnuo*aliquotaComunale/100;
+                        //todo
+                        //float aliquotaComunale= new AddizionaleComunaleDao().getAddizionaleSpecifico(socio.getComune().getNome(),socio.getreddito(),anno).getAliquota();
+                        //comunale=lordoAnnuo*aliquotaComunale/100;
                         float aliquotaRegionale=new AddizionaleRegionaleDao().getAddizionaleSpecifico(socio.getRegione().getNome(),socio.getreddito(),anno).getAliquota();
                         regionale=lordoAnnuo*aliquotaRegionale/100;
                     }

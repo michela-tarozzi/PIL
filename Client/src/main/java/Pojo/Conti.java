@@ -44,7 +44,7 @@ public class Conti implements Externalizable {
 
     @OneToMany(mappedBy = "conto",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Pagamenti> pagamenti=new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class Conti implements Externalizable {
 
     @OneToMany(mappedBy = "conto",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Eredi> eredi=new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class Conti implements Externalizable {
 
     @OneToMany(mappedBy = "conto",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Socio> soci=new ArrayList<>();
 

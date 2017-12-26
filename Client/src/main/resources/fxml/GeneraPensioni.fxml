@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerGeneraPensioni">
+<AnchorPane  prefHeight="500.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerGeneraPensioni">
    <children>
       <Label layoutX="29.0" layoutY="27.0" text="Inserisci i dati del nuovo socio:" />
       <GridPane layoutX="24.0" layoutY="68.0" prefHeight="518.0" prefWidth="1198.0">

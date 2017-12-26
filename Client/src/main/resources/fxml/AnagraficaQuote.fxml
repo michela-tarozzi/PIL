@@ -7,13 +7,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaQuote">
+<TabPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaQuote">
    <tabs>
       <Tab onClosed="#tornaHome" text="Anagrafica quote">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
-                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0"   prefHeight="454.0" prefWidth="1157.0">
                     <columns>
                         <TableColumn fx:id="ColonnaSOCIO" prefWidth="457.99998474121094" text="SOCIO" />
                         <TableColumn fx:id="colonnaDATA" prefWidth="266.0" text="DATA" />
@@ -22,6 +22,7 @@
                   </TableView>
                    <Button fx:id="btnNuovaQuota" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovaQuota" text="Inserisci nuova quota" />
                   <Button fx:id="btnGeneraQuote" layoutX="222.0" layoutY="14.0" mnemonicParsing="false" onAction="#GeneraQuota" text="Genera quote" />
+                  <Button fx:id="btnFileQuote" layoutX="350.0" layoutY="14.0" mnemonicParsing="false" onAction="#EstraiQuote" prefHeight="25.0" prefWidth="127.0" text="Button" />
                </children>
             </AnchorPane>
          </content>

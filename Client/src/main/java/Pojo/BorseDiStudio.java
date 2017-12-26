@@ -43,7 +43,7 @@ public class BorseDiStudio implements Externalizable {
     @Expose
     private String _figlio;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private StringProperty IBAN;
     @Transient
     @Expose
@@ -129,8 +129,6 @@ public class BorseDiStudio implements Externalizable {
     }
 
     @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
     public String getIBAN() {
         if (this.IBAN == null) {
             return _IBAN;

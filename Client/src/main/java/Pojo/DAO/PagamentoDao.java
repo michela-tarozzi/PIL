@@ -42,6 +42,28 @@ public class PagamentoDao extends GenericDao {
         this.save(pagamento);
         return pagamento;
     }
+    public Pagamenti CreaPagamento(AsiliNido rimborsi, LocalDate data, float lordo, float netto, float trattenuta) {
+        Pagamenti pagamento = new Pagamenti();
+        pagamento.setData(data);
+        pagamento.setLordo(lordo);
+        pagamento.setNetto(netto);
+        pagamento.setTrattenuta(trattenuta);
+        pagamento.addAsiliNido(rimborsi);
+        pagamento.setDescrizione(rimborsi.getSocio().getCognome()+" "+rimborsi.getSocio().getNome()+" - Rimborso Asilo Nido "+rimborsi.getFiglio());
+        this.save(pagamento);
+        return pagamento;
+    }
+    public Pagamenti CreaPagamento(BorseDiStudio rimborsi, LocalDate data, float lordo, float netto, float trattenuta) {
+        Pagamenti pagamento = new Pagamenti();
+        pagamento.setData(data);
+        pagamento.setLordo(lordo);
+        pagamento.setNetto(netto);
+        pagamento.setTrattenuta(trattenuta);
+        pagamento.addBorseDiStudio(rimborsi);
+        pagamento.setDescrizione(rimborsi.getSocio().getCognome()+" "+rimborsi.getSocio().getNome()+" - Rimborso da Isaia Levi Borsa di Studio "+rimborsi.getFiglio());
+        this.save(pagamento);
+        return pagamento;
+    }
     public Pagamenti CreaPagamento(Pensioni pensione, LocalDate data, float lordo, float netto, float trattenuta) {
         Pagamenti pagamento = new Pagamenti();
         pagamento.addPensione(pensione);

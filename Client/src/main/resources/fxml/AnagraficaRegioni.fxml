@@ -7,14 +7,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaRegioni">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaRegioni">
    <tabs>
-      <Tab text="Anagrafica delle regioni" onClosed="#tornaHome">
+      <Tab onClosed="#tornaHome" text="Anagrafica delle regioni">
          <content>
-            <AnchorPane prefHeight="700.0" prefWidth="1200.0">
+            <AnchorPane>
                <children>
-                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0"  prefHeight="454.0" prefWidth="1157.0">
                     <columns>
                       <TableColumn fx:id="ColonnaREGIONE" minWidth="0.0" prefWidth="734.0" text="REGIONE" />
                     </columns>

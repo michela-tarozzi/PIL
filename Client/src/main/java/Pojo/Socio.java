@@ -26,6 +26,7 @@ import java.util.List;
 
 @Entity
 @Table(name="Soci")
+
 public class Socio implements Externalizable {
     //AGGIUNGERE CONTO CHE AVRà PENSIONE O QUOTE
     @Id
@@ -103,6 +104,11 @@ public class Socio implements Externalizable {
     @Expose
     private LocalDate _dataPensionamento;
 
+    @Column(nullable = true)
+    private ObjectProperty<LocalDate> dataDecesso;
+    @Transient
+    @Expose
+    private LocalDate _dataDecesso;
 
     @OneToMany(mappedBy = "socio",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -126,7 +132,7 @@ public class Socio implements Externalizable {
 
     @OneToMany(mappedBy = "socio",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<RiservaMatematica> datiRiserva=new ArrayList<>();
 
@@ -148,7 +154,7 @@ public class Socio implements Externalizable {
 
     @OneToMany(mappedBy = "socio",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Pensioni> pensioni=new ArrayList<>();
 
@@ -168,7 +174,7 @@ public class Socio implements Externalizable {
 
     @OneToMany(mappedBy = "socio",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Eredi> eredi=new ArrayList<>();
 
@@ -293,6 +299,35 @@ public class Socio implements Externalizable {
 
         }
         return this.dataPensionamento;
+    }
+
+
+    @Access(AccessType.PROPERTY)
+    public LocalDate getdataDecesso() {
+
+        if (this.dataDecesso == null) {
+            return _dataDecesso;
+
+        } else {
+            return this.dataDecesso.get();
+        }
+    }
+
+    public void setdataDecesso(LocalDate dataDecesso) {
+        if (this.dataDecesso == null) {
+            _dataDecesso = dataDecesso;
+        } else {
+            this.dataDecesso.set(dataDecesso);
+        }
+    }
+
+
+    public ObjectProperty<LocalDate> dataDecessoProperty() {
+        if (this.dataDecesso == null) {
+            this.dataDecesso = new SimpleObjectProperty<>(this, "dataDecesso", _dataDecesso);
+
+        }
+        return this.dataDecesso;
     }
 
     @Access(AccessType.PROPERTY)

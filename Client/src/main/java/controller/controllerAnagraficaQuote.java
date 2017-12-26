@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
+import procedure.GeneraEstrazioniDati;
 
 /**
  * Created by m.tarozzi on 16/10/2017.
@@ -55,5 +56,14 @@ public class controllerAnagraficaQuote {
 
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
+    }
+
+    public void EstraiQuote(ActionEvent event) {
+
+        GeneraEstrazioniDati.GeneraEstrazioneDatiQuote(tableANAGRAFICA.getItems());
+    }
+
+    public void GeneraQuota(ActionEvent event) {
+        App.getInstance().gotoGeneraQuote();
     }
 }

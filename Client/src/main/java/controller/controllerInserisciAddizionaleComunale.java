@@ -23,15 +23,13 @@ public class controllerInserisciAddizionaleComunale {
     public TextField txtSOGLIAMASSIMA;
     @FXML
     public TextField txtALIQUOTA;
+    public TextField txtAnnoImportazione;
 
 
     public void Inserisci(ActionEvent event) {
         try{
         AddizionaleComunaleDao addizionaleComunaleDao=new AddizionaleComunaleDao();
-        addizionaleComunaleDao.CreaAddizionaleComunale(txtCODICE.getText(),txtCOMUNE.getText(),Integer.parseInt(txtANNO.getText()),
-                Float.parseFloat(txtSOGLIAMINIMA.getText()),
-                Float.parseFloat(txtSOGLIAMASSIMA.getText()),
-                        Float.parseFloat(txtALIQUOTA.getText()));
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Inserimento");
         alert.setHeaderText("Addizionale Comunale inserito");
@@ -51,5 +49,9 @@ public class controllerInserisciAddizionaleComunale {
 
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
+    }
+
+    public void Importa(ActionEvent event) {
+        
     }
 }

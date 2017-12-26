@@ -1,13 +1,11 @@
 package controller;
 
-import Pojo.DAO.RegoleRimborsiDao;
-import Pojo.DAO.RimborsoDao;
-import Pojo.DAO.SocioDao;
-import Pojo.DAO.SpeseDao;
-import Pojo.RegoleRimborsi;
-import Pojo.Rimborsi;
-import Pojo.Socio;
-import Pojo.Spese;
+import Pojo.*;
+import Pojo.DAO.*;
+import Utility.AutoCompleteComboBoxListener;
+import Utility.fxUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -15,10 +13,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import main.App;
 import procedure.GeneraRimborsi;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by m.tarozzi on 17/10/2017.
@@ -41,7 +42,16 @@ public class controllerInserisciSpesa {
     @FXML
     public void initialize() {
         SocioDao socioDao=new SocioDao();
-        ComboSocio.setItems(socioDao.getAll());
+        ObservableList<Socio> soci=socioDao.getAll();
+        Predicate<Socio> predicate=new Predicate<Socio>() {
+            @Override
+            public boolean test(Socio socio) {
+                return !(socio.getCategoria().equals("PENSIONATO")||socio.getCategoria().equals("DECEDUTO")||socio.getCategoria().equals("DIMESSO")||socio.getCategoria().equals("SUSSIDI"));
+            }
+        };
+        soci.filtered(predicate).sorted();
+        ComboSocio.setEditable(true);
+        ComboSocio.setItems(soci.filtered(predicate).sorted());
         RegoleRimborsiDao regoleRimborsiDao=new RegoleRimborsiDao();
         ComboCategoria.setItems(regoleRimborsiDao.getAnnoCorrente());
     }
@@ -54,12 +64,14 @@ public class controllerInserisciSpesa {
                     Float.parseFloat(txtImportoSpeso.getText()));
             SocioDao socioDao =new SocioDao();
             Socio socio= (Socio)ComboSocio.getValue();
+
             socio.addSpesa(spesaLocal);
             socioDao.update(socio);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Spesa inserita");
             alert.showAndWait();
+            txtImportoSingolo.setText(txtImportoSpeso.getText());
         }catch(Exception e)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -100,5 +112,9 @@ public class controllerInserisciSpesa {
     }
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
+    }
+
+    public void test(ActionEvent event) {
+        new AutoCompleteComboBoxListener<>(ComboSocio);
     }
 }

@@ -93,4 +93,9 @@ public class controllerAnagraficaSocio {
         App.getInstance().gotoHOME();
     }
 
+    public void DecediSocio(ActionEvent event) {
+        int numeroRiga=tableANAGRAFICA.getSelectionModel().getFocusedIndex();
+        App.getInstance().setSocioGlobale(tableANAGRAFICA.getItems().get(numeroRiga));
+        App.getInstance().gotoDecediSocio();
+    }
 }
