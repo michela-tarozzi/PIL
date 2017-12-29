@@ -24,7 +24,7 @@ import org.controlsfx.control.table.TableFilter;
  <TableColumn fx:id="colonnaSOGLIAMASSIMA" prefWidth="89.0" text="SOGLIA MASSIMA" />
  <TableColumn fx:id="colonnaALIQUOTA" prefWidth="89.0" text="ALIQUOTA'" />
  */
-public class controllerAnagraficaAddizionaleComunale {
+public class controllerAnagraficaAddizionaleComunaleOld {
 
     @FXML
     public TableView<AddizionaleComunale> tableANAGRAFICA;
@@ -35,12 +35,31 @@ public class controllerAnagraficaAddizionaleComunale {
     @FXML
     public TableColumn<AddizionaleComunale,Integer> ColonnaANNO;
     @FXML
-    public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTA;
+    public TableColumn<AddizionaleComunale,String> colonnaFASCIAZERO;
     @FXML
-    public TableColumn<AddizionaleComunale,Float> colonnaREDDITOMINIMO;
+    public TableColumn<AddizionaleComunale,String> colonnaFASCIAUNO;
     @FXML
-    public TableColumn<AddizionaleComunale,Float> colonnaREDDITOMASSIMO;
-
+    public TableColumn<AddizionaleComunale,String> colonnaFASCIADUE;
+    @FXML
+    public TableColumn<AddizionaleComunale,String> colonnaFASCIATRE;
+    @FXML
+    public TableColumn<AddizionaleComunale,String> colonnaFASCIAQUATTRO;
+    @FXML
+    public TableColumn<AddizionaleComunale,String> colonnaFASCIACINQUE;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTAZERO;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTAUNO;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTADUE;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTATRE;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTAQUATTRO;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTACINQUE;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaSOGLIAESENTE;
     @FXML
     public TextField txtAnno;
 
@@ -57,9 +76,19 @@ public class controllerAnagraficaAddizionaleComunale {
         ColonnaCODICE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("codice"));
         ColonnaCOMUNE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("comune"));
         ColonnaANNO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Integer>("anno"));
-        colonnaALIQUOTA.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquota"));
-        colonnaREDDITOMINIMO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("redditoMinimo"));
-        colonnaREDDITOMASSIMO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("redditoMassimo"));
+        colonnaFASCIAZERO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("fasciaZero"));
+        colonnaFASCIAUNO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("fasciaUno"));
+        colonnaFASCIADUE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("fasciaDue"));
+        colonnaFASCIATRE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("fasciaTre"));
+        colonnaFASCIAQUATTRO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("fasciaQuattro"));
+        colonnaFASCIACINQUE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("fasciaCinque"));
+        colonnaALIQUOTAZERO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquotaZero"));
+        colonnaALIQUOTAUNO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquotaUno"));
+        colonnaALIQUOTADUE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquotaDue"));
+        colonnaALIQUOTATRE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquotaTre"));
+        colonnaALIQUOTAQUATTRO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquotaQuattro"));
+        colonnaALIQUOTACINQUE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquotaCinque"));
+        colonnaSOGLIAESENTE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("sogliaEsente"));
 
 
         this.addizionaliComunali=addizionaleComunaleDao.getAll();

@@ -45,366 +45,93 @@ public class AddizionaleComunale implements Externalizable{
 
 
     @Column(nullable=false)
-    private StringProperty fasciaUno;
+    private FloatProperty aliquota;
     @Transient
     @Expose
-    private String _fasciaUno;
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getFasciaUno() {
-        if (this.fasciaUno == null) {
-            return _fasciaUno;
-        } else {
-            return this.fasciaUno.get();
-        }
-    }
-    public StringProperty fasciaUnoProperty() {
-        if (this.fasciaUno == null) {
-            this.fasciaUno = new SimpleStringProperty(this, "fasciaUno", _fasciaUno);
-        }
-        return this.fasciaUno;
-    }
-
-    public void setFasciaUno(String fasciaUno) {
-        if (this.fasciaUno == null) {
-            _fasciaUno = fasciaUno;
-        } else {
-            this.fasciaUno.set(fasciaUno);
-        }
-    }
-    @Column(nullable=false)
-    private StringProperty fasciaDue;
-    @Transient
-    @Expose
-    private String _fasciaDue;
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getFasciaDue() {
-        if (this.fasciaDue == null) {
-            return _fasciaDue;
-        } else {
-            return this.fasciaDue.get();
-        }
-    }
-    public StringProperty fasciaDueProperty() {
-        if (this.fasciaDue == null) {
-            this.fasciaDue = new SimpleStringProperty(this, "fasciaDue", _fasciaDue);
-        }
-        return this.fasciaDue;
-    }
-
-    public void setFasciaDue(String fasciaDue) {
-        if (this.fasciaDue == null) {
-            _fasciaDue = fasciaDue;
-        } else {
-            this.fasciaDue.set(fasciaDue);
-        }
-    }
-    @Column(nullable=false)
-    private StringProperty fasciaTre;
-    @Transient
-    @Expose
-    private String _fasciaTre;
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getFasciaTre() {
-        if (this.fasciaTre == null) {
-            return _fasciaTre;
-        } else {
-            return this.fasciaTre.get();
-        }
-    }
-    public StringProperty fasciaTreProperty() {
-        if (this.fasciaTre == null) {
-            this.fasciaTre = new SimpleStringProperty(this, "fasciaTre", _fasciaTre);
-        }
-        return this.fasciaTre;
-    }
-
-    public void setFasciaTre(String fasciaTre) {
-        if (this.fasciaTre == null) {
-            _fasciaTre = fasciaTre;
-        } else {
-            this.fasciaTre.set(fasciaTre);
-        }
-    }
-    @Column(nullable=false)
-    private StringProperty fasciaQuattro;
-    @Transient
-    @Expose
-    private String _fasciaQuattro;
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getFasciaQuattro() {
-        if (this.fasciaQuattro == null) {
-            return _fasciaQuattro;
-        } else {
-            return this.fasciaQuattro.get();
-        }
-    }
-    public StringProperty fasciaQuattroProperty() {
-        if (this.fasciaQuattro == null) {
-            this.fasciaQuattro = new SimpleStringProperty(this, "fasciaQuattro", _fasciaQuattro);
-        }
-        return this.fasciaQuattro;
-    }
-
-    public void setFasciaQuattro(String fasciaQuattro) {
-        if (this.fasciaQuattro == null) {
-            _fasciaQuattro = fasciaQuattro;
-        } else {
-            this.fasciaQuattro.set(fasciaQuattro);
-        }
-    }
-    @Column(nullable=false)
-    private StringProperty fasciaCinque;
-    @Transient
-    @Expose
-    private String _fasciaCinque;
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getFasciaCinque() {
-        if (this.fasciaCinque == null) {
-            return _fasciaCinque;
-        } else {
-            return this.fasciaCinque.get();
-        }
-    }
-    public StringProperty fasciaCinqueProperty() {
-        if (this.fasciaCinque == null) {
-            this.fasciaCinque = new SimpleStringProperty(this, "fasciaCinque", _fasciaCinque);
-        }
-        return this.fasciaCinque;
-    }
-
-    public void setFasciaCinque(String fasciaCinque) {
-        if (this.fasciaCinque == null) {
-            _fasciaCinque = fasciaCinque;
-        } else {
-            this.fasciaCinque.set(fasciaCinque);
-        }
-    }
-
-
-    @Column(nullable=false)
-    private StringProperty fasciaZero;
-    @Transient
-    @Expose
-    private String _fasciaZero;
-    @Access(AccessType.PROPERTY)
-    @NotBlank
-    @NotEmpty
-    public String getFasciaZero() {
-        if (this.fasciaZero == null) {
-            return _fasciaZero;
-        } else {
-            return this.fasciaZero.get();
-        }
-    }
-    public StringProperty fasciaZeroProperty() {
-        if (this.fasciaZero == null) {
-            this.fasciaZero = new SimpleStringProperty(this, "fasciaZero", _fasciaZero);
-        }
-        return this.fasciaZero;
-    }
-
-    public void setFasciaZero(String fasciaZero) {
-        if (this.fasciaZero == null) {
-            _fasciaZero = fasciaZero;
-        } else {
-            this.fasciaZero.set(fasciaZero);
-        }
-    }
-
-
-    @Column(nullable=false)
-    private FloatProperty aliquotaZero;
-    @Transient
-    @Expose
-    private float _aliquotaZero;
+    private float _aliquota;
 
     @Access(AccessType.PROPERTY)
-    public float getAliquotaZero() {
-        if (this.aliquotaZero == null) {
-            return _aliquotaZero;
+    public float getAliquota() {
+        if (this.aliquota == null) {
+            return _aliquota;
         } else {
-            return this.aliquotaZero.get();
+            return this.aliquota.get();
         }
     }
 
-    public FloatProperty aliquotaZeroProperty() {
-        if (this.aliquotaZero == null) {
-            this.aliquotaZero = new SimpleFloatProperty(this, "aliquotaZero", _aliquotaZero);
+    public FloatProperty aliquotaProperty() {
+        if (this.aliquota == null) {
+            this.aliquota = new SimpleFloatProperty(this, "aliquota", _aliquota);
         }
-        return this.aliquotaZero;
+        return this.aliquota;
     }
 
-    public void setAliquotaZero(float aliquotaZero) {
-        if (this.aliquotaZero == null) {
-            _aliquotaZero = aliquotaZero;
+    public void setAliquota(float aliquota) {
+        if (this.aliquota == null) {
+            _aliquota = aliquota;
         } else {
-            this.aliquotaZero.set(aliquotaZero);
+            this.aliquota.set(aliquota);
         }
     }
 
     @Column(nullable=false)
-    private FloatProperty aliquotaUno;
+    private FloatProperty redditoMinimo;
     @Transient
     @Expose
-    private float _aliquotaUno;
+    private float _redditoMinimo;
 
     @Access(AccessType.PROPERTY)
-    public float getAliquotaUno() {
-        if (this.aliquotaUno == null) {
-            return _aliquotaUno;
+    public float getRedditoMinimo() {
+        if (this.redditoMinimo == null) {
+            return _redditoMinimo;
         } else {
-            return this.aliquotaUno.get();
+            return this.redditoMinimo.get();
         }
     }
 
-    public FloatProperty aliquotaUnoProperty() {
-        if (this.aliquotaUno == null) {
-            this.aliquotaUno = new SimpleFloatProperty(this, "aliquotaUno", _aliquotaUno);
+    public FloatProperty redditoMinimoProperty() {
+        if (this.redditoMinimo == null) {
+            this.redditoMinimo = new SimpleFloatProperty(this, "redditoMinimo", _redditoMinimo);
         }
-        return this.aliquotaUno;
+        return this.redditoMinimo;
     }
 
-    public void setAliquotaUno(float aliquotaUno) {
-        if (this.aliquotaUno == null) {
-            _aliquotaUno = aliquotaUno;
+    public void setRedditoMinimo(float aliquotaUno) {
+        if (this.redditoMinimo == null) {
+            _redditoMinimo = aliquotaUno;
         } else {
-            this.aliquotaUno.set(aliquotaUno);
+            this.redditoMinimo.set(aliquotaUno);
         }
     }
     @Column(nullable=false)
-    private FloatProperty aliquotaDue;
+    private FloatProperty redditoMassimo;
     @Transient
     @Expose
-    private float _aliquotaDue;
+    private float _redditoMassimo;
 
     @Access(AccessType.PROPERTY)
-    public float getAliquotaDue() {
-        if (this.aliquotaDue == null) {
-            return _aliquotaDue;
+    public float getRedditoMassimo() {
+        if (this.redditoMassimo == null) {
+            return _redditoMassimo;
         } else {
-            return this.aliquotaDue.get();
+            return this.redditoMassimo.get();
         }
     }
 
-    public FloatProperty aliquotaDueProperty() {
-        if (this.aliquotaDue == null) {
-            this.aliquotaDue = new SimpleFloatProperty(this, "aliquotaDue", _aliquotaDue);
+    public FloatProperty redditoMassimoProperty() {
+        if (this.redditoMassimo == null) {
+            this.redditoMassimo = new SimpleFloatProperty(this, "redditoMassimo", _redditoMassimo);
         }
-        return this.aliquotaDue;
+        return this.redditoMassimo;
     }
 
-    public void setAliquotaDue(float aliquotaDue) {
-        if (this.aliquotaDue == null) {
-            _aliquotaDue = aliquotaDue;
+    public void setRedditoMassimo(float redditoMassimo) {
+        if (this.redditoMassimo == null) {
+            _redditoMassimo = redditoMassimo;
         } else {
-            this.aliquotaDue.set(aliquotaDue);
+            this.redditoMassimo.set(redditoMassimo);
         }
     }
-    @Column(nullable=false)
-    private FloatProperty aliquotaTre;
-    @Transient
-    @Expose
-    private float _aliquotaTre;
-
-    @Access(AccessType.PROPERTY)
-    public float getAliquotaTre() {
-        if (this.aliquotaTre == null) {
-            return _aliquotaTre;
-        } else {
-            return this.aliquotaTre.get();
-        }
-    }
-
-    public FloatProperty aliquotaTreProperty() {
-        if (this.aliquotaTre == null) {
-            this.aliquotaTre = new SimpleFloatProperty(this, "aliquotaTre", _aliquotaTre);
-        }
-        return this.aliquotaTre;
-    }
-
-    public void setAliquotaTre(float aliquotaTre) {
-        if (this.aliquotaTre == null) {
-            _aliquotaTre = aliquotaTre;
-        } else {
-            this.aliquotaTre.set(aliquotaTre);
-        }
-    }
-
-    @Column(nullable=false)
-    private FloatProperty aliquotaQuattro;
-    @Transient
-    @Expose
-    private float _aliquotaQuattro;
-
-    @Access(AccessType.PROPERTY)
-    public float getAliquotaQuattro() {
-        if (this.aliquotaQuattro == null) {
-            return _aliquotaQuattro;
-        } else {
-            return this.aliquotaQuattro.get();
-        }
-    }
-
-    public FloatProperty aliquotaQuattroProperty() {
-        if (this.aliquotaQuattro == null) {
-            this.aliquotaQuattro = new SimpleFloatProperty(this, "aliquotaQuattro", _aliquotaQuattro);
-        }
-        return this.aliquotaQuattro;
-    }
-
-    public void setAliquotaQuattro(float aliquotaQuattro) {
-        if (this.aliquotaQuattro == null) {
-            _aliquotaQuattro = aliquotaQuattro;
-        } else {
-            this.aliquotaQuattro.set(aliquotaQuattro);
-        }
-    }
-    @Column(nullable=false)
-    private FloatProperty aliquotaCinque;
-    @Transient
-    @Expose
-    private float _aliquotaCinque;
-
-    @Access(AccessType.PROPERTY)
-    public float getAliquotaCinque() {
-        if (this.aliquotaCinque == null) {
-            return _aliquotaCinque;
-        } else {
-            return this.aliquotaCinque.get();
-        }
-    }
-
-    public FloatProperty aliquotaCinqueProperty() {
-        if (this.aliquotaCinque == null) {
-            this.aliquotaCinque = new SimpleFloatProperty(this, "aliquotaCinque", _aliquotaCinque);
-        }
-        return this.aliquotaCinque;
-    }
-
-    public void setAliquotaCinque(float aliquotaCinque) {
-        if (this.aliquotaCinque == null) {
-            _aliquotaCinque = aliquotaCinque;
-        } else {
-            this.aliquotaCinque.set(aliquotaCinque);
-        }
-    }
-
-    @Column(nullable=false)
-    private FloatProperty sogliaEsente;
-    @Transient
-    @Expose
-    private float _sogliaEsente;
-
     public String getId() {
         return id;
     }
@@ -486,49 +213,14 @@ public class AddizionaleComunale implements Externalizable{
     }
 
 
-    @Access(AccessType.PROPERTY)
-    public float getSogliaEsente() {
-        if (this.sogliaEsente == null) {
-            return _sogliaEsente;
-        } else {
-            return this.sogliaEsente.get();
-        }
-    }
-
-    public FloatProperty sogliaMassimaProperty() {
-        if (this.sogliaEsente == null) {
-            this.sogliaEsente = new SimpleFloatProperty(this, "sogliaMassima", _sogliaEsente);
-        }
-        return this.sogliaEsente;
-    }
-
-    public void setSogliaEsente(float sogliaMassima) {
-        if (this.sogliaEsente == null) {
-            _sogliaEsente = sogliaMassima;
-        } else {
-            this.sogliaEsente.set(sogliaMassima);
-        }
-    }
-
-
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.id);
         out.writeObject(this.getCodice());
         out.writeObject(this.getComune());
         out.writeObject(this.getAnno());
-        out.writeObject(this.getSogliaEsente());
-        out.writeObject(this.getAliquotaZero());
-        out.writeObject(this.getAliquotaUno());
-        out.writeObject(this.getAliquotaDue());
-        out.writeObject(this.getAliquotaTre());
-        out.writeObject(this.getAliquotaQuattro());
-        out.writeObject(this.getAliquotaCinque());
-        out.writeObject(this.getFasciaZero());
-        out.writeObject(this.getFasciaUno());
-        out.writeObject(this.getFasciaDue());
-        out.writeObject(this.getFasciaTre());
-        out.writeObject(this.getFasciaQuattro());
-        out.writeObject(this.getFasciaCinque());
+        out.writeObject(this.getAliquota());
+        out.writeObject(this.getRedditoMinimo());
+        out.writeObject(this.getRedditoMassimo());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -536,19 +228,10 @@ public class AddizionaleComunale implements Externalizable{
         this.setCodice((String) in.readObject());
         this.setComune((String) in.readObject());
         this.setAnno((int) in.readObject());
-        this.setSogliaEsente((float) in.readObject());
-        this.setAliquotaZero((float) in.readObject());
-        this.setAliquotaUno((float) in.readObject());
-        this.setAliquotaDue((float) in.readObject());
-        this.setAliquotaTre((float) in.readObject());
-        this.setAliquotaQuattro((float) in.readObject());
-        this.setAliquotaCinque((float) in.readObject());
-        this.setFasciaZero((String) in.readObject());
-        this.setFasciaUno((String) in.readObject());
-        this.setFasciaDue((String) in.readObject());
-        this.setFasciaTre((String) in.readObject());
-        this.setFasciaQuattro((String) in.readObject());
-        this.setFasciaCinque((String) in.readObject());
+        this.setAliquota((float) in.readObject());
+        this.setRedditoMinimo((float) in.readObject());
+        this.setRedditoMassimo((float) in.readObject());
+
     }
 
 }

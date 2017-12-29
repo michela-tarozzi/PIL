@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="it.unibo.tw.hibernate.AddizionaleComunaleOld" table="addizionaleComunaleOld">
+    <id name="id" column="id">
+    </id>
+    <property name="codice" column="codice"/>
+    <property name="comune" column="comune"/>
+    <property name="anno" column="anno"/>
+    <property name="aliquotaZero" column="aliquotaZero"/>
+    <property name="aliquotaUno" column="aliquotaUno"/>
+    <property name="aliquotaDue" column="aliquotaDue"/>
+    <property name="aliquotaTre" column="aliquotaTre"/>
+    <property name="aliquotaQuattro" column="aliquotaQuattro"/>
+    <property name="aliquotaCinque" column="aliquotaCinque"/>
+    <property name="fasciaZero" column="fasciaZero"/>
+    <property name="fasciaUno" column="fasciaUno"/>
+    <property name="fasciaDue" column="fasciaDue"/>
+    <property name="fasciaTre" column="fasciaTre"/>
+    <property name="fasciaQuattro" column="fasciaQuattro"/>
+    <property name="fasciaCinque" column="fasciaCinque"/>
+    <property name="sogliaEsente" column="sogliaEsente"/>
+  </class>
+</hibernate-mapping>

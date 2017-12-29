@@ -52,19 +52,9 @@ public class AddizionaleComunaleDao extends GenericDao {
         ac.setCodice(codice);
         ac.setComune(comune);
         ac.setAnno(anno);
-        ac.setAliquotaZero(aliquotaZero);
-        ac.setAliquotaUno(aliquotaUno);
-        ac.setAliquotaDue(aliquotaDue);
-        ac.setAliquotaTre(aliquotaTre);
-        ac.setAliquotaQuattro(aliquotaQuattro);
-        ac.setAliquotaCinque(aliquotaCinque);
-        ac.setFasciaZero(fasciaZero);
-        ac.setFasciaUno(fasciaUNo);
-        ac.setFasciaDue(fasciaDue);
-        ac.setFasciaTre(fasciaTre);
-        ac.setFasciaQuattro(fasciaQuattro);
-        ac.setFasciaCinque(fasciaCinque);
-        ac.setSogliaEsente(sogliaEsente);
+        ac.setAliquota(aliquotaZero);
+        ac.setRedditoMinimo(aliquotaUno);
+        ac.setRedditoMassimo(aliquotaDue);
         this.save(ac);
         return ac;
     }
@@ -124,13 +114,8 @@ public class AddizionaleComunaleDao extends GenericDao {
         while(socioIterator.hasNext()){
             Socio socio=socioIterator.next();
             AddizionaleComunaleDao addizionaleComunaleDao= new AddizionaleComunaleDao();
-            AddizionaleComunale ac=addizionaleComunaleDao.trovaAddizionale(socio, anno);
+
         }
-    }
-
-    private AddizionaleComunale trovaAddizionale(Socio socio, int anno) {
-        ObservableList<AddizionaleComunale> addCom= query("SELECT * FROM ADDIZIONALICOMUNALI WHERE CODICE='"+socio.getComune().getCodiceCatastale()+"'", null);
-
     }
 
 }

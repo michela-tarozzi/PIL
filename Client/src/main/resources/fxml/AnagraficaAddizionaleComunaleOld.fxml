@@ -20,10 +20,20 @@
                       <TableColumn fx:id="ColonnaCODICE" prefWidth="89.0" text="CODICE" />
                       <TableColumn fx:id="ColonnaCOMUNE" prefWidth="89.0" text="COMUNE" />
                       <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />
-                      <TableColumn fx:id="colonnaALIQUOTA" prefWidth="89.0" text="ALIQUOTA" />
-                         <TableColumn fx:id="colonnaREDDITOMINIMO" prefWidth="89.0" text="REDDITO MINIMO" />
-                        <TableColumn fx:id="colonnaREDDITOMASSIMO" prefWidth="89.0" text="REDDITO MASSIMO" />
-                      </columns>
+                      <TableColumn fx:id="colonnaFASCIAZERO" prefWidth="89.0" text="FASCIAZERO" />
+                        <TableColumn fx:id="colonnaALIQUOTAZERO" prefWidth="89.0" text="ALIQUOTAZERO" />
+                        <TableColumn fx:id="colonnaFASCIAUNO" prefWidth="89.0" text="FASCIAUNO" />
+                        <TableColumn fx:id="colonnaALIQUOTAUNO" prefWidth="89.0" text="ALIQUOTAUNO" />
+                        <TableColumn fx:id="colonnaFASCIADUE" prefWidth="89.0" text="FASCIADUE" />
+                        <TableColumn fx:id="colonnaALIQUOTADUE" prefWidth="89.0" text="ALIQUOTADUE" />
+                        <TableColumn fx:id="colonnaFASCIATRE" prefWidth="89.0" text="FASCIATRE" />
+                        <TableColumn fx:id="colonnaALIQUOTATRE" prefWidth="89.0" text="ALIQUOTATRE" />
+                        <TableColumn fx:id="colonnaFASCIAQUATTRO" prefWidth="89.0" text="FASCIAQUATTRO" />
+                        <TableColumn fx:id="colonnaALIQUOTAQUATTRO" prefWidth="89.0" text="ALIQUOTAQUATTRO" />
+                        <TableColumn fx:id="colonnaFASCIACINQUE" prefWidth="89.0" text="FASCIACINQUE" />
+                        <TableColumn fx:id="colonnaALIQUOTACINQUE" prefWidth="89.0" text="ALIQUOTACINQUE" />
+                        <TableColumn fx:id="colonnaSOGLIAESENTE" prefWidth="89.0" text="SOGLIAESENTE" />
+                    </columns>
                   </TableView>
                   <Button fx:id="btnNuovoADDIZIONALE" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoAddizionale" text="Inserisci nuovo addizionale" />
                    <Button fx:id="btnCalcolaAddizionali" layoutX="250.0" layoutY="14.0" mnemonicParsing="false" onAction="#CalcolaAddizionali" text="Calcola Addizionali Comunali" />

@@ -48,12 +48,6 @@ public class controllerSceltaAddizionale {
             txtComune.setText(socio.getComune().toString());
             App.getInstance().setSocioGlobale(null);
             addizionaleComunale=App.getInstance().getAddizionaleComunaleGlobale();
-            RDZERO.setText("Esente fino  a "+addizionaleComunale.getSogliaEsente()+" euro");
-            RDUNO.setText(addizionaleComunale.getFasciaUno());
-            RDDUE.setText(addizionaleComunale.getFasciaDue());
-            RDTRE.setText(addizionaleComunale.getFasciaTre());
-            RDQUATTRO.setText(addizionaleComunale.getFasciaQuattro());
-            RDCINQUE.setText(addizionaleComunale.getFasciaCinque());
         }
     }
 }
