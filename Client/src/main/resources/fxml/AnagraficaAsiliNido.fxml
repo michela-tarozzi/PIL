@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaAsiliNido">
+<TabPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaAsiliNido">
    <tabs>
-      <Tab text="Anagrafica Asili Nido" onClosed="#tornaHome">
+      <Tab onClosed="#tornaHome" text="Anagrafica Asili Nido">
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
-                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="454.0" prefWidth="1157.0">
                     <columns>
                       <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />
                         <TableColumn fx:id="ColonnaSOCIO" prefWidth="89.0" text="SOCIO" />
@@ -26,6 +27,9 @@
                     </columns>
                   </TableView>
                   <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoRimborsoAsilo" text="Inserisci nuovo Rimborso Asilo" />
+                  <Button layoutX="593.0" layoutY="14.0" mnemonicParsing="false" text="Paga Asili Nido" onAction="#PagaAsiliNido" />
+                  <DatePicker fx:id="dataPagamento" layoutX="405.0" layoutY="14.0" />
+                  <Label layoutX="299.0" layoutY="18.0" prefHeight="17.0" prefWidth="96.0" text="Data Pagamento" />
                </children>
             </AnchorPane>
          </content>

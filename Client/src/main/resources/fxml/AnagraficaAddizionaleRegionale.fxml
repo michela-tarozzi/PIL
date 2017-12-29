@@ -13,7 +13,7 @@
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
-                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="454.0" prefWidth="1157.0">
                     <columns>
                       <TableColumn fx:id="colonnaREGIONE" prefWidth="89.0" text="REGIONE" />
                       <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />

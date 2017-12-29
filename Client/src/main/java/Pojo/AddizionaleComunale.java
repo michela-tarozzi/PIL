@@ -43,17 +43,6 @@ public class AddizionaleComunale implements Externalizable{
     @Expose
     private int _anno;
 
-    @Column(nullable=false)
-    private FloatProperty sogliaMinima;
-    @Transient
-    @Expose
-    private float _sogliaMinima;
-
-    @Column(nullable=false)
-    private FloatProperty sogliaMassima;
-    @Transient
-    @Expose
-    private float _sogliaMassima;
 
     @Column(nullable=false)
     private FloatProperty aliquota;
@@ -61,6 +50,88 @@ public class AddizionaleComunale implements Externalizable{
     @Expose
     private float _aliquota;
 
+    @Access(AccessType.PROPERTY)
+    public float getAliquota() {
+        if (this.aliquota == null) {
+            return _aliquota;
+        } else {
+            return this.aliquota.get();
+        }
+    }
+
+    public FloatProperty aliquotaProperty() {
+        if (this.aliquota == null) {
+            this.aliquota = new SimpleFloatProperty(this, "aliquota", _aliquota);
+        }
+        return this.aliquota;
+    }
+
+    public void setAliquota(float aliquota) {
+        if (this.aliquota == null) {
+            _aliquota = aliquota;
+        } else {
+            this.aliquota.set(aliquota);
+        }
+    }
+
+    @Column(nullable=false)
+    private FloatProperty redditoMinimo;
+    @Transient
+    @Expose
+    private float _redditoMinimo;
+
+    @Access(AccessType.PROPERTY)
+    public float getRedditoMinimo() {
+        if (this.redditoMinimo == null) {
+            return _redditoMinimo;
+        } else {
+            return this.redditoMinimo.get();
+        }
+    }
+
+    public FloatProperty redditoMinimoProperty() {
+        if (this.redditoMinimo == null) {
+            this.redditoMinimo = new SimpleFloatProperty(this, "redditoMinimo", _redditoMinimo);
+        }
+        return this.redditoMinimo;
+    }
+
+    public void setRedditoMinimo(float aliquotaUno) {
+        if (this.redditoMinimo == null) {
+            _redditoMinimo = aliquotaUno;
+        } else {
+            this.redditoMinimo.set(aliquotaUno);
+        }
+    }
+    @Column(nullable=false)
+    private FloatProperty redditoMassimo;
+    @Transient
+    @Expose
+    private float _redditoMassimo;
+
+    @Access(AccessType.PROPERTY)
+    public float getRedditoMassimo() {
+        if (this.redditoMassimo == null) {
+            return _redditoMassimo;
+        } else {
+            return this.redditoMassimo.get();
+        }
+    }
+
+    public FloatProperty redditoMassimoProperty() {
+        if (this.redditoMassimo == null) {
+            this.redditoMassimo = new SimpleFloatProperty(this, "redditoMassimo", _redditoMassimo);
+        }
+        return this.redditoMassimo;
+    }
+
+    public void setRedditoMassimo(float redditoMassimo) {
+        if (this.redditoMassimo == null) {
+            _redditoMassimo = redditoMassimo;
+        } else {
+            this.redditoMassimo.set(redditoMassimo);
+        }
+    }
     public String getId() {
         return id;
     }
@@ -93,7 +164,7 @@ public class AddizionaleComunale implements Externalizable{
         }
     }
 
-    @Access(AccessType.PROPERTY)
+       @Access(AccessType.PROPERTY)
     @NotBlank
     @NotEmpty
     public String getComune() {
@@ -141,87 +212,15 @@ public class AddizionaleComunale implements Externalizable{
         }
     }
 
-    @Access(AccessType.PROPERTY)
-    public float getSogliaMinima() {
-        if (this.sogliaMinima == null) {
-            return _sogliaMinima;
-        } else {
-            return this.sogliaMinima.get();
-        }
-    }
-
-    public FloatProperty sogliaMinimaProperty() {
-        if (this.sogliaMinima == null) {
-            this.sogliaMinima = new SimpleFloatProperty(this, "sogliaMinima", _sogliaMinima);
-        }
-        return this.sogliaMinima;
-    }
-
-    public void setSogliaMinima(float sogliaMinima) {
-        if (this.sogliaMinima == null) {
-            _sogliaMinima = sogliaMinima;
-        } else {
-            this.sogliaMinima.set(sogliaMinima);
-        }
-    }
-
-    @Access(AccessType.PROPERTY)
-    public float getSogliaMassima() {
-        if (this.sogliaMassima == null) {
-            return _sogliaMassima;
-        } else {
-            return this.sogliaMassima.get();
-        }
-    }
-
-    public FloatProperty sogliaMassimaProperty() {
-        if (this.sogliaMassima == null) {
-            this.sogliaMassima = new SimpleFloatProperty(this, "sogliaMassima", _sogliaMassima);
-        }
-        return this.sogliaMassima;
-    }
-
-    public void setSogliaMassima(float sogliaMassima) {
-        if (this.sogliaMassima == null) {
-            _sogliaMassima = sogliaMassima;
-        } else {
-            this.sogliaMassima.set(sogliaMassima);
-        }
-    }
-
-    @Access(AccessType.PROPERTY)
-    public float getAliquota() {
-        if (this.aliquota == null) {
-            return _aliquota;
-        } else {
-            return this.aliquota.get();
-        }
-    }
-
-    public FloatProperty aliquotaProperty() {
-        if (this.aliquota == null) {
-            this.aliquota = new SimpleFloatProperty(this, "aliquota", _aliquota);
-        }
-        return this.aliquota;
-    }
-
-    public void setAliquota(float aliquota) {
-        if (this.aliquota == null) {
-            _aliquota = aliquota;
-        } else {
-            this.aliquota.set(aliquota);
-        }
-    }
 
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.id);
         out.writeObject(this.getCodice());
         out.writeObject(this.getComune());
         out.writeObject(this.getAnno());
-        out.writeObject(this.getSogliaMinima());
-        out.writeObject(this.getSogliaMassima());
         out.writeObject(this.getAliquota());
-
+        out.writeObject(this.getRedditoMinimo());
+        out.writeObject(this.getRedditoMassimo());
     }
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
@@ -229,9 +228,9 @@ public class AddizionaleComunale implements Externalizable{
         this.setCodice((String) in.readObject());
         this.setComune((String) in.readObject());
         this.setAnno((int) in.readObject());
-        this.setSogliaMinima((float) in.readObject());
-        this.setSogliaMassima((float) in.readObject());
         this.setAliquota((float) in.readObject());
+        this.setRedditoMinimo((float) in.readObject());
+        this.setRedditoMassimo((float) in.readObject());
 
     }
 

@@ -1,6 +1,7 @@
 package controller;
 
 import Pojo.DAO.RimborsoDao;
+import Pojo.Rimborsi;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -44,7 +45,19 @@ public class controllerInserisciRimborso {
         }
     }
 
+    @FXML
+    public void initialize() {
+        if (App.getInstance().getRimborsoGlobale()!=null)
+        {
+            Rimborsi rimborso=App.getInstance().getRimborsoGlobale();
+            Date.setValue(rimborso.getData());
+            txtImporto.setText(String.valueOf(rimborso.getImporto()));
+            txtImportoSpesa.setText(String.valueOf(rimborso.getImportoSpesa()));
+            App.getInstance().setRimborsoGlobale(null);
+        }
 
+
+    }
 
     public void Annulla(ActionEvent event) {
         App.getInstance().gotoAnagraficaRimborsi();

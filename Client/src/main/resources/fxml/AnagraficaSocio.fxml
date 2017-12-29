@@ -13,7 +13,7 @@
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
-                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0">
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="454.0" prefWidth="1157.0">
                     <columns>
                       <TableColumn fx:id="ColonnaCF" prefWidth="89.0" text="CF" />
                       <TableColumn fx:id="ColonnaCOGNOME" prefWidth="89.0" text="COGNOME" />
@@ -32,6 +32,7 @@
                   </TableView>
                   <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoSocio" text="Inserisci nuovo socio" />
                   <Button fx:id="btnModificaSocio" layoutX="170.0" layoutY="14.0" mnemonicParsing="false" onAction="#ModificaSocio" prefHeight="25.0" prefWidth="141.0" text="Modifica Socio" />
+                  <Button layoutX="340.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="163.0" onAction="#DecediSocio" text="Decedi Socio" />
                </children>
             </AnchorPane>
          </content>

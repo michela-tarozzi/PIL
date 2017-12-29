@@ -44,7 +44,7 @@ public class Comune implements Externalizable {
 
     @OneToMany(mappedBy = "comune",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Socio> soci=new ArrayList<>();
 

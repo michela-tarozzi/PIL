@@ -20,8 +20,12 @@ public class App extends Application {
     private final FXMLLoader loader=new FXMLLoader();
     private static App instance;
     private static Socio socioGlobale;
+    private static AddizionaleComunale addizionaleComunaleGlobale;
     private static RegoleRimborsi regolaRimborsoGlobale;
     private static Pensioni pensioneGlobale;
+    private static Rimborsi rimborsoGlobale;
+
+
     public App(){instance=this;}
 
     public static App getInstance(){return instance;}
@@ -36,10 +40,29 @@ public class App extends Application {
         App.regolaRimborsoGlobale = regolaRimborsoGlobale;
     }
 
+    public static Rimborsi getRimborsoGlobale() {
+        return rimborsoGlobale;
+    }
+
+    public static void setRimborsoGlobale(Rimborsi rimborsoGlobale) {
+        App.rimborsoGlobale = rimborsoGlobale;
+    }
+
+    public static AddizionaleComunale getAddizionaleComunaleGlobale() {
+        return addizionaleComunaleGlobale;
+    }
+
+    public static void setAddizionaleComunaleGlobale(AddizionaleComunale addizionaleComunaleGlobale) {
+        App.addizionaleComunaleGlobale = addizionaleComunaleGlobale;
+    }
+
 
     @Override
     public void start(Stage primaryStage) {
         socioGlobale=null;
+        rimborsoGlobale=null;
+        pensioneGlobale=null;
+        regolaRimborsoGlobale=null;
 /*
         BorseDiStudioDao borseDiStudioDao=new BorseDiStudioDao();
         borseDiStudioDao.CreaBorsaDiStudio("figlio",2017,35,"iban",100,80,20);
@@ -96,8 +119,10 @@ public class App extends Application {
         Parent page=(Parent)FXMLLoader.load(this.getClass().getResource(fxml));
         Scene scene=new Scene(root);
         root.setCenter(page);
+        //stage.setResizable(true);
         stage.setScene(scene);
         stage.sizeToScene();
+        stage.centerOnScreen();
         return page;
     }
 
@@ -331,4 +356,17 @@ public class App extends Application {
         return pensioneGlobale;
     }
 
+    public void gotoPagaBorse() {
+        try {replaceSceneContent("/fxml/PagaBorseDiStudio.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void gotoDecediSocio() {
+        try {replaceSceneContent("/fxml/DecediSocio.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }

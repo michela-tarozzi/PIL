@@ -59,7 +59,7 @@ public class Spese implements Externalizable {
 
     @OneToMany(mappedBy = "spesa",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Rimborsi> rimborsi=new ArrayList<>();
 

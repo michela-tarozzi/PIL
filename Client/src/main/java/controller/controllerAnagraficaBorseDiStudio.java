@@ -8,11 +8,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
+import procedure.GeneraPagamenti;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -43,6 +46,8 @@ public class controllerAnagraficaBorseDiStudio {
     public TableColumn<BorseDiStudio,Float> colonnaNETTO;
     @FXML
     public TableColumn<BorseDiStudio,String> colonnaSOCIO;
+    @FXML
+    public DatePicker dataPagamento;
 
     private String nomeClasse;
     private ObservableList<BorseDiStudio> borse= FXCollections.observableArrayList();
@@ -74,4 +79,12 @@ public class controllerAnagraficaBorseDiStudio {
 
     public void tornaHome(Event event) { App.getInstance().gotoHOME(); }
 
+    public void PagaBorseDiStudio(ActionEvent event) {
+        GeneraPagamenti generaPagamenti=new GeneraPagamenti();
+        generaPagamenti.GeneraPagamentoBorse(tableANAGRAFICA.getItems(),dataPagamento.getValue());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Inserimento");
+        alert.setHeaderText("Borse di Studio pagate");
+        alert.showAndWait();
+    }
 }

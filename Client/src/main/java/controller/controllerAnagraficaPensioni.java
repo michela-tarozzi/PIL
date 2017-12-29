@@ -83,6 +83,6 @@ public class controllerAnagraficaPensioni {
     }
 
     public void Estrai(ActionEvent event) {
-        GeneraEstrazioniDati.GeneraEstrazioneDati(tableANAGRAFICA.getItems());
+        GeneraEstrazioniDati.GeneraEstrazioneDatiPensioni(tableANAGRAFICA.getItems());
     }
 }

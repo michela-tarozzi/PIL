@@ -10,6 +10,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
@@ -34,11 +35,15 @@ public class controllerAnagraficaAddizionaleComunale {
     @FXML
     public TableColumn<AddizionaleComunale,Integer> ColonnaANNO;
     @FXML
-    public TableColumn<AddizionaleComunale,Float> colonnaSOGLIAMINIMA;
-    @FXML
-    public TableColumn<AddizionaleComunale,Float> colonnaSOGLIAMASSIMA;
-    @FXML
     public TableColumn<AddizionaleComunale,Float> colonnaALIQUOTA;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaREDDITOMINIMO;
+    @FXML
+    public TableColumn<AddizionaleComunale,Float> colonnaREDDITOMASSIMO;
+
+    @FXML
+    public TextField txtAnno;
+
 
     private String nomeClasse;
     private ObservableList<AddizionaleComunale> addizionaliComunali= FXCollections.observableArrayList();
@@ -52,9 +57,10 @@ public class controllerAnagraficaAddizionaleComunale {
         ColonnaCODICE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("codice"));
         ColonnaCOMUNE.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, String>("comune"));
         ColonnaANNO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Integer>("anno"));
-        colonnaSOGLIAMINIMA.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("sogliaMinima"));
-        colonnaSOGLIAMASSIMA.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("sogliaMassima"));
         colonnaALIQUOTA.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("aliquota"));
+        colonnaREDDITOMINIMO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("redditoMinimo"));
+        colonnaREDDITOMASSIMO.setCellValueFactory(new PropertyValueFactory<AddizionaleComunale, Float>("redditoMassimo"));
+
 
         this.addizionaliComunali=addizionaleComunaleDao.getAll();
         tableANAGRAFICA.setItems(addizionaliComunali);
@@ -69,5 +75,10 @@ public class controllerAnagraficaAddizionaleComunale {
 
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
+    }
+
+    public void CalcolaAddizionali(ActionEvent event) {
+        AddizionaleComunaleDao addizionaleComunaleDao=new AddizionaleComunaleDao();
+        addizionaleComunaleDao.CalcolaAliquoteAddizionali(Integer.parseInt(txtAnno.getText()));
     }
 }

@@ -22,12 +22,13 @@ public class AsiliNidoDao extends GenericDao {
         return findAllObservableList(AsiliNido.class);
     }
 
-    public AsiliNido CreaAsiloNido(Socio socio, String figlio, int anno, float integrazione, float percentuale, float spesa, float rimborso){       AsiliNido asili = new AsiliNido();
+    public AsiliNido CreaAsiloNido(Socio socio, String figlio, int anno, float spesa, float rimborso, float integrazione){
+        AsiliNido asili = new AsiliNido();
         asili.setFiglio(figlio);
         asili.setSocio(socio);
         asili.setAnno(anno);
         asili.setIntegrazione(integrazione);
-        asili.setPercentuale(percentuale);
+        asili.setPercentuale((rimborso+integrazione)*100/spesa);
         asili.setRimborso(rimborso);
         asili.setSpesa(spesa);
         this.save(asili);

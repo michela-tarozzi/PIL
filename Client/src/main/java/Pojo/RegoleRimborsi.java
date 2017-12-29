@@ -70,7 +70,7 @@ public class RegoleRimborsi implements Externalizable {
 
     @OneToMany(mappedBy = "regola",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Rimborsi> rimborsi=new ArrayList<>();
 

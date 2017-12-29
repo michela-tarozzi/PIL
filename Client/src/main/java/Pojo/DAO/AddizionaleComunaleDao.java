@@ -1,14 +1,12 @@
 package Pojo.DAO;
 
 import Pojo.AddizionaleComunale;
+import Pojo.Socio;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 
 
@@ -24,8 +22,10 @@ public class AddizionaleComunaleDao extends GenericDao {
         return findAllObservableList(AddizionaleComunale
                 .class);
     }
-    public AddizionaleComunale getAddizionaleSpecifico(String comune, float reddito, int anno)
+   // public AddizionaleComunale getAddizionaleSpecifico(String comune, float reddito, int anno)
     {
+        //todo
+        /*
         AddizionaleComunale addizionaleComunale=new AddizionaleComunale();
         ObservableList<AddizionaleComunale> tutte = getAll();
         Iterator<AddizionaleComunale> it=tutte.iterator();
@@ -34,23 +34,27 @@ public class AddizionaleComunaleDao extends GenericDao {
         {
             addizionaleComunale=it.next();
             if(addizionaleComunale.getAnno()== anno && addizionaleComunale.getSogliaMinima()<reddito &&
-                    addizionaleComunale.getSogliaMassima()>reddito && addizionaleComunale.getComune().equals(comune))
+                    addizionaleComunale.getSogliaEsente()>reddito && addizionaleComunale.getComune().equals(comune))
             {
                 trovato=true;
             }
         }
 
         return addizionaleComunale;
+        */
     }
 
-    public AddizionaleComunale CreaAddizionaleComunale(String codice, String comune, int anno, float sogliaMinima, float sogliaMassima, float aliquota) {
+    public AddizionaleComunale CreaAddizionaleComunale(String codice, String comune, int anno, float aliquotaZero,
+                                                       float aliquotaUno, float aliquotaDue, float aliquotaTre, float aliquotaQuattro,
+                                                       float aliquotaCinque, String fasciaZero, String fasciaUNo, String fasciaDue, String fasciaTre,
+                                                       String fasciaQuattro,String fasciaCinque, float sogliaEsente) {
         AddizionaleComunale ac = new AddizionaleComunale();
         ac.setCodice(codice);
         ac.setComune(comune);
-        ac.setAliquota(aliquota);
         ac.setAnno(anno);
-        ac.setSogliaMassima(sogliaMassima);
-        ac.setSogliaMinima(sogliaMinima);
+        ac.setAliquota(aliquotaZero);
+        ac.setRedditoMinimo(aliquotaUno);
+        ac.setRedditoMassimo(aliquotaDue);
         this.save(ac);
         return ac;
     }
@@ -82,10 +86,6 @@ public class AddizionaleComunaleDao extends GenericDao {
             numero_campi_invalidi++;
             ultimoErrore = ErrorLabel.DETTAGLIO_NOME_NULLO;
         }
-        if (l.getAliquota() <0) {
-            numero_campi_invalidi++;
-            ultimoErrore = ErrorLabel.DETTAGLIO_COGNOME_NULLO;
-        }
         if (l.getAnno() <2000) {
             numero_campi_invalidi++;
             ultimoErrore = ErrorLabel.DETTAGLIO_CODICEFISCALE_NULLO;
@@ -106,5 +106,17 @@ public class AddizionaleComunaleDao extends GenericDao {
     public void chiudiSessione() {
         closeSession();
     }
+
+    public void CalcolaAliquoteAddizionali(int anno) {
+        SocioDao socioDao=new SocioDao();
+        ObservableList<Socio> soci=socioDao.getAll();
+        Iterator<Socio> socioIterator=soci.iterator();
+        while(socioIterator.hasNext()){
+            Socio socio=socioIterator.next();
+            AddizionaleComunaleDao addizionaleComunaleDao= new AddizionaleComunaleDao();
+
+        }
+    }
+
 }
 

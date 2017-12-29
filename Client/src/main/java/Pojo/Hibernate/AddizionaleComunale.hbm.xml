@@ -11,8 +11,9 @@
     <property name="codice" column="codice"/>
     <property name="comune" column="comune"/>
     <property name="anno" column="anno"/>
-    <property name="sogliaMinima" column="sogliaMinima"/>
-    <property name="sogliaMassima" column="sogliaMassima"/>
     <property name="aliquota" column="aliquota"/>
+    <property name="redditoMinimo" column="redditoMinimo"/>
+    <property name="redditoMassimo" column="redditoMassimo"/>
+
   </class>
 </hibernate-mapping>

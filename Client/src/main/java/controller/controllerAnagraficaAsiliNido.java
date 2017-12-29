@@ -8,11 +8,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
+import procedure.GeneraPagamenti;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -34,6 +37,8 @@ public class controllerAnagraficaAsiliNido {
     public TableColumn<AsiliNido,Float> colonnaPERCENTUALE;
     @FXML
     public TableColumn ColonnaSOCIO;
+    @FXML
+    public DatePicker dataPagamento;
 
     private String nomeClasse;
     private ObservableList<AsiliNido> asili= FXCollections.observableArrayList();
@@ -65,5 +70,14 @@ public class controllerAnagraficaAsiliNido {
 
     public void tornaHome(Event event) {
         App.getInstance().gotoHOME();
+    }
+
+    public void PagaAsiliNido(ActionEvent event) {
+        GeneraPagamenti generaPagamenti=new GeneraPagamenti();
+        generaPagamenti.GeneraPagamentoAsili(tableANAGRAFICA.getItems(),dataPagamento.getValue());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Inserimento");
+        alert.setHeaderText("Asili pagati");
+        alert.showAndWait();
     }
 }

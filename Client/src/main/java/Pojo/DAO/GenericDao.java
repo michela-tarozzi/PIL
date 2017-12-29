@@ -1,5 +1,6 @@
 package Pojo.DAO;
 
+import Pojo.NomiSoci;
 import Pojo.Socio;
 import Utility.HibernateUtil;
 import Utility.exception.ExceptionCode;
@@ -13,6 +14,7 @@ import org.hibernate.query.Query;
 
 import java.lang.reflect.Field;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -309,6 +311,8 @@ public class GenericDao<T> implements GenericDaoInterface<T> {
 
     }
 
+
+
     public List ImportoAnnuoQuoteSocio(Socio socio, String anno)
     {
         List<T> quote = null;
@@ -324,6 +328,26 @@ public class GenericDao<T> implements GenericDaoInterface<T> {
             handleException(e);
         }
         return quote;
+    }
+
+    public ObservableList<NomiSoci> getSociMutua(){
+        ObservableList<NomiSoci> sociMutua=FXCollections.observableArrayList();
+        Session session = this.session.getCurrentSession();
+        session.beginTransaction();
+        try {
+            Query querySociMutua = session.createNamedQuery("getSociMutua");
+            sociMutua.setAll(querySociMutua.getResultList());
+            }catch(Exception e){e.printStackTrace();}
+        session.flush();
+        session.getTransaction().commit();
+        return sociMutua;
+    }
+
+    public List<NomiSoci> getSociPensionati() {
+        Session session = this.session.getCurrentSession();
+        Query querysession=session.getNamedQuery("getSociPensionati");
+        List<NomiSoci> sociPensionati=querysession.getResultList();
+        return sociPensionati;
     }
 }
 

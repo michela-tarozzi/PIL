@@ -8,23 +8,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaAddizionaleComunale">
+<?import javafx.scene.control.TextField?>
+<TabPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.controllerAnagraficaAddizionaleComunale" >
    <tabs>
       <Tab text="Anagrafica degli addizionali comunali" onClosed="#tornaHome">
          <content>
-            <AnchorPane prefHeight="700.0" prefWidth="1200.0">
+            <AnchorPane >
                <children>
-                  <TableView fx:id="tableANAGRAFICA" editable="true" layoutX="24.0" layoutY="50.0" prefHeight="625.0" prefWidth="1157.0" tableMenuButtonVisible="true">
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="400">
                     <columns>
                       <TableColumn fx:id="ColonnaCODICE" prefWidth="89.0" text="CODICE" />
                       <TableColumn fx:id="ColonnaCOMUNE" prefWidth="89.0" text="COMUNE" />
                       <TableColumn fx:id="ColonnaANNO" prefWidth="89.0" text="ANNO" />
-                      <TableColumn fx:id="colonnaSOGLIAMINIMA" prefWidth="89.0" text="SOGLIA MINIMA" />
-                      <TableColumn fx:id="colonnaSOGLIAMASSIMA" prefWidth="89.0" text="SOGLIA MASSIMA" />
                       <TableColumn fx:id="colonnaALIQUOTA" prefWidth="89.0" text="ALIQUOTA" />
-                    </columns>
+                         <TableColumn fx:id="colonnaREDDITOMINIMO" prefWidth="89.0" text="REDDITO MINIMO" />
+                        <TableColumn fx:id="colonnaREDDITOMASSIMO" prefWidth="89.0" text="REDDITO MASSIMO" />
+                      </columns>
                   </TableView>
                   <Button fx:id="btnNuovoADDIZIONALE" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovoAddizionale" text="Inserisci nuovo addizionale" />
+                   <Button fx:id="btnCalcolaAddizionali" layoutX="250.0" layoutY="14.0" mnemonicParsing="false" onAction="#CalcolaAddizionali" text="Calcola Addizionali Comunali" />
+                    <TextField fx:id="txtAnno" layoutX="500.0" layoutY="14.0" ></TextField>
                </children>
             </AnchorPane>
          </content>

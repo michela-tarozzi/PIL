@@ -102,4 +102,6 @@ public class controllerMain {
     public void InserisciNuovoRimborso(ActionEvent actionEvent) { App.getInstance().gotoInserisciRimborso();    }
 
     public void InserisciNuovaRegola(ActionEvent actionEvent) { App.getInstance().gotoInserisciRegolaRimborso();    }
+
+    public void VaiPagaBorse(ActionEvent event) {App.getInstance().gotoPagaBorse();}
 }

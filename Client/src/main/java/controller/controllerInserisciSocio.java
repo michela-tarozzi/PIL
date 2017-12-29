@@ -56,27 +56,47 @@ public class controllerInserisciSocio {
     @FXML
     public ComboBox ComboConto;
 
-    public void Inserisci(ActionEvent event) {
-        SocioDao socioDao=new SocioDao();
-        if (txtSussidio.getText().length()==0)
-        {
-            LocalDate ld=DateIscrizione.getValue();
-            Socio socio=socioDao.CreaSocio(txtCF.getText(),txtCognome.getText(),txtNome.getText(),txtIndirizzo.getText(),
-                    txtCitta.getText(),(Comune) ComboComune.getValue(),txtIBAN.getText(),ld,txtCategoria.getText(),(Regioni) ComboRegione.getValue(),(Conti)ComboConto.getValue() );
-        }
-        else
-        {
-            LocalDate ld=DateIscrizione.getValue();
-            LocalDate ld2=DateIscrizione.getValue();
-            socioDao.CreaSocioPensionato(txtCF.getText(),txtCognome.getText(),txtNome.getText(),txtIndirizzo.getText(),
-                    txtCitta.getText(),(Comune) ComboComune.getValue(),txtIBAN.getText(),ld,txtCategoria.getText(),ld2,
-                    Float.parseFloat(txtReddito.getText()),Float.parseFloat(txtRitenuta.getText()),Float.parseFloat(txtSussidio.getText()), (Regioni)ComboRegione.getValue(),(Conti)ComboConto.getValue());
+    public Socio socio;
 
+    public void Inserisci(ActionEvent event) {
+        if (socio!=null)
+        {
+            socio.setCF(txtCF.getText());
+            socio.setNome(txtNome.getText());
+            socio.setCognome(txtCognome.getText());
+            socio.setIndirizzo(txtIndirizzo.getText());
+            socio.setIBAN(txtIBAN.getText());
+            socio.setRegione((Regioni) ComboRegione.getValue());
+            socio.setComune((Comune)ComboComune.getValue());
+            socio.setConto((Conti)ComboConto.getValue());
+            socio.setdataIscrizione(DateIscrizione.getValue());
+            socio.setritenuta(Float.parseFloat(txtRitenuta.getText()));
+            socio.setsussidioMensile(Float.parseFloat(txtSussidio.getText()));
+            socio.setCategoria(txtCategoria.getText());
+            socio.setCitta(txtCitta.getText());
+            // TODO: 16/11/2017  
+            SocioDao socioDao=new SocioDao();
+            socioDao.update(socio);
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Inserimento");
-        alert.setHeaderText("Socio inserito");
-        alert.showAndWait();
+        else {
+            SocioDao socioDao = new SocioDao();
+            if (txtSussidio.getText().length() == 0) {
+                LocalDate ld = DateIscrizione.getValue();
+                Socio socio = socioDao.CreaSocio(txtCF.getText(), txtCognome.getText(), txtNome.getText(), txtIndirizzo.getText(),
+                        txtCitta.getText(), (Comune) ComboComune.getValue(), txtIBAN.getText(), ld, txtCategoria.getText(), (Regioni) ComboRegione.getValue(), (Conti) ComboConto.getValue());
+            } else {
+                LocalDate ld = DateIscrizione.getValue();
+                LocalDate ld2 = DateIscrizione.getValue();
+                socioDao.CreaSocioPensionato(txtCF.getText(), txtCognome.getText(), txtNome.getText(), txtIndirizzo.getText(),
+                        txtCitta.getText(), (Comune) ComboComune.getValue(), txtIBAN.getText(), ld, txtCategoria.getText(), ld2,
+                        Float.parseFloat(txtReddito.getText()), Float.parseFloat(txtRitenuta.getText()), Float.parseFloat(txtSussidio.getText()), (Regioni) ComboRegione.getValue(), (Conti) ComboConto.getValue());
+
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Inserimento");
+            alert.setHeaderText("Socio inserito");
+            alert.showAndWait();
+        }
         App.getInstance().gotoAnagraficaSOCI();
     }
     @FXML
@@ -91,7 +111,7 @@ public class controllerInserisciSocio {
 
         if (App.getInstance().getSocioGlobale()!=null)
         {
-            Socio socio=App.getInstance().getSocioGlobale();
+            socio=App.getInstance().getSocioGlobale();
             DateIscrizione.setValue(socio.getdataIscrizione());
             txtCF.setText(socio.getCF());
             txtCognome.setText(socio.getCognome());

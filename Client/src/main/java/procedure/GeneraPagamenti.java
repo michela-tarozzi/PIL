@@ -1,10 +1,7 @@
 package procedure;
 
 import Pojo.*;
-import Pojo.DAO.PagamentoDao;
-import Pojo.DAO.PensioniDao;
-import Pojo.DAO.RimborsoDao;
-import Pojo.DAO.SocioDao;
+import Pojo.DAO.*;
 import Pojo.Pagamenti;
 import Pojo.Pensioni;
 import Pojo.Rimborsi;
@@ -38,7 +35,7 @@ public class GeneraPagamenti {
             pensioniDao.update(pensione);
             pagamenti.add(pagamento);
         }
-        generaXML(pagamenti, data);
+        generaXML(pagamenti, data,"C:\\Users\\m.tarozzi\\IsaiaLevi\\Pensioni\\PagPensioni"+pensioni.get(0).getData().getYear()+pensioni.get(0).getData().getMonthValue()+pensioni.get(0).getData().getDayOfMonth()+".xml");
         GeneraRegistrazioniOracle generaRegistrazioniOracle=new GeneraRegistrazioniOracle();
         generaRegistrazioniOracle.generaRegistrazioni(pensioni,data);
         return true;
@@ -55,16 +52,33 @@ public class GeneraPagamenti {
             Pagamenti pagamento=pagamentoDao.CreaPagamento(rimborso,data,rimborso.getImporto(), rimborso.getImporto(),0);
             rimborso.setPagamento(pagamento);
             rimborsoDao.update(rimborso);
+            pagamenti.add(pagamento);
         }
-        generaXML(pagamenti, data);
+        generaXML(pagamenti, data,"C:\\Users\\m.tarozzi\\IsaiaLevi\\Rimborsi\\PagRimborsi"+rimborsi.get(0).getData().getYear()+rimborsi.get(0).getData().getMonthValue()+rimborsi.get(0).getData().getDayOfMonth()+".xml");
+        return true;
+    }
+    public boolean GeneraPagamentoAsili(ObservableList<AsiliNido> asili, LocalDate data) {
+        PagamentoDao pagamentoDao=new PagamentoDao();
+        ObservableList<Pagamenti> pagamenti= FXCollections.observableArrayList();
+        AsiliNidoDao asiliNidoDao=new AsiliNidoDao();
+        Iterator<AsiliNido> it= asili.iterator();
+        while(it.hasNext())
+        {
+            AsiliNido asilo=it.next();
+            Pagamenti pagamento=pagamentoDao.CreaPagamento(asilo,data,asilo.getRimborso(), asilo.getRimborso(),0);
+            asilo.setPagamento(pagamento);
+            asiliNidoDao.update(asilo);
+            pagamenti.add(pagamento);
+        }
+        generaXML(pagamenti, data, "C:\\Users\\m.tarozzi\\IsaiaLevi\\Asili\\PagAsili"+asili.get(1).getAnno()+".xml");
         return true;
     }
 
-    public boolean generaXML(ObservableList<Pagamenti> pagamenti, LocalDate data){
+    public boolean generaXML(ObservableList<Pagamenti> pagamenti, LocalDate data, String path){
 
         try {
             LocalDateTime ora=LocalDateTime.now();
-            File statText = new File("C:\\Users\\m.tarozzi\\IsaiaLevi\\"+data.getYear()+data.getMonth()+data.getDayOfMonth()+ora.getHour()+ora.getMinute()+ora.getSecond()+".xml");
+            File statText = new File(path);
             FileOutputStream fos = new FileOutputStream(statText);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
             float sum=0;
@@ -133,6 +147,7 @@ public class GeneraPagamenti {
                     "<MmbId>01030</MmbId></ClrSysMmbId></FinInstnId></DbtrAgt>\n" +
                     "<ChrgBr>SLEV</ChrgBr>\n");
             it=pagamenti.iterator();
+            boolean borsa=false;
             while(it.hasNext()){
                 Pagamenti pagamento=it.next();
                 Socio socio;
@@ -140,21 +155,33 @@ public class GeneraPagamenti {
                 if(pagamento.getPensioni().size()!=0){socio=pagamento.getPensioni().get(0).getSocio();descrizione="Isaia Levi "+mese+"/"+data.getYear();}
                 else if(pagamento.getAsiliNido().size()!=0){socio=pagamento.getAsiliNido().get(0).getSocio();descrizione="Isaia Levi - Asili nido";}
                     else if (pagamento.getRimborsi().size()!=0){
-                    Rimborsi rimborso=pagamento.getRimborsi().get(0);
-                    Spese spesa=rimborso.getSpesa();
-                    socio=spesa.getSocio();
-                    descrizione="Isaia Levi - Rimborso assistenziale";
-                }
+                                Rimborsi rimborso=pagamento.getRimborsi().get(0);
+                                Spese spesa=rimborso.getSpesa();
+                                socio=spesa.getSocio();
+                                descrizione="Isaia Levi - Rimborso assistenziale";
+                            }
                         else if (pagamento.getEredi().size()!=0){socio=pagamento.getEredi().get(0).getSocio(); descrizione="Isaia Levi - sussidio "+pagamento.getEredi().get(0).getSocio().getCognome()+" "+pagamento.getEredi().get(0).getSocio().getNome();}
-                            else {socio=pagamento.getBorseDiStudio().get(0).getSocio(); descrizione="Isaia Levi - Borsa di Studio";}
+                else {
+                            socio=pagamento.getBorseDiStudio().get(0).getSocio(); descrizione="Isaia Levi - Borsa di Studio";
+                if( pagamento.getBorseDiStudio().get(0).getIBAN()!=null){ borsa=true;}}
                 String numero=GetNumberToBonifico.getInstance().dammiIlProssimo();
-                w.write( "<CdtTrfTxInf><PmtId><InstrId>"+ numero+
-                "</InstrId><EndToEndId>BONSCTPENSISAIA"+data.getYear()+mese+numero+
-                        "</EndToEndId></PmtId><PmtTpInf><CtgyPurp><Cd>CASH</Cd></CtgyPurp></PmtTpInf><Amt><InstdAmt Ccy=\"EUR\">"+
-                                String.format("%.2f", pagamento.getNetto())+"</InstdAmt></Amt><Cdtr><Nm>"+
-                        socio.getCognome()+" "+socio.getNome()+"</Nm><CtryOfRes>IT</CtryOfRes></Cdtr><CdtrAcct><Id><IBAN>"+
-                                socio.getIBAN()+"</IBAN></Id></CdtrAcct><RmtInf><Ustrd>"+descrizione+"</Ustrd></RmtInf></CdtTrfTxInf>\n");
-            }
+                if (borsa){
+                    w.write("<CdtTrfTxInf><PmtId><InstrId>" + numero +
+                            "</InstrId><EndToEndId>BONSCTPENSISAIA" + data.getYear() + mese + numero +
+                            "</EndToEndId></PmtId><PmtTpInf><CtgyPurp><Cd>CASH</Cd></CtgyPurp></PmtTpInf><Amt><InstdAmt Ccy=\"EUR\">" +
+                            String.format("%.2f", pagamento.getNetto()) + "</InstdAmt></Amt><Cdtr><Nm>" +
+                            pagamento.getBorseDiStudio().get(0).getFiglio() + "</Nm><CtryOfRes>IT</CtryOfRes></Cdtr><CdtrAcct><Id><IBAN>" +
+                            pagamento.getBorseDiStudio().get(0).getIBAN() + "</IBAN></Id></CdtrAcct><RmtInf><Ustrd>" + descrizione + "</Ustrd></RmtInf></CdtTrfTxInf>\n");
+
+                }else {
+                    w.write("<CdtTrfTxInf><PmtId><InstrId>" + numero +
+                            "</InstrId><EndToEndId>BONSCTPENSISAIA" + data.getYear() + mese + numero +
+                            "</EndToEndId></PmtId><PmtTpInf><CtgyPurp><Cd>CASH</Cd></CtgyPurp></PmtTpInf><Amt><InstdAmt Ccy=\"EUR\">" +
+                            String.format("%.2f", pagamento.getNetto()) + "</InstdAmt></Amt><Cdtr><Nm>" +
+                            socio.getCognome() + " " + socio.getNome() + "</Nm><CtryOfRes>IT</CtryOfRes></Cdtr><CdtrAcct><Id><IBAN>" +
+                            socio.getIBAN() + "</IBAN></Id></CdtrAcct><RmtInf><Ustrd>" + descrizione + "</Ustrd></RmtInf></CdtTrfTxInf>\n");
+                }
+                }
             w.write("</PmtInf></CBIPaymentRequest>");
             w.close();
             GetNumberToBonifico.getInstance().reset();
@@ -164,5 +191,21 @@ public class GeneraPagamenti {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public void GeneraPagamentoBorse(ObservableList<BorseDiStudio> borse, LocalDate data) {
+        PagamentoDao pagamentoDao=new PagamentoDao();
+        ObservableList<Pagamenti> pagamenti= FXCollections.observableArrayList();
+        BorseDiStudioDao borseDiStudioDao=new BorseDiStudioDao();
+        Iterator<BorseDiStudio> it= borse.iterator();
+        while(it.hasNext())
+        {
+            BorseDiStudio borsa=it.next();
+            Pagamenti pagamento=pagamentoDao.CreaPagamento(borsa,data,borsa.getLordo(), borsa.getNetto(),borsa.getRitenuta());
+            borsa.setPagamento(pagamento);
+            borseDiStudioDao.update(borsa);
+            pagamenti.add(pagamento);
+        }
+        generaXML(pagamenti, data, "C:\\Users\\m.tarozzi\\IsaiaLevi\\Borse\\PagBorse"+borse.get(0).getAnno()+".xml");
     }
 }
