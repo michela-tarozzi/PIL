@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
 import procedure.GeneraPagamenti;
+import procedure.GeneraRegistrazioniOracle;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -86,5 +87,10 @@ public class controllerAnagraficaBorseDiStudio {
         alert.setTitle("Inserimento");
         alert.setHeaderText("Borse di Studio pagate");
         alert.showAndWait();
+    }
+
+    public void GeneraRegistrazioneBorse(ActionEvent actionEvent) {
+        GeneraRegistrazioniOracle gro=new GeneraRegistrazioniOracle();
+        gro.generaAssegniStudio(tableANAGRAFICA.getItems(),tableANAGRAFICA.getItems().get(0).getAnno());
     }
 }

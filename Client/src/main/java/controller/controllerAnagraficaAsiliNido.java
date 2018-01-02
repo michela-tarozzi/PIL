@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
 import procedure.GeneraPagamenti;
+import procedure.GeneraRegistrazioniOracle;
 
 /**
  * Created by m.tarozzi on 15/10/2017.
@@ -79,5 +80,10 @@ public class controllerAnagraficaAsiliNido {
         alert.setTitle("Inserimento");
         alert.setHeaderText("Asili pagati");
         alert.showAndWait();
+    }
+
+    public void GeneraRegistrazione(ActionEvent actionEvent) {
+        GeneraRegistrazioniOracle gro=new GeneraRegistrazioniOracle();
+        gro.generaRimborsiAsiliNido(tableANAGRAFICA.getItems(),tableANAGRAFICA.getItems().get(0).getAnno());
     }
 }

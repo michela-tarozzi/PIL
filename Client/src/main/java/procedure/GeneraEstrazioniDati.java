@@ -1,5 +1,6 @@
 package procedure;
 
+import Pojo.AliquoteAddizionali;
 import Pojo.AsiliNido;
 import Pojo.Pensioni;
 import Pojo.Quote;
@@ -26,12 +27,8 @@ public class GeneraEstrazioniDati {
     public static void GeneraEstrazioneDatiPensioni(ObservableList<Pensioni> pensioni)
     {
         LocalDateTime ora=LocalDateTime.now();
-        File statText = new File("C:\\Users\\m.tarozzi\\IsaiaLevi\\Pensioni\\Pensioni"+pensioni.get(1).getData().getYear()+pensioni.get(1).getData().getMonth()+".xls");
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
+        File statText = new File("C:\\Users\\Michela\\IsaiaLevi\\Pensioni\\Pensioni"+pensioni.get(1).getData().getYear()+pensioni.get(1).getData().getMonth()+".xls");
         Iterator<Pensioni> it=pensioni.iterator();
-        //Create a blank sheet
-        XSSFSheet sheet = workbook.createSheet("Pensioni");
         float sussidio=0;
         float carovita=0;
         float ritenuta=0;
@@ -40,7 +37,6 @@ public class GeneraEstrazioniDati {
         float lordo=0;
         float netto=0;
         int conta=1;
-        //This data needs to be written (Object[])
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
         data.put(String.valueOf(conta), new Object[]{"SOCIO","REGIONE","COMUNE","DATA","SUSSIDIO","CAROVITA","ALIQUOTA RITENUTA","RITENUTA","Add.REGIONALE","Add. COMUNALE","LORDO","NETTO"});
         while (it.hasNext()){
@@ -57,61 +53,14 @@ public class GeneraEstrazioniDati {
         }
         conta++;
         data.put(String.valueOf(conta), new Object[]{"","","","",sussidio,carovita,"",ritenuta,regionale,comunale,lordo,netto});
-        //Iterate over data and write to sheet
-        Set<String> keyset = data.keySet();
-
-        int rownum = 0;
-        for (String key : keyset)
-        {
-            //create a row of excelsheet
-            Row row = sheet.createRow(rownum++);
-
-            //get object array of prerticuler key
-            Object[] objArr = data.get(key);
-
-            int cellnum = 0;
-
-            for (Object obj : objArr)
-            {
-                Cell cell = row.createCell(cellnum++);
-                if (obj instanceof String)
-                {
-                    cell.setCellValue((String) obj);
-                }
-                else if (obj instanceof Integer)
-                {
-                    cell.setCellValue((Integer) obj);
-                }
-                else if (obj instanceof Float)
-                {
-                    cell.setCellValue((Float) obj);
-                }
-            }
-        }
-        try
-        {
-            //Write the workbook in file system
-            FileOutputStream out = new FileOutputStream(statText);
-            workbook.write(out);
-            out.close();
-            System.out.println("howtodoinjava_demo.xlsx written successfully on disk.");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
+        printOnExcel(statText,"Pensioni",data);
     }
 
     public static void GeneraEstrazioneDatiQuote(ObservableList<Quote> quote)
     {
         LocalDateTime ora=LocalDateTime.now();
-        File statText = new File("C:\\Users\\m.tarozzi\\IsaiaLevi\\Quote\\Quote"+quote.get(1).getData().getYear()+"_"+quote.get(1).getData().getMonthValue()+".xls");
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
+        File statText = new File("C:\\Users\\Michela\\IsaiaLevi\\Quote\\Quote"+quote.get(1).getData().getYear()+"_"+quote.get(1).getData().getMonthValue()+".xls");
         Iterator<Quote> it=quote.iterator();
-        //Create a blank sheet
-        XSSFSheet sheet = workbook.createSheet("Quote"+quote.get(1).getData().getYear()+"_"+quote.get(1).getData().getMonthValue());
         float totaleMutua=0;
         float totaleSussidi=0;
         int conta=0;
@@ -137,7 +86,31 @@ public class GeneraEstrazioniDati {
         }
         conta++;
         data.put(String.valueOf(conta), new Object[]{"Totale",totaleSussidi,totaleMutua});
-        //Iterate over data and write to sheet
+        printOnExcel(statText,"Quote",data);
+    }
+
+    public static void GeneraEstrazioneDatiAliquote(ObservableList<AliquoteAddizionali> quote)
+    {
+        LocalDateTime ora=LocalDateTime.now();
+        File statText = new File("C:\\Users\\Michela\\IsaiaLevi\\Aliquote\\Aliquote"+quote.get(1).getAnno()+"_"+".xls");
+        Iterator<AliquoteAddizionali> it=quote.iterator();
+        int conta=0;
+        //This data needs to be written (Object[])
+        Map<String, Object[]> data = new TreeMap<String, Object[]>();
+        data.put(String.valueOf(conta), new Object[]{"SOCIO","COMUNE","REDDITO","REGIONE","ALIQUOTA COMUNALE","ALIQUOTA REGIONALE"});
+        while (it.hasNext()){
+            conta++;
+            AliquoteAddizionali quota=it.next();
+            data.put(String.valueOf(conta), new Object[]{quota.getSocio().getCognome()+" "+quota.getSocio().getNome(),quota.getSocio().getComune().getNome(),quota.getSocio().getreddito(),quota.getSocio().getRegione().getNome(),String.format("%.3f", quota.getAliquotaComunale()), String.format("%.3f", quota.getAliquotaRegionale())});
+        }
+        conta++;
+        printOnExcel(statText,"Aliquote",data);
+       }
+
+    public static void printOnExcel(File statText,String sheetName,Map<String, Object[]> data){
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        //Create a blank sheet
+        XSSFSheet sheet = workbook.createSheet(sheetName);
         Set<String> keyset = data.keySet();
 
         int rownum = 0;
@@ -174,15 +147,15 @@ public class GeneraEstrazioniDati {
             FileOutputStream out = new FileOutputStream(statText);
             workbook.write(out);
             out.close();
-            System.out.println("howtodoinjava_demo.xlsx written successfully on disk.");
+            System.out.println("File written successfully on disk.");
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
 
-    }
 
+    }
     /*public static void GeneraEstrazioneDatiAsili(ObservableList<AsiliNido> asili)
     {
         LocalDateTime ora=LocalDateTime.now();

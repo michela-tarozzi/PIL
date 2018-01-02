@@ -49,8 +49,9 @@ public class controllerInserisciSpesa {
                 return !(socio.getCategoria().equals("PENSIONATO")||socio.getCategoria().equals("DECEDUTO")||socio.getCategoria().equals("DIMESSO")||socio.getCategoria().equals("SUSSIDI"));
             }
         };
-        soci.filtered(predicate).sorted();
+        //soci.filtered(predicate).sorted();
         ComboSocio.setEditable(true);
+        //ComboSocio.setItems(soci.filtered(predicate).sorted());
         ComboSocio.setItems(soci.filtered(predicate).sorted());
         RegoleRimborsiDao regoleRimborsiDao=new RegoleRimborsiDao();
         ComboCategoria.setItems(regoleRimborsiDao.getAnnoCorrente());

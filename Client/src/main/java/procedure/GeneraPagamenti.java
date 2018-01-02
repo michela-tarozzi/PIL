@@ -35,8 +35,10 @@ public class GeneraPagamenti {
             pensioniDao.update(pensione);
             pagamenti.add(pagamento);
         }
-        generaXML(pagamenti, data,"C:\\Users\\m.tarozzi\\IsaiaLevi\\Pensioni\\PagPensioni"+pensioni.get(0).getData().getYear()+pensioni.get(0).getData().getMonthValue()+pensioni.get(0).getData().getDayOfMonth()+".xml");
+        //genera XML per importazione HomeBanking
+        generaXML(pagamenti, data,"C:\\Users\\Michela\\IsaiaLevi\\Pensioni\\PagPensioni"+pensioni.get(0).getData().getYear()+pensioni.get(0).getData().getMonthValue()+pensioni.get(0).getData().getDayOfMonth()+".xml");
         GeneraRegistrazioniOracle generaRegistrazioniOracle=new GeneraRegistrazioniOracle();
+        //registrazione da importare in oracle con dettaglio per ogni pensionato
         generaRegistrazioniOracle.generaRegistrazioni(pensioni,data);
         return true;
     }

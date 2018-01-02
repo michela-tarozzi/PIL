@@ -154,7 +154,6 @@ public class Socio implements Externalizable {
 
     @OneToMany(mappedBy = "socio",
             cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.TRUE)
     @Expose
     public List<Pensioni> pensioni=new ArrayList<>();
 

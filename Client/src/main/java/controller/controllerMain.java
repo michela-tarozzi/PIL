@@ -104,4 +104,8 @@ public class controllerMain {
     public void InserisciNuovaRegola(ActionEvent actionEvent) { App.getInstance().gotoInserisciRegolaRimborso();    }
 
     public void VaiPagaBorse(ActionEvent event) {App.getInstance().gotoPagaBorse();}
+
+    public void VaiRegistrazioneFIMIV(ActionEvent actionEvent) {
+        App.getInstance().gotoRegistrazioneFIMIV();
+    }
 }

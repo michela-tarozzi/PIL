@@ -78,5 +78,23 @@ public class RegoleCarovitaDao extends GenericDao {
     public void chiudiSessione() {
         closeSession();
     }
+
+    public float getCarovita(int anno) {
+        ObservableList<RegoleCarovita> tutte = getAll();
+        RegoleCarovita carovitaAttuale;
+        Iterator<RegoleCarovita> it=tutte.iterator();
+        float result=0;
+        boolean trovato=false;
+        while (it.hasNext() && !trovato)
+        {
+            carovitaAttuale=it.next();
+            if(carovitaAttuale.getAnno()== anno)
+            {
+                trovato=true;
+                result=carovitaAttuale.getPercentuale();
+            }
+        }
+        return result;
+    }
 }
 

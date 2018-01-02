@@ -67,6 +67,8 @@
                             <MenuItem fx:id="voceQuote" mnemonicParsing="false" onAction="#VaiQuote" text="Quote" />
                             <MenuItem fx:id="voceSpesa" mnemonicParsing="false" onAction="#VaiSpeseRimborsi" text="Spese e Rimborsi" />
                             <MenuItem fx:id="voceRimborsiDaPagare" mnemonicParsing="false" onAction="#VaiRimborsiDaPagare" text="Paga Rimborsi" />
+                            <MenuItem fx:id="voceGeneraRegistrazioneFIMIV" mnemonicParsing="false" onAction="#VaiRegistrazioneFIMIV" text="Genera Registrazione FIMIV" />
+
                         </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="Help">

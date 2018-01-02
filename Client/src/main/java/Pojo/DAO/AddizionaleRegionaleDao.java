@@ -90,7 +90,7 @@ public class AddizionaleRegionaleDao extends GenericDao {
         while (it.hasNext()&& !trovato)
         {
             addizionaleRegionale=it.next();
-            if(addizionaleRegionale.getAnno()== anno && addizionaleRegionale.getSogliaMinima()<reddito &&
+            if(addizionaleRegionale.getAnno()== anno && addizionaleRegionale.getSogliaMinima()<=reddito &&
                     addizionaleRegionale.getSogliaMassima()>reddito && addizionaleRegionale.getRegione().equals(regione))
             {
                 trovato=true;

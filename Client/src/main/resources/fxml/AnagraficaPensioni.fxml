@@ -13,7 +13,7 @@
          <content>
             <AnchorPane prefHeight="700.0" prefWidth="1200.0">
                <children>
-                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0"  prefHeight="454.0" prefWidth="1157.0">
+                  <TableView fx:id="tableANAGRAFICA" layoutX="24.0" layoutY="50.0" prefHeight="454.0" prefWidth="1157.0">
                     <columns>
                         <TableColumn fx:id="colonnaSOCIO" prefWidth="89.0" text="SOCIO" />
                       <TableColumn fx:id="colonnaDATA" prefWidth="89.0" text="DATA" />
@@ -29,6 +29,7 @@
                   <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovaPensione" text="Inserisci nuova pensione" />
                    <Button fx:id="btnModifica" layoutX="184.0" layoutY="14.0" mnemonicParsing="false" onAction="#Modifica" text="Modifica Pensione" />
                    <Button fx:id="btnEstraiDati" layoutX="354.0" layoutY="14.0" mnemonicParsing="false" onAction="#Estrai" text="Estrai dati" />
+                  <Button fx:id="btnPagRitenute" layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#PagamentoRitenute" prefHeight="25.0" prefWidth="189.0" text="Genera Pagamento Ritenute" />
                </children>
             </AnchorPane>
          </content>
