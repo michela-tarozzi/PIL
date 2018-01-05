@@ -1,11 +1,13 @@
 package Pojo.DAO;
 
-import Pojo.AddizionaleComunale;
-import Pojo.Socio;
+import Pojo.*;
 import Utility.exception.ErrorLabel;
 import Utility.exception.ExceptionCode;
 import Utility.exception.SystemExceptionRefactor;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.JavaFXBuilderFactory;
+import procedure.GeneraEstrazioniDati;
 
 import java.util.Iterator;
 
@@ -22,10 +24,8 @@ public class AddizionaleComunaleDao extends GenericDao {
         return findAllObservableList(AddizionaleComunale
                 .class);
     }
-   // public AddizionaleComunale getAddizionaleSpecifico(String comune, float reddito, int anno)
+    public AddizionaleComunale getAddizionaleSpecifico(String comune, float reddito, int anno)
     {
-        //todo
-        /*
         AddizionaleComunale addizionaleComunale=new AddizionaleComunale();
         ObservableList<AddizionaleComunale> tutte = getAll();
         Iterator<AddizionaleComunale> it=tutte.iterator();
@@ -33,28 +33,24 @@ public class AddizionaleComunaleDao extends GenericDao {
         while (it.hasNext()&& !trovato)
         {
             addizionaleComunale=it.next();
-            if(addizionaleComunale.getAnno()== anno && addizionaleComunale.getSogliaMinima()<reddito &&
-                    addizionaleComunale.getSogliaEsente()>reddito && addizionaleComunale.getComune().equals(comune))
+            if(addizionaleComunale.getAnno()== anno && addizionaleComunale.getRedditoMinimo()<=reddito &&
+                    addizionaleComunale.getRedditoMassimo()>reddito && addizionaleComunale.getComune().equals(comune))
             {
                 trovato=true;
             }
         }
-
         return addizionaleComunale;
-        */
     }
 
     public AddizionaleComunale CreaAddizionaleComunale(String codice, String comune, int anno, float aliquotaZero,
-                                                       float aliquotaUno, float aliquotaDue, float aliquotaTre, float aliquotaQuattro,
-                                                       float aliquotaCinque, String fasciaZero, String fasciaUNo, String fasciaDue, String fasciaTre,
-                                                       String fasciaQuattro,String fasciaCinque, float sogliaEsente) {
+                                                       float redditoMinimo, float redditoMassimo) {
         AddizionaleComunale ac = new AddizionaleComunale();
         ac.setCodice(codice);
         ac.setComune(comune);
         ac.setAnno(anno);
         ac.setAliquota(aliquotaZero);
-        ac.setRedditoMinimo(aliquotaUno);
-        ac.setRedditoMassimo(aliquotaDue);
+        ac.setRedditoMinimo(redditoMinimo);
+        ac.setRedditoMassimo(redditoMassimo);
         this.save(ac);
         return ac;
     }
@@ -107,16 +103,27 @@ public class AddizionaleComunaleDao extends GenericDao {
         closeSession();
     }
 
-    public void CalcolaAliquoteAddizionali(int anno) {
+    public void CalcolaPercentualiPerTuttiISoci(int anno) {
         SocioDao socioDao=new SocioDao();
-        ObservableList<Socio> soci=socioDao.getAll();
-        Iterator<Socio> socioIterator=soci.iterator();
-        while(socioIterator.hasNext()){
-            Socio socio=socioIterator.next();
-            AddizionaleComunaleDao addizionaleComunaleDao= new AddizionaleComunaleDao();
-
+        AddizionaleRegionaleDao ard=new AddizionaleRegionaleDao();
+        ObservableList<AliquoteAddizionali> aliquoteAddizionali= FXCollections.observableArrayList();
+        ObservableList<Socio> soci= socioDao.getAll();
+        Iterator<Socio> sociIt=soci.iterator();
+        while(sociIt.hasNext()){
+            Socio socio=sociIt.next();
+            Comune comune=socio.getComune();
+            Regioni regione= socio.getRegione();
+            AddizionaleComunale ac=this.getAddizionaleSpecifico(comune.getNome(),socio.getreddito(),anno);
+            AddizionaleRegionale ar=ard.getAddizionaleSpecifico(regione.getNome(),socio.getreddito(),anno);
+           if(ac!=null && ar!=null) {
+               AliquoteAddizionali aa = new AliquoteAddizionali();
+               aa.setSocio(socio);
+               aa.setAliquotaComunale(ac.getAliquota());
+               aa.setAliquotaRegionale(ar.getAliquota());
+               aliquoteAddizionali.add(aa);
+           }
         }
+        GeneraEstrazioniDati.GeneraEstrazioneDatiAliquote(aliquoteAddizionali);
     }
-
 }
 

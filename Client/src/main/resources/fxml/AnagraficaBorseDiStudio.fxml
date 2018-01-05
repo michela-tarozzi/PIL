@@ -26,6 +26,7 @@
                     </columns>
                   </TableView>
                   <Button fx:id="btnNuovoSocio" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#InserisciNuovaBorsaDiStudio" text="Inserisci nuova Borsa Di Studio" />
+                  <Button layoutX="249.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="198.0" onAction="#GeneraRegistrazioneBorse" text="Genera Registrazione Oracle" />
                </children>
             </AnchorPane>
          </content>

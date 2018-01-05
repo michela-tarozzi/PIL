@@ -369,4 +369,12 @@ public class App extends Application {
             System.out.println(e);
         }
     }
+
+    public void gotoRegistrazioneFIMIV() {
+        try {replaceSceneContent("/fxml/GeneraIscrizioneFIMIV.fxml");}
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
 }

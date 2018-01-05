@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
 import procedure.GeneraEstrazioniDati;
+import procedure.GeneraRegistrazioniOracle;
 
 import java.util.Date;
 
@@ -84,5 +85,10 @@ public class controllerAnagraficaPensioni {
 
     public void Estrai(ActionEvent event) {
         GeneraEstrazioniDati.GeneraEstrazioneDatiPensioni(tableANAGRAFICA.getItems());
+    }
+
+    public void PagamentoRitenute(ActionEvent actionEvent) {
+        GeneraRegistrazioniOracle geo=new GeneraRegistrazioniOracle();
+        geo.generaPagamentoRitenute(tableANAGRAFICA.getItems(), tableANAGRAFICA.getItems().get(0).getData());
     }
 }

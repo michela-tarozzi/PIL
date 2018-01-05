@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import main.App;
 import org.controlsfx.control.table.TableFilter;
 import procedure.GeneraPagamenti;
+import procedure.GeneraRegistrazioniOracle;
 
 /**
  * Created by m.tarozzi on 18/10/2017.
@@ -57,13 +58,14 @@ public class controllerAnagraficaRimborsiDaPagare {
     }
 
 
-    public void InserisciNuovoRimborso(ActionEvent event) {
+    public void PagaRimborsi(ActionEvent event) {
         try{
-        //paga Rimborsi
         RimborsoDao rimborsoDao=new RimborsoDao();
         GeneraPagamenti generaPagamenti=new GeneraPagamenti();
         ObservableList<Rimborsi> rimb=tableANAGRAFICA.getItems();
         generaPagamenti.GeneraPagamentoRimborsi(rimb,Data.getValue());
+            GeneraRegistrazioniOracle gro=new GeneraRegistrazioniOracle();
+            gro.generaRimborsiAssistenziali(rimb,Data.getValue());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Inserimento");
             alert.setHeaderText("Pagamenti Generati");

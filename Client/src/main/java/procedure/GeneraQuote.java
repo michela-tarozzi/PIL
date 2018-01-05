@@ -2,7 +2,9 @@ package procedure;
 
 import Pojo.DAO.QuoteDao;
 import Pojo.DAO.SocioDao;
+import Pojo.Quote;
 import Pojo.Socio;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.awt.geom.QuadCurve2D;
@@ -19,6 +21,7 @@ public class GeneraQuote {
     public String generaQuote(LocalDate data){
         SocioDao socioDao=new SocioDao();
         QuoteDao quoteDao=new QuoteDao();
+        ObservableList<Quote> quote= FXCollections.observableArrayList();
         ObservableList<Socio> soci= socioDao.getAll();
         Iterator<Socio> it = soci.iterator();
         int mutua=0;
@@ -28,21 +31,23 @@ public class GeneraQuote {
             Socio socio=it.next();
             if(socio.getCategoria().equals("MUTUA")){
                 //genera riga 0.05
-                quoteDao.CreaQuota(socio,data, Float.parseFloat("0.05"));
+                quote.add(quoteDao.CreaQuota(socio,data, Float.parseFloat("0.05")));
                 mutua++;
                 }else
                     if(socio.getCategoria().equals("SUSSIDI")){
                         //genera riga 5.16
-                        quoteDao.CreaQuota(socio,data, Float.parseFloat("5.16"));
+                        quote.add(quoteDao.CreaQuota(socio,data, Float.parseFloat("5.16")));
                         sussidi++;
                     }else if(socio.getCategoria().equals("MUTUA&SUSSIDI"))
                         {
                             //genera riga 5.21
-                            quoteDao.CreaQuota(socio,data, Float.parseFloat("5.21"));
+                            quote.add(quoteDao.CreaQuota(socio,data, Float.parseFloat("5.21")));
                             mutua++;
                             sussidi++;
                         }
         }
+        GeneraRegistrazioniOracle gro=new GeneraRegistrazioniOracle();
+        gro.generaRegistrazioniQuote(quote,data);
         return mutua+";"+sussidi;
     }
 

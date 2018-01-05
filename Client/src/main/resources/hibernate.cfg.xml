@@ -12,16 +12,16 @@
         a disk fsync after each commit. Before the application is closed, you should perform the SHUTDOWN command to
         ensure the database is opened instantly when it is next opened. Note you don't need to use SHUTDOWN COMPACT as
         routine. -->
-        <property name="connection.url">jdbc:hsqldb:file:database/DB4;hsqldb.write_delay=false</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/ISAIA</property>
         <!--
                 <property name="connection.url">jdbc:hsqldb:hsql://localhost/GialloDB</property>
         -->
         <!--Configurazione del DB - DRIVER, DIALETTO SQL, Server location user e pass-->
-        <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
-        <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="javax.persistence.schema-generation.scripts.create-target"/>
-        <property name="hibernate.connection.username">SA</property>
-        <property name="hibernate.connection.password">RosW2k17Adm</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>

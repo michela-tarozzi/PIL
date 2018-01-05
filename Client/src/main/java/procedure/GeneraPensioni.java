@@ -23,7 +23,7 @@ public class GeneraPensioni {
 
             Iterator<Socio> socioIt = soci.iterator();
             PensioniDao pensioniDao = new PensioniDao();
-            float carovitaAttuale = new RegoleCarovitaDao().getCarovitaAttuale().getPercentuale();
+            float carovitaAttuale = new RegoleCarovitaDao().getCarovita(data.getYear());
             float sussidio=0;
             float carovita=0;
 
@@ -57,21 +57,20 @@ public class GeneraPensioni {
                     float comunale = 0;
                     if (addizionali) {
                         float lordoAnnuo=pensioniDao.getLordoAnnuoSocio(socio,anno);
-                        //todo
-                        //float aliquotaComunale= new AddizionaleComunaleDao().getAddizionaleSpecifico(socio.getComune().getNome(),socio.getreddito(),anno).getAliquota();
-                        //comunale=lordoAnnuo*aliquotaComunale/100;
+                        float aliquotaComunale= new AddizionaleComunaleDao().getAddizionaleSpecifico(socio.getComune().getNome(),socio.getreddito(),anno).getAliquota();
+                        comunale=lordoAnnuo*aliquotaComunale;
                         float aliquotaRegionale=new AddizionaleRegionaleDao().getAddizionaleSpecifico(socio.getRegione().getNome(),socio.getreddito(),anno).getAliquota();
-                        regionale=lordoAnnuo*aliquotaRegionale/100;
+                        regionale=lordoAnnuo*aliquotaRegionale;
                     }
                     float lordoAnnuo=pensioniDao.getLordoAnnuoSocio(socio,data.getYear());
                     float trattenuteAnnue=pensioniDao.getTrattenuteAnnueSocio(socio,data.getYear());
-                    float arrotondam=trattenuteAnnue-(lordoAnnuo*socio.getritenuta()/100);
+                    float arrotondam=trattenuteAnnue-(lordoAnnuo*socio.getritenuta());
                     float lordo = sussidio + carovita;
-                    float ritenuta = (lordo * socio.getritenuta() / 100)+arrotondam;
+                    float ritenuta = (lordo * socio.getritenuta())+arrotondam;
                     float netto = lordo - ritenuta - regionale - comunale;
                     Pensioni pensione = pensioniDao.CreaPensione(socio,data, sussidio, carovita, regionale, comunale, lordo, netto, ritenuta);
-                    socio.addPensioni(pensione);
-                    socioDao.update(socio);
+                    //socio.addPensioni(pensione);
+                    //socioDao.update(socio);
                 }
 
             }

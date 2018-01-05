@@ -108,6 +108,5 @@ public class controllerAnagraficaAddizionaleComunaleOld {
 
     public void CalcolaAddizionali(ActionEvent event) {
         AddizionaleComunaleDao addizionaleComunaleDao=new AddizionaleComunaleDao();
-        addizionaleComunaleDao.CalcolaAliquoteAddizionali(Integer.parseInt(txtAnno.getText()));
     }
 }
